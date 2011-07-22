@@ -1,0 +1,17 @@
+#error_display {
+    position: absolute;
+    float: left;
+    background-color: #fff;
+    border: solid 2px #000;
+    padding: 20px;
+    margin: 50px;
+    z-index: 20;
+}
+
+#error_display img {
+    position: relative;
+    float: right;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}

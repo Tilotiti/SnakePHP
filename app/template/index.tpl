@@ -1,0 +1,1 @@
+{lang::text('index:edito')}

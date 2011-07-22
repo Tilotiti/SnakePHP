@@ -1,0 +1,3 @@
+{foreach $autos as $auto}
+{$auto.site|escape} {$auto._title|escape}   {$auto._marque|escape}  {$auto._city|escape}    {$auto.id|escape}   {$auto.annee}   {$auto.mec} {$auto.type}    {$auto.marque}	{$auto.modele|escape} {$auto.version|escape}    {$auto.id|escape}   {$auto.cat|escape}  {$auto.energie|escape}  {$auto.pf} {$auto.place}    {$auto.km}  {$auto.garantie|escape} {$auto.couleur|escape}  {$auto.prix}    {$auto.garantie|escape} {$auto.option|escape}   {$auto.cat} {$auto.modele|escape}   {$auto.version|escape}	170	TA	3	BVRD	2011-05-08	19	2011-05-08	VN AUDI HOENM	VO	0	WAUZZZ8P88A147589	0
+{/foreach}
