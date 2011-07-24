@@ -1,17 +1,17 @@
-<?php /* Smarty version Smarty-3.0.8, created on 2011-07-22 21:44:29
+<?php /* Smarty version Smarty-3.0.8, created on 2011-07-24 22:05:18
          compiled from "C:/Program Files/wamp/www/edenphp/app/template/template.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:149524e29ef3debafb1-13618244%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:313514e2c971e764e41-85911247%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '679ce43ad6863734396c16224680dea5b4e71774' => 
     array (
       0 => 'C:/Program Files/wamp/www/edenphp/app/template/template.tpl',
-      1 => 1311371068,
+      1 => 1311545095,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '149524e29ef3debafb1-13618244',
+  'nocache_hash' => '313514e2c971e764e41-85911247',
   'function' => 
   array (
   ),
@@ -43,7 +43,7 @@ $_smarty_tpl->decodeProperties(array (
 if ($_smarty_tpl->_count($_from) > 0){
     foreach ($_from as $_smarty_tpl->tpl_vars['sidebar']->key => $_smarty_tpl->tpl_vars['sidebar']->value){
 ?>
-            <div class="sidebox">
+            <div class="sideBox">
                 <?php $_template = new Smarty_Internal_Template("sidebar/".($_smarty_tpl->tpl_vars['sidebar']->value).".tpl", $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
  echo $_template->getRenderedTemplate(); $_template->rendered_content = null;?><?php unset($_template);?>
             </div>
@@ -70,7 +70,7 @@ if ($_smarty_tpl->_count($_from) > 0){
 if ($_smarty_tpl->_count($_from) > 0){
     foreach ($_from as $_smarty_tpl->tpl_vars['sidebar']->key => $_smarty_tpl->tpl_vars['sidebar']->value){
 ?>
-            <div class="sidebox">
+            <div class="sideBox">
                 <?php $_template = new Smarty_Internal_Template("sidebar/".($_smarty_tpl->tpl_vars['sidebar']->value).".tpl", $_smarty_tpl->smarty, $_smarty_tpl, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null);
  echo $_template->getRenderedTemplate(); $_template->rendered_content = null;?><?php unset($_template);?>
             </div>

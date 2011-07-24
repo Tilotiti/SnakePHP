@@ -68,14 +68,22 @@ aside#sidebarRight {
 section {
     position: relative;
     float: left;
-    width: 600px;
+    width: 580px;
     margin: 0 12px 0 12px;
+    background-color: #f0ead8;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+section h1 {
+    margin: 0;
 }
 
 footer {
     clear: both;
-    margin-top: 10px;
     text-align: center;
+    background-color: #f0ead8;
+    padding: 10px;
 }
 
 a {
@@ -85,4 +93,10 @@ a {
 
 .clear {
     clear: both;
+}
+
+.sideBox {
+    padding: 10px;
+    background-color: #f0ead8;
+    margin-bottom: 15px;
 }

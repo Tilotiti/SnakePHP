@@ -16,7 +16,7 @@
     </nav>
     <aside id="sidebarLeft">
         {foreach $page->getSidebar('left') as $sidebar}
-            <div class="sidebox">
+            <div class="sideBox">
                 {include file="sidebar/`$sidebar`.tpl"}
             </div>
         {/foreach}
@@ -33,7 +33,7 @@
     </section>
     <aside id="sidebarRight">
         {foreach $page->getSidebar('right') as $sidebar}
-            <div class="sidebox">
+            <div class="sideBox">
                 {include file="sidebar/`$sidebar`.tpl"}
             </div>
         {/foreach}
