@@ -123,7 +123,8 @@ class page {
             
             if(file_exists(SOURCE.'/sidebar/'.$file.'.php')):
                 global $smarty, $user;
-                return include_once SOURCE.'/sidebar/'.$file.'.php';
+                include_once SOURCE.'/sidebar/'.$file.'.php';
+                return true;
             else:
                 return false;
             endif;

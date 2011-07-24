@@ -1,6 +1,6 @@
 
 Login : {$mail.user}
 Foreach : <br />
-{foreach from=$mail.test item="test"}
+{foreach $mail.test as $test}
     {$test}<br />
 {/foreach}

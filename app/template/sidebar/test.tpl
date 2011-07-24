@@ -1,1 +1,1 @@
-{lang::text('sidebar:test')}
+{$messageText}
