@@ -10,7 +10,7 @@ define('DBUSER',    'root');                                          // DB user
 define('DBPASS',    '');                                              // DB password
 define('DBNAME',    'edenphp');                                       // DB name
 define('DBPREF',    'eden_');                                         // DB prefix
-define('YEAR',      2010);                                            // Start year
+define('YEAR',      2011);                                            // Start year
 define('DEV',       false);                                           // Debug
 
 // Path Back-office

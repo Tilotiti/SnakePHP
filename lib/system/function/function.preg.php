@@ -14,6 +14,7 @@ function preg($patern, $string = '') {
             $preg = "#^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$#i";
         break;
         case 'login':
+        case 'username':
             $preg = "#^[0-9a-z._@]{3,50}$#i";
         break;
         case 'zipcode':

@@ -28,25 +28,14 @@ class user {
             endif;
             $this->connect = true;
         elseif(isset($_COOKIE['hash'])):
-            $user = new query();
-            $user->Select()
-                 ->From('user')
-                 ->Where('hash', "=", $_COOKIE['hash'])
-                 ->exec('FIRST');
-            
-            if($user->ok()):
-                $this->login($user);
-                $this->connect = true;
-            else:
-                $this->connect = false;
-            endif;
+            $this->login(false, false, $_COOKIE['hash']);
         else:
             $this->connect = false;
         endif;
     }
     
     /*
-    * Function : update($lvl)
+    * Function : update()
     * @desc    : Update the user account
     * @return  : (bool) success
     */
@@ -93,16 +82,39 @@ class user {
     }
     
     /*
-     * Function : login($query)
-     * @desc    : login the user in session
-     * @param   : $query(query) A complete user query
+     * Function : login($username, $password, $hash)
+     * @desc    : login the user
+     * @param   : $username(string) Username
+     * @param   : $password(string) Password
+     * @param   : $hash(string) Hash
      * @return  : (bool) success
      */
 
-    public function login($query) {
+    public function login($username, $password, $hash = false) {
 
-	if(!$query->ok() || count($query->get()) == 0):
-            return false;
+        if($hash !== false):
+            $query = new query();
+            $query->Select()
+                  ->From('user')
+                  ->Where('hash', '=', $hash)
+                  ->exec('FIRST');
+            
+            if(!$query->ok()):
+                message::error("login:key");
+            endif;
+        elseif(preg('username', $username) && preg('password', $password)):
+            $query = new query();
+            $query->Select()
+                  ->From('user')
+                  ->Where('username', '=', $username)
+                  ->Where('password', '=', md5($password))
+                  ->exec('FIRST');
+            
+            if(!$query->ok()):
+                message::error("login:unmatch");
+            endif;
+        else:
+            message::error("login:invalid");
         endif;
 
         $_SESSION['user'] = $query->get();
@@ -111,6 +123,13 @@ class user {
 	$this->connect = true;
         cookie("hash", $this->get('hash'), 60*60*24*365);
         $this->update();
+        
+        if(ADMIN):
+            message::success('login', '/admin/');
+        else:
+            message::success('login', '/index/');
+        endif;
+        
         return true;
     }
 

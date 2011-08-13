@@ -1,10 +1,11 @@
 <form action="" method="POST">
     <label>
-        <strong>Nom d'utilisateur</strong>
+        <strong>{lang::text('username')}</strong>
         <input type="text" name="login[username]" />
     </label>
     <label>
-        <strong>Mot de passe</strong>
+        <strong>{lang::text('password')}</strong>
         <input type="password" name="login[password]" />
     </label>
+    <input type="submit" value="{lang::text('connexion')}" />
 </form>
