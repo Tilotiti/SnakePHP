@@ -6,24 +6,33 @@ define('SITE',      'EdenPHP');                                       // Website
 define('URL',       'http://dev.edenphp.net/');                       // Website URL
 define('CHARSET',   'utf-8');                                         // Website charset
 define('DBHOST',    'localhost');                                     // DB host
-define('DBUSER',    '');                                              // DB user
+define('DBUSER',    'root');                                          // DB user
 define('DBPASS',    '');                                              // DB password
 define('DBNAME',    'edenphp');                                       // DB name
 define('DBPREF',    'eden_');                                         // DB prefix
 define('YEAR',      2010);                                            // Start year
+define('DEV',       false);                                           // Debug
 
-// Please, do not change anything
-define('LIB',        ROOT    .'/lib');
+// Path Back-office
+if(!preg_match('#^/admin/#', $_SERVER['REQUEST_URI'])):
+    define('APP',    ROOT    .'/app');
+    define('ADMIN',  false);
+else:
+    define('APP',    ROOT    .'/admin');
+    define('ADMIN',  true);
+endif;
+
+// Path global
 define('WEBROOT',    ROOT    .'/webroot');
-define('APP',        ROOT    .'/app');
+define('LIB',        ROOT    .'/lib');
 define('LANG',       ROOT    .'/lang');
 define('LOG',        ROOT    .'/log');
-define('SMARTY_DIR', LIB     .'/system/class/smarty/');
-define('TEMPLATE',   APP     .'/template/');
-define('SOURCE',     APP     .'/source/');
 define('CACHE',      ROOT    .'/cache/');
-define('SYSTEM',     LIB     .'/system');
 define('PLUGIN',     LIB     .'/plugin');
+define('SYSTEM',     LIB     .'/system');
+define('SMARTY_DIR', SYSTEM  .'/class/smarty/');
 define('FILE',       WEBROOT .'/file');
-
+define('TEMPLATE',   APP     .'/template');
+define('SOURCE',     APP     .'/source/');
+    
 ?>

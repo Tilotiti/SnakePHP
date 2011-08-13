@@ -12,5 +12,5 @@ $lang["menu:docu"]          = "Documentation";
 $lang["menu:site"]          = "Site officiel";
 $lang["index:edito"]        = "<p>Site en cours de construction.</p><center>Ce site est développé à l'aide d'<b>EdenPHP</b>.</center>"; // From : /index/
 $lang["sidebar:test"]       = "Bloc Sidebar de test"; // From : /index/
-$lang["ariane:separator"]  = " > "; // From : /index/
+$lang["ariane:separator"]   = " > "; // From : /index/
 ?>

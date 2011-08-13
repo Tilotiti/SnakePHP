@@ -1,0 +1,1 @@
+{include file="`$page->get('template')`.tpl"}

@@ -1,5 +1,4 @@
 <?php
-
 $lang["login"]              = "Vous êtes maintenant connecté."; // From : /login/
 $lang["logout"]             = "Vous êtes maintenant déconnecté."; // From : /logout/
 $lang["export/new"]         = "L'export a bien été créé."; // From : /export/new/

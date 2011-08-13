@@ -27,14 +27,18 @@ class page {
     }
 	
     public function micro_time() {
-	$timearray = explode(" ", microtime());
-        return ($timearray[1] + $timearray[0]);
+	$time = explode(" ", microtime());
+        return ($time[1] + $time[0]);
     }
 		
     public function dispatcher($path, $cat = '') {
 
         $g = explode('/', $path);
         $nb = count($g)-1;
+        
+        if(ADMIN):
+            $nb++;
+        endif;
         
         // Redirection vers l'index
         if(get($nb) == "false" || get($nb) == "" || get($nb) == false || is_int(get($nb))):
@@ -50,9 +54,9 @@ class page {
             $page = "index";
             header("HTTP/1.0 404 Not Found");
         endif;
-
+        
         // On redirige en cas d'erreur (La page TPL n'existe pas)
-        if(!file_exists(TEMPLATE.'/'.$path.$page.'.tpl')):
+        if(!file_exists(TEMPLATE.$path.$page.'.tpl')):
             $page = "index";
             header("HTTP/1.0 404 Not Found");
         endif;

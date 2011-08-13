@@ -9,6 +9,14 @@ $page->pushJS('jquery');
 $page->pushJS('plugin');
 $page->pushJS('script');
 
+if(ADMIN):
+    if($user->connect() && !$user->allow('admin')):
+        message::warning('admin:rank', '/index/');
+    elseif(get(2) != 'login'):
+        message::warning('admin:login', '/admin/login/');
+    endif;
+endif;
+
 include $page->dispatcher("/");
 
 // Assign final

@@ -230,7 +230,7 @@ class query {
         if(($calculator == "IN") || ($calculator == "NOT IN")):
             if(is_array($value)):
                 $this->prepare_request .= ' '.$field.' '.$calculator.' ("'.implode('", "', $value).'")';
-            elseif (is_object($value)):
+            elseif(is_object($value)):
                 $this->prepare_request .= ' '.$field.' '.$calculator.' ( '.$value->getRequest().')';
             else:
                 $this->prepare_request .= ' '.$field.' = "'.mysql_real_escape_string($value).'"';
@@ -559,12 +559,18 @@ class query {
         $debug['request'] = $this->prepare_request;
         $debug['results'] = $this->count;
         
-        if(!$force):
-            debug::display($debug);
-        else:
-            echo '<pre>';
+        if(!DEV):
+            echo '<!-- DEBUG ';
             print_r($debug);
-            echo '</pre>';
+            echo '-->';
+        else:
+            if(!$force):
+                debug::display($debug);
+            else:
+                echo '<pre>';
+                print_r($debug);
+                echo '</pre>';
+            endif;
         endif;
     }
 
