@@ -126,7 +126,7 @@ class page {
             endif;
             
             if(file_exists(SOURCE.'/sidebar/'.$file.'.php')):
-                global $smarty, $user;
+                global $template, $user;
                 include_once SOURCE.'/sidebar/'.$file.'.php';
                 return true;
             else:

@@ -20,16 +20,16 @@ endif;
 include $page->dispatcher("/");
 
 // Assign final
-$smarty->assign('page',    $page);
-$smarty->assign('nb',      $nb);
-$smarty->assign('user',    $user);
-$smarty->assign('save',    $_SESSION['save']);
-$smarty->assign('message', $_SESSION['message']);
-$smarty->assign('get',     get());
-$smarty->assign('debug',   $debug);
-$smarty->assign('sql',     page::$sql);
+$template->assign('page',    $page);
+$template->assign('nb',      $nb);
+$template->assign('user',    $user);
+$template->assign('save',    $_SESSION['save']);
+$template->assign('message', $_SESSION['message']);
+$template->assign('get',     get());
+$template->assign('debug',   $debug);
+$template->assign('sql',     page::$sql);
 
-$smarty->display("template.tpl");
+$template->display("template.tpl");
 
 $page->clear();
 exit();

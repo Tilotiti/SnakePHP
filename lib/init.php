@@ -58,10 +58,10 @@ if(PAGE_LOADER):
                 new debug();
     
     // initiation de smarty
-    $smarty   = new smarty();
-    $smarty->template_dir = TEMPLATE;
-    $smarty->compile_dir  = CACHE;
-    $smarty->assign('pagination', array());
+    $template               = new smarty();
+    $template->template_dir = TEMPLATE;
+    $template->compile_dir  = CACHE;
+    $template->assign('pagination', array());
 
     if(!isset($_SESSION['error'])):
         $_SESSION['error'] = false;

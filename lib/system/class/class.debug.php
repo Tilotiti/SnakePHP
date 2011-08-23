@@ -7,7 +7,7 @@ class debug {
             debug::$html = $_SESSION['debug'];
         endif;
     }
-
+    
     static function html($title, $message, $file = __FILE__, $line = __LINE__) {
         self::$html .= "<div class='debug'><div class='debug_info'>Fichier : ".$file."<br />Ligne : ".$line."</div><h1>".$title."</h1>".$message."</div>";
         debug("----------------- Debug -----------------");
@@ -24,7 +24,7 @@ class debug {
         $_SESSION['debug'][] = $debug;
         self::$array[] = $debug;
     }
-
+    
     public function clear() {
         if(count(self::$array)>0):
             echo '<article class="module width_full">';

@@ -46,12 +46,12 @@ class lang {
     }
     
     static function mail($file, $arg = false) {
-        $smarty = new smarty();
-        $smarty->template_dir = LANG.'/'.self::$pays.'/mail/';
-        $smarty->compile_dir  = CACHE.'/mail/'.self::$pays.'/';
-        $smarty->assign('mail', $arg);
+        $template = new smarty();
+        $template->template_dir = LANG.'/'.self::$pays.'/mail/';
+        $template->compile_dir  = CACHE.'/mail/'.self::$pays.'/';
+        $template->assign('mail', $arg);
         if(file_exists(LANG.'/'.self::$pays.'/mail/'.$file.'.tpl')):
-            return $smarty->fetch($file.'.tpl');
+            return $template->fetch($file.'.tpl');
         else:
             return false;
         endif;

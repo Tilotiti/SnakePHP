@@ -1,3 +1,3 @@
 <?php
-$smarty->assign('messageText', lang::text('sidebar:test'));
+$template->assign('messageText', lang::text('sidebar:test'));
 ?>
