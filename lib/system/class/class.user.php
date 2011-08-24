@@ -14,21 +14,34 @@ class user {
      */
 
     public function __construct() {
-
+        
         if($this->get('id')):
+            
             $user = new query();
             $user->Select('id')
                  ->From('user')
                  ->Where('id', '=', $this->get('id'))
                  ->exec("FIRST");
-            
+        
             if(!$user->ok()):
                 $this->logout();
-                message::error('login:accountDeleted');
+                message::error('login:accountDeleted', '/');
             endif;
+            
             $this->connect = true;
         elseif(isset($_COOKIE['hash'])):
-            $this->login(false, false, $_COOKIE['hash']);
+            $user = new query();
+            $user->Select('username', 'password')
+                 ->From('user')
+                 ->Where('hash', '=', $_COOKIE['hash'])
+                 ->exec("FIRST");
+            
+            if($user->ok()):
+                $this->login($user->get('username'), $user->get('password'));
+            else:
+                cookie("hash", "", 0);
+                $this->connect = false;
+            endif;
         else:
             $this->connect = false;
         endif;
@@ -41,6 +54,7 @@ class user {
     */
 
     public function update() {
+        var_dump($_SESSION);
         
         cookie("hash", $this->get('hash'), 60*60*24*365);
         
@@ -90,45 +104,29 @@ class user {
      * @return  : (bool) success
      */
 
-    public function login($username, $password, $hash = false) {
+    public function login($username, $password) {
 
-        if($hash !== false):
-            $query = new query();
-            $query->Select()
-                  ->From('user')
-                  ->Where('hash', '=', $hash)
-                  ->exec('FIRST');
-            
-            if(!$query->ok()):
-                message::error("login:key");
-            endif;
-        elseif(preg('username', $username) && preg('password', $password)):
+        if(preg('username', $username) && preg('password', $password)):
             $query = new query();
             $query->Select()
                   ->From('user')
                   ->Where('username', '=', $username)
-                  ->Where('password', '=', md5($password))
+                  ->Where('password', '=', $password)
                   ->exec('FIRST');
             
             if(!$query->ok()):
-                message::error("login:unmatch");
+                return false;
             endif;
         else:
-            message::error("login:invalid");
+            return false;
         endif;
 
-        $_SESSION['user'] = $query->get();
-        $this->set('hash', $_SERVER['UNIQUE_ID']);
+        $_SESSION['user'] = $this->get();
+        $this->set('hash', uniqid());
         $this->set('connect', time());
 	$this->connect = true;
         cookie("hash", $this->get('hash'), 60*60*24*365);
         $this->update();
-        
-        if(ADMIN):
-            message::success('login', '/admin/');
-        else:
-            message::success('login', '/index/');
-        endif;
         
         return true;
     }
@@ -185,11 +183,20 @@ class user {
         return $this->connect;
     }
 
-    public function get($key) {
-        if(isset($_SESSION['user'][$key])):
-            return $_SESSION['user'][$key];
+    public function get($key = false) {
+        if($key !== false):
+            
+            if(isset($_SESSION['user'][$key])):
+                return $_SESSION['user'][$key];
+            else:
+                return false;
+            endif;
         else:
-            return false;
+            if(isset($_SESSION['user'])):
+                return $_SESSION['user'];
+            else:
+                return false;
+            endif;
         endif;
     }
 

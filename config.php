@@ -13,16 +13,8 @@ define('DBPREF',    'eden_');                                         // DB pref
 define('YEAR',      2011);                                            // Start year
 define('DEV',       false);                                           // Debug
 
-// Path Back-office
-if(!preg_match('#^/admin/#', $_SERVER['REQUEST_URI'])):
-    define('APP',    ROOT    .'/app');
-    define('ADMIN',  false);
-else:
-    define('APP',    ROOT    .'/admin');
-    define('ADMIN',  true);
-endif;
-
 // Path global
+define('APP',        ROOT    .'/app');
 define('WEBROOT',    ROOT    .'/webroot');
 define('LIB',        ROOT    .'/lib');
 define('LANG',       ROOT    .'/lang');
@@ -34,5 +26,5 @@ define('SMARTY_DIR', SYSTEM  .'/class/smarty/');
 define('FILE',       WEBROOT .'/file');
 define('TEMPLATE',   APP     .'/template');
 define('SOURCE',     APP     .'/source/');
-    
+
 ?>

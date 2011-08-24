@@ -1,0 +1,1116 @@
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "4e53ec9a2f31a",  user_time = "0",  user_rank = "admin",  user_connect = "1314122906" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122906" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "4e53eca279488",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:08] ----------------- Debug -----------------
+[23 August 2011, 18:08] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:08] Ligne : 419
+[23 August 2011, 18:08] Title : [sql]
+[23 August 2011, 18:08] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:08] -----------------------------------------
+[23 August 2011, 18:09] ----------------- Debug -----------------
+[23 August 2011, 18:09] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:09] Ligne : 419
+[23 August 2011, 18:09] Title : [sql]
+[23 August 2011, 18:09] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:09] -----------------------------------------
+[23 August 2011, 18:09] ----------------- Debug -----------------
+[23 August 2011, 18:09] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:09] Ligne : 419
+[23 August 2011, 18:09] Title : [sql]
+[23 August 2011, 18:09] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:09] -----------------------------------------
+[23 August 2011, 18:09] ----------------- Debug -----------------
+[23 August 2011, 18:09] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:09] Ligne : 419
+[23 August 2011, 18:09] Title : [sql]
+[23 August 2011, 18:09] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:09] -----------------------------------------
+[23 August 2011, 18:09] ----------------- Debug -----------------
+[23 August 2011, 18:09] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:09] Ligne : 419
+[23 August 2011, 18:09] Title : [sql]
+[23 August 2011, 18:09] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:09] -----------------------------------------
+[23 August 2011, 18:09] ----------------- Debug -----------------
+[23 August 2011, 18:09] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:09] Ligne : 419
+[23 August 2011, 18:09] Title : [sql]
+[23 August 2011, 18:09] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:09] -----------------------------------------
+[23 August 2011, 18:09] ----------------- Debug -----------------
+[23 August 2011, 18:09] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:09] Ligne : 419
+[23 August 2011, 18:09] Title : [sql]
+[23 August 2011, 18:09] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:09] -----------------------------------------
+[23 August 2011, 18:09] ----------------- Debug -----------------
+[23 August 2011, 18:09] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:09] Ligne : 419
+[23 August 2011, 18:09] Title : [sql]
+[23 August 2011, 18:09] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:09] -----------------------------------------
+[23 August 2011, 18:09] ----------------- Debug -----------------
+[23 August 2011, 18:09] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:09] Ligne : 419
+[23 August 2011, 18:09] Title : [sql]
+[23 August 2011, 18:09] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:09] -----------------------------------------
+[23 August 2011, 18:09] ----------------- Debug -----------------
+[23 August 2011, 18:09] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:09] Ligne : 419
+[23 August 2011, 18:09] Title : [sql]
+[23 August 2011, 18:09] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:09] -----------------------------------------
+[23 August 2011, 18:09] ----------------- Debug -----------------
+[23 August 2011, 18:09] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:09] Ligne : 419
+[23 August 2011, 18:09] Title : [sql]
+[23 August 2011, 18:09] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:09] -----------------------------------------
+[23 August 2011, 18:09] ----------------- Debug -----------------
+[23 August 2011, 18:09] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:09] Ligne : 419
+[23 August 2011, 18:09] Title : [sql]
+[23 August 2011, 18:09] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:09] -----------------------------------------
+[23 August 2011, 18:09] ----------------- Debug -----------------
+[23 August 2011, 18:09] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:09] Ligne : 419
+[23 August 2011, 18:09] Title : [sql]
+[23 August 2011, 18:09] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:09] -----------------------------------------
+[23 August 2011, 18:09] ----------------- Debug -----------------
+[23 August 2011, 18:09] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:09] Ligne : 419
+[23 August 2011, 18:09] Title : [sql]
+[23 August 2011, 18:09] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:09] -----------------------------------------
+[23 August 2011, 18:09] ----------------- Debug -----------------
+[23 August 2011, 18:09] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:09] Ligne : 419
+[23 August 2011, 18:09] Title : [sql]
+[23 August 2011, 18:09] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:09] -----------------------------------------
+[23 August 2011, 18:09] ----------------- Debug -----------------
+[23 August 2011, 18:09] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:09] Ligne : 419
+[23 August 2011, 18:09] Title : [sql]
+[23 August 2011, 18:09] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:09] -----------------------------------------
+[23 August 2011, 18:09] ----------------- Debug -----------------
+[23 August 2011, 18:09] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:09] Ligne : 419
+[23 August 2011, 18:09] Title : [sql]
+[23 August 2011, 18:09] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:09] -----------------------------------------
+[23 August 2011, 18:09] ----------------- Debug -----------------
+[23 August 2011, 18:09] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:09] Ligne : 419
+[23 August 2011, 18:09] Title : [sql]
+[23 August 2011, 18:09] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:09] -----------------------------------------
+[23 August 2011, 18:09] ----------------- Debug -----------------
+[23 August 2011, 18:09] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:09] Ligne : 419
+[23 August 2011, 18:09] Title : [sql]
+[23 August 2011, 18:09] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:09] -----------------------------------------
+[23 August 2011, 18:09] ----------------- Debug -----------------
+[23 August 2011, 18:09] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:09] Ligne : 419
+[23 August 2011, 18:09] Title : [sql]
+[23 August 2011, 18:09] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:09] -----------------------------------------
+[23 August 2011, 18:09] ----------------- Debug -----------------
+[23 August 2011, 18:09] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:09] Ligne : 419
+[23 August 2011, 18:09] Title : [sql]
+[23 August 2011, 18:09] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:09] -----------------------------------------
+[23 August 2011, 18:09] ----------------- Debug -----------------
+[23 August 2011, 18:09] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:09] Ligne : 419
+[23 August 2011, 18:09] Title : [sql]
+[23 August 2011, 18:09] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_id = "1",  user_username = "Tilotiti",  user_password = "ec3d4366085970c86ea5dfb38844b3d5",  user_mail = "th@digitaldealer.fr",  user_hash = "",  user_time = "0",  user_rank = "admin",  user_connect = "1314122914" WHERE user_id = ""
+[23 August 2011, 18:09] -----------------------------------------
+[23 August 2011, 18:15] ----------------- Debug -----------------
+[23 August 2011, 18:15] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:15] Ligne : 419
+[23 August 2011, 18:15] Title : [sql]
+[23 August 2011, 18:15] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_hash = "4e53ee55d4c38",  user_connect = "1314123349" WHERE user_id = ""
+[23 August 2011, 18:15] -----------------------------------------
+[23 August 2011, 18:19] ----------------- Debug -----------------
+[23 August 2011, 18:19] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:19] Ligne : 419
+[23 August 2011, 18:19] Title : [sql]
+[23 August 2011, 18:19] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_hash = "4e53ef224b013",  user_connect = "1314123554" WHERE user_id = ""
+[23 August 2011, 18:19] -----------------------------------------
+[23 August 2011, 18:19] ----------------- Debug -----------------
+[23 August 2011, 18:19] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:19] Ligne : 419
+[23 August 2011, 18:19] Title : [sql]
+[23 August 2011, 18:19] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_hash = "4e53ef24afd44",  user_connect = "1314123556" WHERE user_id = ""
+[23 August 2011, 18:19] -----------------------------------------
+[23 August 2011, 18:19] ----------------- Debug -----------------
+[23 August 2011, 18:19] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:19] Ligne : 419
+[23 August 2011, 18:19] Title : [sql]
+[23 August 2011, 18:19] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_hash = "4e53ef2644a6d",  user_connect = "1314123558" WHERE user_id = ""
+[23 August 2011, 18:19] -----------------------------------------
+[23 August 2011, 18:19] ----------------- Debug -----------------
+[23 August 2011, 18:19] Fichier : C:\Program Files\wamp\www\edenphp\lib\system\class\class.query.php
+[23 August 2011, 18:19] Ligne : 419
+[23 August 2011, 18:19] Title : [sql]
+[23 August 2011, 18:19] Message : Unknown column 'user_connect' in 'field list'<br /> UPDATE eden_user SET user_hash = "4e53ef271670f",  user_connect = "1314123559" WHERE user_id = ""
+[23 August 2011, 18:19] -----------------------------------------

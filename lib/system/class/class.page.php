@@ -79,6 +79,7 @@ class page {
     public function clear() {
         $_SESSION['message'] = false;
         $_SESSION['error']   = false;
+        $_SESSION['debug']   = false;
     }
 
     public function addAriane($name, $url = "") {

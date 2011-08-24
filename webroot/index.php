@@ -1,5 +1,6 @@
 <?php
 define('PAGE_LOADER', true);
+
 require_once '../config.php';  // Loading data
 require_once LIB.'/init.php'; // Framework initiation
 
@@ -8,14 +9,6 @@ $page->pushCSS('global');
 $page->pushJS('jquery');
 $page->pushJS('plugin');
 $page->pushJS('script');
-
-if(ADMIN):
-    if($user->connect() && !$user->allow('admin')):
-        message::warning('admin:rank', '/index/');
-    elseif(get(2) != 'login'):
-        message::warning('admin:login', '/admin/login/');
-    endif;
-endif;
 
 include $page->dispatcher("/");
 

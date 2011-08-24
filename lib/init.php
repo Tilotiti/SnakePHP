@@ -11,7 +11,6 @@ while ($file = readdir($dir)):
 endwhile;
 closedir($dir);
 
-session_start();
 
 function autoload($class) {
     if(file_exists(SYSTEM.'/class/class.'.$class.'.php')):
@@ -20,6 +19,8 @@ function autoload($class) {
 }
 
 spl_autoload_register("autoload");
+
+session_start();
 
 // Implantation de tous les plugins
 $dir = opendir(PLUGIN.'/');
@@ -56,7 +57,7 @@ if(PAGE_LOADER):
     $page     = new page();
     $user     = new user();
                 new debug();
-    
+                
     // initiation de smarty
     $template               = new smarty();
     $template->template_dir = TEMPLATE;

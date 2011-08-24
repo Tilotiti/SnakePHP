@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language charset="UTF-8" lang="French" code="fr">
+    <lang id="login" context="" get="/admin/login/">Le mot de passe renseigné ne correspond pas ou le compte demandé n'existe pas.</lang>
+<lang id="sql" context="" get="/admin/login/">[sql]</lang><lang id="login:accountDeleted" context="" get="/index/">[login:accountDeleted]</lang></language>

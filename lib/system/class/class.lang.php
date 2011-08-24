@@ -16,10 +16,17 @@ class lang {
         self::$type[] = "flux";
         
         foreach(self::$type as $t):
-            if(file_exists(LANG.'/'.$pays.'/lang.'.$t.'.php')):
+            /*if(file_exists(LANG.'/'.$pays.'/lang.'.$t.'.php')):
                 $lang = array();
                 require_once LANG.'/'.$pays.'/lang.'.$t.'.php';
                 self::$lang[$t] = $lang;
+            endif;*/
+            if(file_exists(LANG.'/'.$pays.'/lang.'.$t.'.xml')):
+                $xml = simplexml_load_file(LANG.'/'.$pays.'/lang.'.$t.'.xml', 'SimpleXMLElement', LIBXML_NOCDATA);
+                foreach($xml->lang as $line):
+                    $id = (string) $line['id'];
+                    self::$lang[$t][$id] = $line;
+                endforeach;
             endif;
         endforeach;
         
@@ -59,10 +66,8 @@ class lang {
     
     static function find($type, $code, $arg = false) {
         
-        $lang = self::$lang[$type];
-        
-        if(isset($lang[$code])):
-            $return = $lang[$code];
+        if(isset(self::$lang[$type][$code])):
+            $return = self::$lang[$type][$code];
             if(is_array($arg)):
                 foreach($arg as $key => $value):
                     $return = str_replace("[".$key."]", $value, $return);
@@ -72,14 +77,22 @@ class lang {
             endif;
             return $return;
         else:
-            $file = file(LANG.'/'.self::$pays.'/lang.'.$type.'.php');
+            /*$file = file(LANG.'/'.self::$pays.'/lang.'.$type.'.php');
             $file_nb = count($file);
             $file[$file_nb-1] = '$lang["'.$code.'"] = "['.$code.']"; // From : '.get()."\n";
             $file[$file_nb]   = "?>";
             $string = implode("", $file);
             $fp = fopen(LANG.'/'.self::$pays.'/lang.'.$type.'.php', "w");
             fputs($fp, $string);
-            fclose($fp); 
+            fclose($fp); */
+            $xml = simplexml_load_file(LANG.'/'.self::$pays.'/lang.'.$type.'.xml', 'SimpleXMLElement', LIBXML_NOCDATA);
+            $lang = $xml->addChild('lang', '['.$code.']');
+            $lang->addAttribute('id', $code);
+            $lang->addAttribute('context', "");
+            $lang->addAttribute('get', get());
+            
+            $xml->asXML(LANG.'/'.self::$pays.'/lang.'.$type.'.xml');
+            
             self::$lang[$type][$code] = '['.$code.']';
             return '['.$code.']';
         endif;
