@@ -486,8 +486,12 @@ class query {
         return $this;
     }
     
-    public function page($get, $results) {
+    public function page($get, $results, $variable = false) {
         global $smarty;
+        
+        if(!$variable):
+            $variable = "pagination";
+        endif;
         
         $nb = mysql_num_rows(mysql_query($this->prepare_request));
         $current = get($get);
@@ -518,7 +522,7 @@ class query {
             $next  = '';
         endif;
 
-        $smarty->append('pagination', '<div class="pagination">'.$start.$prev.lang::text('pagination:page', $text).$end.$next.'</div>');
+        $smarty->append($variable, '<div class="pagination">'.$start.$prev.lang::text('pagination:page', $text).$end.$next.'</div>');
         
         return $this;
     }
