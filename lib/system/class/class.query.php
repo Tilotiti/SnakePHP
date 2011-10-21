@@ -441,7 +441,11 @@ class query {
                             $key = str_replace($table.'_', $underscore, $key);
                         endforeach;
                     endif;
-                    $array[$key] = stripslashes($value);
+                    if(is_array($value)):
+                        $array[$key] = $value;
+                    else:
+                        $array[$key] = stripslashes($value);
+                    endif;
                 endforeach;
                 if(count($array) == 0):
                     return false;
