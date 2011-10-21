@@ -441,7 +441,7 @@ class query {
                             $key = str_replace($table.'_', $underscore, $key);
                         endforeach;
                     endif;
-                    if(is_array($value)):
+                    if(!is_string($value)):
                         $array[$key] = $value;
                     else:
                         $array[$key] = stripslashes($value);
