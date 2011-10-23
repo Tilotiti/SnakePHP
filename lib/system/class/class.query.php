@@ -98,7 +98,17 @@ class query {
         if(count($this->fields)==0 || $this->fields[0] == '*'):
             $this->prepare_request  .= ' SELECT * ';
         else:
-            $this->prepare_request  .= ' SELECT '.$table.'_'.implode(', '.$table.'_', $this->fields);
+            $this->prepare_request  .= ' SELECT ';
+            $array = array();
+            foreach($this->fields as $field):
+                if(is_array($field)):
+                    $index = array_keys($field);
+                    $array[] = $index[0].'_'.$field['table'];
+                else:
+                    $array[] = $table.'_'.$field;
+                endif;
+            endforeach;
+            $this->prepare_request .= implode(', ', $array);
         endif;
         $table_name             = DBPREF.$table;
         $this->prepare_request .= ' FROM '.$table_name;
