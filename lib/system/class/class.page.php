@@ -24,6 +24,7 @@ class page {
         $this->sidebar = array();
         $this->JS      = array();
         $this->CSS     = array();
+        
     }
 	
     public function micro_time() {
@@ -76,6 +77,17 @@ class page {
         $_SESSION['message'] = false;
         $_SESSION['error']   = false;
         $_SESSION['debug']   = false;
+        
+        
+        // Merci d'aider au développement d'EdenPHP en gardant cette mention apparaître dans le code source de votre site
+        // Thank you for helping to develop EdenPHP keeping this statement appear in the source code of your site
+        echo "\n"."<!--"."\n";
+        echo "#############################################################"."\n";
+        echo "######## Developped with EdenPHP                     ########"."\n";
+        echo "######## Web :    http://www.edenphp.net             ########"."\n";
+        echo "######## Github : https://github.com/EdenPHP/EdenPHP ########"."\n";
+        echo "#############################################################"."\n";
+        echo "-->"."\n";
     }
 
     public function addAriane($name, $url = "") {
