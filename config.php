@@ -1,7 +1,7 @@
 <?php
 
 // Framework config
-define('ROOT',      'C:/Program Files/wamp/www/edenphp');             // Root
+define('ROOT',      $_SERVER['DOCUMENT_ROOT']);             // Root
 define('SITE',      'EdenPHP');                                       // Website Title
 define('URL',       'http://dev.edenphp.net/');                       // Website URL
 define('CHARSET',   'utf-8');                                         // Website charset
