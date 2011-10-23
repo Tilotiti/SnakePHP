@@ -11,7 +11,7 @@ define('DBPASS',    '');                                              // DB pass
 define('DBNAME',    'edenphp');                                       // DB name
 define('DBPREF',    'eden_');                                         // DB prefix
 define('YEAR',      2011);                                            // Start year
-define('DEV',       false);                                           // Debug
+define('DEV',       true);                                            // Debug
 
 // Path global
 define('APP',        ROOT    .'/app');

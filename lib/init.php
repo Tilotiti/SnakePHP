@@ -1,5 +1,4 @@
 <?php
-require_once LIB.'/dbconnect.php';
 header('Content-Type: text/html; charset='.CHARSET);
 
 // Implantation de toutes les fonctions système
@@ -11,14 +10,9 @@ while ($file = readdir($dir)):
 endwhile;
 closedir($dir);
 
-
-function autoload($class) {
-    if(file_exists(SYSTEM.'/class/class.'.$class.'.php')):
-        require_once SYSTEM.'/class/class.'.$class.'.php';
-    endif;
-}
-
 spl_autoload_register("autoload");
+
+require_once LIB.'/dbconnect.php';
 
 session_start();
 

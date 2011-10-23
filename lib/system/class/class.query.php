@@ -35,7 +35,7 @@ class query {
     public function insert($table) {
         $this->reset();
         if(empty($table)):
-            debug::html(lang::error('sql'), "TABLE argument must be valid in INSERT method.", __FILE__, __LINE__);
+            debug::error("sql", "TABLE argument must be valid in INSERT method.", __FILE__, __LINE__);
         endif;
         $table_name               = DBPREF.$table;
         $this->prepare_request   .= ' INSERT INTO '.$table_name;
@@ -47,7 +47,7 @@ class query {
     public function delete($table) {
         $this->reset();
         if(empty($table)):
-            debug::html(lang::error('sql'), "TABLE argument must be valid in DELETE method.", __FILE__, __LINE__);
+            debug::error("sql", "TABLE argument must be valid in DELETE method.", __FILE__, __LINE__);
         endif;
         $table_name               = DBPREF.$table;
         $this->prepare_request   .= ' DELETE FROM '.$table_name;
@@ -58,10 +58,10 @@ class query {
 
     public function set($field, $value = '') {
         if(empty($field)):
-            debug::html(lang::error('sql'), "FIELD argument must be valid in SET method.", __FILE__, __LINE__);
+            debug::error("sql", "FIELD argument must be valid in SET method.", __FILE__, __LINE__);
         endif;
         if($this->content['select']):
-            debug::html(lang::error('sql'), "SET method can't be requested with the SELECT method.", __FILE__, __LINE__);
+            debug::error("sql", "SET method can't be requested with the SELECT method.", __FILE__, __LINE__);
         endif;
         if($this->content['update']):
             if($this->content['set']):
@@ -80,20 +80,20 @@ class query {
             $this->values[]       = mysql_real_escape_string($value);
             $this->content['set'] = true;
         else:
-            debug::html(lang::error('sql'), "SET method can't be requested before UPDATE method.", __FILE__, __LINE__);
+            debug::error("sql", "SET method can't be requested before UPDATE method.", __FILE__, __LINE__);
         endif;
         return $this;
     }
 
     public function from($table) {
         if(empty($table)):
-            debug::html(lang::error('sql'), "TABLE argument must be valid in FROM method.", __FILE__, __LINE__);
+            debug::error("sql", "TABLE argument must be valid in FROM method.", __FILE__, __LINE__);
         endif;
         if(!$this->content['select']):
-            debug::html(lang::error('sql'), "FROM method can't be requested before SELECT method.", __FILE__, __LINE__);
+            debug::error("sql", "FROM method can't be requested before SELECT method.", __FILE__, __LINE__);
         endif;
         if($this->content['from']):
-            debug::html(lang::error('sql'), "FROM method has been already requested.", __FILE__, __LINE__);
+            debug::error("sql", "FROM method has been already requested.", __FILE__, __LINE__);
         endif;
         if(count($this->fields)==0 || $this->fields[0] == '*'):
             $this->prepare_request  .= ' SELECT * ';
@@ -109,13 +109,13 @@ class query {
 
     public function leftJoin($table) {
         if(empty($table)):
-            debug::html(lang::error('sql'), "TABLE argument must be valid in LEFT JOIN method.", __FILE__, __LINE__);
+            debug::error("sql", "TABLE argument must be valid in LEFT JOIN method.", __FILE__, __LINE__);
         endif;
         if(!$this->content['select']):
-            debug::html(lang::error('sql'), "LEFT JOIN method can't be requested before SELECT method.", __FILE__, __LINE__);
+            debug::error("sql", "LEFT JOIN method can't be requested before SELECT method.", __FILE__, __LINE__);
         endif;
         if(!$this->content['from']):
-            debug::html(lang::error('sql'), "LEFT JOIN method can't be requested before FROM method.", __FILE__, __LINE__);
+            debug::error("sql", "LEFT JOIN method can't be requested before FROM method.", __FILE__, __LINE__);
         endif;
         $table_name                 = DBPREF.$table;
         $this->prepare_request     .= ' LEFT JOIN '.$table_name;
@@ -129,19 +129,19 @@ class query {
         $this->content['countOn']++;
         
         if(empty($value1)):
-            debug::html(lang::error('sql'), "VALUE1 argument must be valid in ON method.", __FILE__, __LINE__);
+            debug::error("sql", "VALUE1 argument must be valid in ON method.", __FILE__, __LINE__);
         endif;
         if(empty($value2)):
-            debug::html(lang::error('sql'), "VALUE2 argument must be valid in ON method.", __FILE__, __LINE__);
+            debug::error("sql", "VALUE2 argument must be valid in ON method.", __FILE__, __LINE__);
         endif;
         if(!$this->content['select']):
-            debug::html(lang::error('sql'), "ON method can't be requested before SELECT method.", __FILE__, __LINE__);
+            debug::error("sql", "ON method can't be requested before SELECT method.", __FILE__, __LINE__);
         endif;
         if(!$this->content['from']):
-            debug::html(lang::error('sql'), "ON method can't be requested before FROM method.", __FILE__, __LINE__);
+            debug::error("sql", "ON method can't be requested before FROM method.", __FILE__, __LINE__);
         endif;
         if(($this->content['countOn'] > count($this->table['leftJoin']))):
-            debug::html(lang::error('sql'), "ON method can't be requested before LEFT JOIN method.", __FILE__, __LINE__);
+            debug::error("sql", "ON method can't be requested before LEFT JOIN method.", __FILE__, __LINE__);
         endif;
         if(empty($value3)):
             $value3 = $this->table['select'];
@@ -153,22 +153,22 @@ class query {
 
     public function where($field, $calculator, $value, $table = '', $calcul = "where") {
         if(!$this->content['select'] && !$this->content['update'] && !$this->content['delete']):
-            debug::html(lang::error('sql'), $calcul." method can't be requested before SELECT, DELETE or UPDATE method.", __FILE__, __LINE__);
+            debug::error("sql", $calcul." method can't be requested before SELECT, DELETE or UPDATE method.", __FILE__, __LINE__);
         endif;
         if(!$this->content['from'] && !$this->content['update'] && !$this->content['delete']):
-            debug::html(lang::error('sql'), $calcul." method can't be requested before FROM or UPDATE method.", __FILE__, __LINE__);
+            debug::error("sql", $calcul." method can't be requested before FROM or UPDATE method.", __FILE__, __LINE__);
         endif;
         if($this->content['leftJoin'] && !$this->content['on']):
-            debug::html(lang::error('sql'), $calcul." method can't be requested before ON method when LEFT JOIN method has been requested.", __FILE__, __LINE__);
+            debug::error("sql", $calcul." method can't be requested before ON method when LEFT JOIN method has been requested.", __FILE__, __LINE__);
         endif;
         if($this->content['orderBy']):
-            debug::html(lang::error('sql'), $calcul." method can't be requested after ORDER BY method.", __FILE__, __LINE__);
+            debug::error("sql", $calcul." method can't be requested after ORDER BY method.", __FILE__, __LINE__);
         endif;
         if($this->content['groupBy']):
-            debug::html(lang::error('sql'), $calcul." method can't be requested after GROUP BY method.", __FILE__, __LINE__);
+            debug::error("sql", $calcul." method can't be requested after GROUP BY method.", __FILE__, __LINE__);
         endif;
         if($this->content['limit']):
-            debug::html(lang::error('sql'), $calcul." method can't be requested after LIMIT method.", __FILE__, __LINE__);
+            debug::error("sql", $calcul." method can't be requested after LIMIT method.", __FILE__, __LINE__);
         endif;
         if($this->content['where']):
             if(strtolower($calcul) == 'where'):
@@ -217,10 +217,10 @@ class query {
 
     public function onDuplicateKeyUpdate($field, $value) {
         if(!$this->content['insert']):
-            debug::html(lang::error('sql'), "ON DUPLICATE KEY UPDATE method can't be requested before INSERT method.", __FILE__, __LINE__);
+            debug::error("sql", "ON DUPLICATE KEY UPDATE method can't be requested before INSERT method.", __FILE__, __LINE__);
         endif;
         if(!$this->content['set']):
-            debug::html(lang::error('sql'), "ON DUPLICATE KEY UPDATE method can't be requested before SET method.", __FILE__, __LINE__);
+            debug::error("sql", "ON DUPLICATE KEY UPDATE method can't be requested before SET method.", __FILE__, __LINE__);
         endif;
         if($this->content['onDuplicateKeyUpdate']):
             $this->duplicate .= ',';
@@ -235,19 +235,19 @@ class query {
     public function drderBy($field = "", $order = 'ASC', $table = '') {
         $order = strtoupper($order);
         if(!$this->content['select']):
-            debug::html(lang::error('sql'), "ORDER BY method can't be requested before SELECT method.", __FILE__, __LINE__);
+            debug::error("sql", "ORDER BY method can't be requested before SELECT method.", __FILE__, __LINE__);
         endif;
         if(!$this->content['from']):
-            debug::html(lang::error('sql'), "ORDER BY method can't be requested before FROM method.", __FILE__, __LINE__);
+            debug::error("sql", "ORDER BY method can't be requested before FROM method.", __FILE__, __LINE__);
         endif;
         if(($this->content['countOn'] > count($this->table['leftJoin']))):
-            debug::html(lang::error('sql'), "ORDER BY method can't be requested before ON method when LEFT JOIN method has been requested.", __FILE__, __LINE__);
+            debug::error("sql", "ORDER BY method can't be requested before ON method when LEFT JOIN method has been requested.", __FILE__, __LINE__);
         endif;
         if($order != 'ASC' && $order != 'DESC'):
-            debug::html(lang::error('sql'), "ORDER BY method only accept blank, DESC or ASC for second argument.", __FILE__, __LINE__);
+            debug::error("sql", "ORDER BY method only accept blank, DESC or ASC for second argument.", __FILE__, __LINE__);
         endif;
         if($this->content['limit']):
-            debug::html(lang::error('sql'), "ORDER BY method can't be requested after LIMIT method.", __FILE__, __LINE__);
+            debug::error("sql", "ORDER BY method can't be requested after LIMIT method.", __FILE__, __LINE__);
         endif;
         if(!$this->content['orderBy']):
             $this->prepare_request .= ' ORDER BY';
@@ -277,16 +277,16 @@ class query {
 
     public function groupBy($field, $table = '') {
         if(!$this->content['select']):
-            debug::html(lang::error('sql'), "GROUP BY method can't be requested before SELECT method.", __FILE__, __LINE__);
+            debug::error("sql", "GROUP BY method can't be requested before SELECT method.", __FILE__, __LINE__);
         endif;
         if(!$this->content['from']):
-            debug::html(lang::error('sql'), "GROUP BY method can't be requested before FROM method.", __FILE__, __LINE__);
+            debug::error("sql", "GROUP BY method can't be requested before FROM method.", __FILE__, __LINE__);
         endif;
         if(($this->content['countOn'] > count($this->table['LeftJoin']))):
-            debug::html(lang::error('sql'), "GROUP BY method can't be requested before ON method when LEFT JOIN method has been requested.", __FILE__, __LINE__);
+            debug::error("sql", "GROUP BY method can't be requested before ON method when LEFT JOIN method has been requested.", __FILE__, __LINE__);
         endif;
         if($this->content['limit']):
-            debug::html(lang::error('sql'), "GROUP BY method can't be requested after LIMIT method.", __FILE__, __LINE__);
+            debug::error("sql", "GROUP BY method can't be requested after LIMIT method.", __FILE__, __LINE__);
         endif;
         if(!$this->content['groupBy']):
             $this->prepare_request .= ' GROUP BY ';
@@ -296,7 +296,7 @@ class query {
         endif;
         if($this->content['leftJoin']):
             if(empty($table)):
-                debug::html(lang::error('sql'), "TABLE argument is require in the GROUP BY method after using the LEFT JOIN method.", __FILE__, __LINE__);
+                debug::error("sql", "TABLE argument is require in the GROUP BY method after using the LEFT JOIN method.", __FILE__, __LINE__);
             endif;
             $field = DBPREF.$table.'.'.$table.'_'.$field;
         else:
@@ -308,13 +308,13 @@ class query {
 
     public function limit($limit1, $limit2 = false) {
         if(!$this->content['select']):
-            debug::html(lang::error('sql'), "LIMIT method can't be requested before SELECT method.", __FILE__, __LINE__);
+            debug::error("sql", "LIMIT method can't be requested before SELECT method.", __FILE__, __LINE__);
         endif;
         if(!$this->content['from']):
-            debug::html(lang::error('sql'), "LIMIT method can't be requested before FROM method.", __FILE__, __LINE__);
+            debug::error("sql", "LIMIT method can't be requested before FROM method.", __FILE__, __LINE__);
         endif;
         if(($this->content['countOn'] > count($this->table['LeftJoin']))):
-            debug::html(lang::error('sql'), "LIMIT method can't be requested before ON method when LEFT JOIN method has been requested.", __FILE__, __LINE__);
+            debug::error("sql", "LIMIT method can't be requested before ON method when LEFT JOIN method has been requested.", __FILE__, __LINE__);
         endif;
         if(empty($limit2)):
             $this->prepare_request .= ' LIMIT '.$limit1;
@@ -330,13 +330,13 @@ class query {
         || ($this->content['update'] && $this->content['insert'])
         || ($this->content['select'] && $this->content['update'])
         || ($this->content['select'] && $this->content['insert'])):
-            debug::html(lang::error('sql'), "SELECT, UPDATE and INSERT methods can't be requested in the same time.", __FILE__, __LINE__);
+            debug::error("sql", "SELECT, UPDATE and INSERT methods can't be requested in the same time.", __FILE__, __LINE__);
         endif;
 
         if($this->content['select']):
 
             if(!$this->content['from']):
-                debug::html(lang::error('sql'), "EXEC method can't be requested before FROM method.", __FILE__, __LINE__);
+                debug::error("sql", "EXEC method can't be requested before FROM method.", __FILE__, __LINE__);
             endif;
             $which        = strtoupper($which);
             $this->result = $this->sql($this->prepare_request);
@@ -347,7 +347,7 @@ class query {
             endif;
 
             if($this->which != 'ALL' && $this->which != 'FIRST'):
-                debug::html(lang::error('sql'), 'EXEC method only accept blank, "ALL" or "FIRST" for argument.', __FILE__, __LINE__);
+                debug::error("sql", 'EXEC method only accept blank, "ALL" or "FIRST" for argument.', __FILE__, __LINE__);
             endif;
             if($this->which == "FIRST"):
                 $this->line = mysql_fetch_assoc($this->result);
@@ -356,13 +356,13 @@ class query {
             return $this->result;
         elseif($this->content['update']):
             if(!$this->content['set']):
-                debug::html(lang::error('sql'), "EXEC method can't be requested before SET method.", __FILE__, __LINE__);
+                debug::error("sql", "EXEC method can't be requested before SET method.", __FILE__, __LINE__);
             endif;
             $query = $this->prepare_request;
             return $this->sql($query);
         elseif($this->content['insert']):
             if(!$this->content['set']):
-                debug::html(lang::error('sql'), "EXEC method can't be requested before SET method.", __FILE__, __LINE__);
+                debug::error("sql", "EXEC method can't be requested before SET method.", __FILE__, __LINE__);
             endif;
             $field = implode(',', $this->fields);
             $value = implode('", "', $this->values);
@@ -376,7 +376,7 @@ class query {
             $query = $this->prepare_request;
             return $this->sql($query);
         else:
-            debug::html(lang::error('sql'), "EXEC method can't be requested before SELECT, UPDATE or INSERT method.", __FILE__, __LINE__);
+            debug::error("sql", "EXEC method can't be requested before SELECT, UPDATE or INSERT method.", __FILE__, __LINE__);
         endif;
     }
 
@@ -386,7 +386,7 @@ class query {
                 page::$sql++;
             endif;
 
-            $return = mysql_query($req) or debug::html(lang::error('sql'), mysql_error()."<br />".$req, __FILE__, __LINE__);
+            $return = mysql_query($req) or debug::error("sql", mysql_error()."<br />".$req, __FILE__, __LINE__);
             if($this->content['select']):
                 $this->count = mysql_num_rows($return);
             endif;
@@ -398,11 +398,11 @@ class query {
 
     public function next() {
         if(empty($this->result)):
-            debug::html(lang::error('sql'), "NEXT method can't be requested before SELECT and EXEC method.", __FILE__, __LINE__);
+            debug::error("sql", "NEXT method can't be requested before SELECT and EXEC method.", __FILE__, __LINE__);
             return false;
         endif;
         if($this->which == "FIRST"):
-            debug::html(lang::error('sql'), "NEXT method can't be requested with FIRST as argument for EXEC method.", __FILE__, __LINE__);
+            debug::error("sql", "NEXT method can't be requested with FIRST as argument for EXEC method.", __FILE__, __LINE__);
             return false;
         endif;
 
@@ -422,7 +422,7 @@ class query {
 
     public function get($field = '', $table='') {
         if(empty($this->result)):
-            debug::html(lang::error('sql'), "GET method can't be requested before SELECT and EXEC method.", __FILE__, __LINE__);
+            debug::error("sql", "GET method can't be requested before SELECT and EXEC method.", __FILE__, __LINE__);
         endif;
         if(empty($table)):
             $table = $this->table['select'];
@@ -464,7 +464,7 @@ class query {
 
     public function put($field, $value='', $table='') {
         if(empty($this->result)):
-            debug::html(lang::error('sql'), "PUT method can't be requested before SELECT and EXEC method.", __FILE__, __LINE__);
+            debug::error("sql", "PUT method can't be requested before SELECT and EXEC method.", __FILE__, __LINE__);
         endif;
         if(empty($table)):
             $table = $this->table['select'];
