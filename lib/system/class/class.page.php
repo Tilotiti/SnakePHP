@@ -36,10 +36,6 @@ class page {
         $g = explode('/', $path);
         $nb = count($g)-1;
         
-        if(ADMIN):
-            $nb++;
-        endif;
-        
         // Redirection vers l'index
         if(get($nb) == "false" || get($nb) == "" || get($nb) == false || is_int(get($nb))):
             $page = "index";

@@ -381,15 +381,19 @@ class query {
     }
 
     public function sql($req) {
-        if(isset(page::$sql)):
-            page::$sql++;
-        endif;
+        if(DBHOST):
+            if(isset(page::$sql)):
+                page::$sql++;
+            endif;
 
-        $return = mysql_query($req) or debug::html(lang::error('sql'), mysql_error()."<br />".$req, __FILE__, __LINE__);
-        if($this->content['select']):
-            $this->count = mysql_num_rows($return);
+            $return = mysql_query($req) or debug::html(lang::error('sql'), mysql_error()."<br />".$req, __FILE__, __LINE__);
+            if($this->content['select']):
+                $this->count = mysql_num_rows($return);
+            endif;
+            return $return;
+        else:
+            return false;
         endif;
-        return $return;
     }
 
     public function next() {
