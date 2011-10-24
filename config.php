@@ -7,7 +7,7 @@ define('ROOT','C:/Program Files/wamp/www/edenphp');
 /* Nom du site (titre) */
 define('SITE','EdenPHP');
 /* URL du site */
-define('URL','http://dev.edenphp.net/');
+define('URL','http://www.edenphp.net/');
 /* charset */
 define('CHARSET','utf-8');
 
