@@ -1,17 +1,35 @@
 <?php
 
 // Framework config
-define('ROOT',      $_SERVER['DOCUMENT_ROOT']);             // Root
-define('SITE',      'EdenPHP');                                       // Website Title
-define('URL',       'http://dev.edenphp.net/');                       // Website URL
-define('CHARSET',   'utf-8');                                         // Website charset
-define('DBHOST',    'localhost');                                     // DB host
-define('DBUSER',    'root');                                          // DB user
-define('DBPASS',    '');                                              // DB password
-define('DBNAME',    'edenphp');                                       // DB name
-define('DBPREF',    'eden_');                                         // DB prefix
-define('YEAR',      2011);                                            // Start year
-define('DEV',       true);                                            // Debug
+
+/* Chemin de la racine de votre site ($_SERVER['DOCUMENT_ROOT']) */
+define('ROOT','C:/Program Files/wamp/www/edenphp');
+/* Nom du site (titre) */
+define('SITE','EdenPHP');
+/* URL du site */
+define('URL','http://dev.edenphp.net/');
+/* charset */
+define('CHARSET','utf-8');
+
+/* Configuration de la base de donnée */
+/* Hôte */                define('DBHOST','localhost');
+/* Utilisateur */         define('DBUSER','root');
+/* Mot de passe */        define('DBPASS','');
+/* Nom de la base */      define('DBNAME','edenphp');
+/* Prefixe des tables */  define('DBPREF','eden_');
+
+/* Année de développement */
+define('YEAR',      2011);
+
+/* Mode développeur : */
+define('DEV',       false);
+/*
+    DEV = true
+      - Les erreurs sont affichés
+    
+    DEV = false
+      - Les erreurs sont cachés
+*/
 
 // Path global
 define('APP',        ROOT    .'/app');
