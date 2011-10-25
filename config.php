@@ -2,33 +2,33 @@
 
 // Framework config
 
-/* Chemin de la racine de votre site ($_SERVER['DOCUMENT_ROOT']) */
-define('ROOT','C:/Program Files/wamp/www/edenphp');
+/* Chemin de la racine de votre site */
+define('ROOT', $_SERVER['DOCUMENT_ROOT']);
 /* Nom du site (titre) */
-define('SITE','EdenPHP');
+define('SITE', 'EdenPHP');
 /* URL du site */
-define('URL','http://www.edenphp.net/');
+define('URL', 'http://www.edenphp.net/');
 /* charset */
-define('CHARSET','utf-8');
+define('CHARSET', 'utf-8');
 
 /* Configuration de la base de donnée */
-/* Hôte */                define('DBHOST','localhost');
-/* Utilisateur */         define('DBUSER','root');
-/* Mot de passe */        define('DBPASS','');
-/* Nom de la base */      define('DBNAME','edenphp');
-/* Prefixe des tables */  define('DBPREF','eden_');
+/* Hôte */                define('DBHOST', 'localhost');
+/* Utilisateur */         define('DBUSER', 'root');
+/* Mot de passe */        define('DBPASS', '');
+/* Nom de la base */      define('DBNAME', 'edenphp');
+/* Prefixe des tables */  define('DBPREF', 'eden_');
 
 /* Année de développement */
-define('YEAR',      2011);
+define('YEAR', 2011);
 
 /* Mode développeur : */
-define('DEV',       false);
+define('DEV', false);
 /*
     DEV = true
-      - Les erreurs sont affichés
+      - Les erreurs sont affichées
     
     DEV = false
-      - Les erreurs sont cachés
+      - Les erreurs sont cachées
 */
 
 // Path global
