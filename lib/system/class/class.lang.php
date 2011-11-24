@@ -16,11 +16,6 @@ class lang {
         self::$type[] = "flux";
         
         foreach(self::$type as $t):
-            /*if(file_exists(LANG.'/'.$pays.'/lang.'.$t.'.php')):
-                $lang = array();
-                require_once LANG.'/'.$pays.'/lang.'.$t.'.php';
-                self::$lang[$t] = $lang;
-            endif;*/
             if(file_exists(LANG.'/'.$pays.'/lang.'.$t.'.xml')):
                 $xml = simplexml_load_file(LANG.'/'.$pays.'/lang.'.$t.'.xml', 'SimpleXMLElement', LIBXML_NOCDATA);
                 foreach($xml->lang as $line):
@@ -75,16 +70,8 @@ class lang {
             elseif(is_string($arg) || is_int($arg)):
                 $return = str_replace("[]", $arg, $return);
             endif;
-            return $return;
+            return (string) $return;
         else:
-            /*$file = file(LANG.'/'.self::$pays.'/lang.'.$type.'.php');
-            $file_nb = count($file);
-            $file[$file_nb-1] = '$lang["'.$code.'"] = "['.$code.']"; // From : '.get()."\n";
-            $file[$file_nb]   = "?>";
-            $string = implode("", $file);
-            $fp = fopen(LANG.'/'.self::$pays.'/lang.'.$type.'.php', "w");
-            fputs($fp, $string);
-            fclose($fp); */
             $xml = simplexml_load_file(LANG.'/'.self::$pays.'/lang.'.$type.'.xml', 'SimpleXMLElement', LIBXML_NOCDATA);
             $lang = $xml->addChild('lang', '['.$code.']');
             $lang->addAttribute('id', $code);
