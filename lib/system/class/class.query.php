@@ -242,7 +242,7 @@ class query {
         return $this;
     }
 
-    public function drderBy($field = "", $order = 'ASC', $table = '') {
+    public function orderBy($field = "", $order = 'ASC', $table = '') {
         $order = strtoupper($order);
         if(!$this->content['select']):
             debug::error("sql", "ORDER BY method can't be requested before SELECT method.", __FILE__, __LINE__);
