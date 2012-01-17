@@ -54,7 +54,6 @@ class user {
     */
 
     public function update() {
-        var_dump($_SESSION);
         
         cookie("hash", $this->get('hash'), 60*60*24*365);
         

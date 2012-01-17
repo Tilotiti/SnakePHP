@@ -15,6 +15,71 @@ class query {
     public function __construct() {
         $this->reset();
     }
+	
+	public function getField($params) {
+		
+		if($this->content['select']):
+        	$table = DBPREF.$this->table['select'];
+			$pref  = $this->table['select'];
+        elseif($this->content['delete']):
+            $table = DBPREF.$this->table['delete'];
+			$pref  = $this->table['delete'];
+        else:
+            $table = DBPREF.$this->table['set'];
+			$pref  = $this->table['set'];
+        endif;
+		
+		if(is_array($params)):
+			// Si le champ demandé est un array
+			$field = "";
+			$as    = "";
+			foreach($params as $key => $value):
+				switch($key):
+					case "AS":
+						// Création d'un alias
+						if(is_array($value) && count($value) == 2 ):
+							// Si l'allias est simple
+							return $this->getField($value[0]).' AS '.$value[1];
+						else:
+							// Si l'allias vient avec une fonction
+							$as = " AS ".$value;
+						endif;
+						break;
+					default:
+						if(strtoupper($key) == $key):
+							// Si l'identification se fait par une fonction
+							if(is_array($value)):
+								$field  = $key."(";
+								
+								$var = array();
+								foreach($value as $val):
+									if(!is_string($val)):
+										$var[] = $val;
+									else:
+										$var[] = $this->getField($val);
+									endif;
+								endforeach;
+								
+								$field .= implode(',', $var);
+								$field .= ")";
+							else:
+								$field = $key."(".$this->getField($value).")";
+							endif;
+						else:
+							// Si l'identification est simple (simple Join)
+							$field = $key.'_'.$value;
+						endif;
+						break;
+				endswitch;
+			endforeach;
+			
+			return $field.$as;
+			
+        else:
+			// Si le champs demandé est simple
+            return $pref.'_'.$params;
+        endif;
+	}
 
     public function select() {
         $this->reset();
@@ -95,25 +160,20 @@ class query {
         if($this->content['from']):
             debug::error("sql", "FROM method has been already requested.", __FILE__, __LINE__);
         endif;
+        $this->table['select']  = $table;
         if(count($this->fields)==0 || $this->fields[0] == '*'):
             $this->prepare_request  .= ' SELECT * ';
         else:
             $this->prepare_request  .= ' SELECT ';
             $array = array();
             foreach($this->fields as $field):
-                if(is_array($field)):
-                    $index = array_keys($field);
-                    $array[] = $index[0].'_'.$field['table'];
-                else:
-                    $array[] = $table.'_'.$field;
-                endif;
+               $array[] = $this->getField($field);
             endforeach;
             $this->prepare_request .= implode(', ', $array);
         endif;
         $table_name             = DBPREF.$table;
         $this->prepare_request .= ' FROM '.$table_name;
         $this->content['from']  = true;
-        $this->table['select']  = $table;
         return $this;
     }
 
@@ -161,7 +221,7 @@ class query {
         return $this;
     }
 
-    public function where($field, $calculator, $value, $table = '', $calcul = "where") {
+    public function where($field, $calculator, $value, $calcul = "where") {
         if(!$this->content['select'] && !$this->content['update'] && !$this->content['delete']):
             debug::error("sql", $calcul." method can't be requested before SELECT, DELETE or UPDATE method.", __FILE__, __LINE__);
         endif;
@@ -190,38 +250,22 @@ class query {
             $this->content['where'] = true;
             $this->prepare_request .= ' WHERE';
         endif;
-        if($this->content['leftJoin']):
-            if(empty($table)):
-                 $table = $this->table['select'];
-            endif;
-            $field = DBPREF.$table.'.'.$table.'_'.$field;
+		
+		$field = $this->getField($field); 
+		 
+        if(is_array($value)):
+        	$this->prepare_request .= ' '.$field.' '.$calculator.' ("'.implode('", "', $value).'")';
+        elseif(is_object($value)):
+            $this->prepare_request .= ' '.$field.' '.$calculator.' ( '.$value->getRequest().')';
         else:
-            if($this->content['select']):
-                $table = $this->table['select'];
-            elseif($this->content['delete']):
-                $table = $this->table['delete'];
-            else:
-                $table = $this->table['set'];
-            endif;
-            $field = $table.'_'.$field;
+            $this->prepare_request .= ' '.$field.' = "'.mysql_real_escape_string($value).'"';
         endif;
-        
-        if(($calculator == "IN") || ($calculator == "NOT IN")):
-            if(is_array($value)):
-                $this->prepare_request .= ' '.$field.' '.$calculator.' ("'.implode('", "', $value).'")';
-            elseif(is_object($value)):
-                $this->prepare_request .= ' '.$field.' '.$calculator.' ( '.$value->getRequest().')';
-            else:
-                $this->prepare_request .= ' '.$field.' = "'.mysql_real_escape_string($value).'"';
-            endif;
-        else:
-            $this->prepare_request .= ' '.$field.' '.$calculator.' "'.mysql_real_escape_string($value).'"';
-        endif;
+
         return $this;
     }
 
-    public function ou($field, $calculator, $value, $table = '') {
-        $this->where($field, $calculator, $value, $table, 'OR');
+    public function ou($field, $calculator, $value) {
+        $this->where($field, $calculator, $value, 'OR');
         return $this;
     }
 
@@ -238,11 +282,11 @@ class query {
             $this->content['onDuplicateKeyUpdate'] = true;
             $this->duplicate = 'ON DUPLICATE KEY UPDATE';
         endif;
-        $this->duplicate .= ' '.$this->table['set'].'_'.$field.' = "'.mysql_real_escape_string($value).'"';
+        $this->duplicate .= ' '.$this->getField($field).' = "'.mysql_real_escape_string($value).'"';
         return $this;
     }
 
-    public function orderBy($field = "", $order = 'ASC', $table = '') {
+    public function orderBy($field = "", $order = 'ASC') {
         $order = strtoupper($order);
         if(!$this->content['select']):
             debug::error("sql", "ORDER BY method can't be requested before SELECT method.", __FILE__, __LINE__);
@@ -268,24 +312,18 @@ class query {
         if(empty($field)):
             $field = "RAND()";
         else:
-            if($this->content['leftJoin']):
-                if(empty($table)):
-                    $table = $this->table['select'];
-                endif;
-                $field = DBPREF.$table.'.'.$table.'_'.$field;
-            else:
-                $field =  $this->table['select'].'_'.$field;
-            endif;
+			$field = $this->getField($field);
         endif;
-        if($order != "ASC" && $order != "DESC"):
-            $this->prepare_request .= ' ABS('.$field.' - '.$order.')';
-        else:
+        //if($order != "ASC" && $order != "DESC"):
+			// Calcul de la distance entre deux valeurs
+            //$this->prepare_request .= ' ABS('.$field.' - '.$order.')';
+        //else:
             $this->prepare_request .= ' '.$field.' '.$order.'';
-        endif;
+        //endif;
         return $this;
     }
 
-    public function groupBy($field, $table = '') {
+    public function groupBy($field) {
         if(!$this->content['select']):
             debug::error("sql", "GROUP BY method can't be requested before SELECT method.", __FILE__, __LINE__);
         endif;
@@ -304,15 +342,7 @@ class query {
         else:
             $this->prepare_request .= ', ';
         endif;
-        if($this->content['leftJoin']):
-            if(empty($table)):
-                debug::error("sql", "TABLE argument is require in the GROUP BY method after using the LEFT JOIN method.", __FILE__, __LINE__);
-            endif;
-            $field = DBPREF.$table.'.'.$table.'_'.$field;
-        else:
-            $field =  $this->table['select'].'_'.$field;
-        endif;
-        $this->prepare_request .= $field;
+        $this->prepare_request .= $this->getField($field);
         return $this;
     }
 

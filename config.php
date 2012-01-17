@@ -7,22 +7,22 @@ define('ROOT', $_SERVER['DOCUMENT_ROOT']);
 /* Nom du site (titre) */
 define('SITE', 'EdenPHP');
 /* URL du site */
-define('URL', 'http://www.edenphp.net/');
+define('URL', 'http://localhost/');
 /* charset */
 define('CHARSET', 'utf-8');
 
 /* Configuration de la base de donnée */
 /* Hôte */                define('DBHOST', 'localhost');
 /* Utilisateur */         define('DBUSER', 'root');
-/* Mot de passe */        define('DBPASS', '');
+/* Mot de passe */        define('DBPASS', 'root');
 /* Nom de la base */      define('DBNAME', 'edenphp');
 /* Prefixe des tables */  define('DBPREF', 'eden_');
 
 /* Année de développement */
-define('YEAR', 2011);
+define('YEAR', 2012);
 
 /* Mode développeur : */
-define('DEV', false);
+define('DEV', true);
 /*
     DEV = true
       - Les erreurs sont affichées
