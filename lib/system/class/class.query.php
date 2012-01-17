@@ -45,6 +45,9 @@ class query {
 							$as = " AS ".$value;
 						endif;
 						break;
+					case "ALLIAS":
+						return $value;
+						break;
 					default:
 						if(strtoupper($key) == $key):
 							// Si l'identification se fait par une fonction
