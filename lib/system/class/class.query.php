@@ -39,6 +39,7 @@ class query {
 		foreach($params as $key => $value):
                     switch($key):
                         case "AS":
+                            $this->alias[] = $value;
                             // Création d'un alias
                             if(is_array($value) && count($value) == 2 ):
                             // Si l'allias est simple
@@ -84,8 +85,14 @@ class query {
             return $field.$as;
 			
         else:
-			// Si le champs demandé est simple
-            return $pref.'_'.$params;
+            // Si le champs demandé est simple
+            if(in_array($params, $this->alias)):
+                // Si le champs est reconnu comme un alias
+                return $params;
+            else:
+                // Si c'est un champs simple
+                return $pref.'_'.$params;
+            endif;
         endif;
 	}
 
