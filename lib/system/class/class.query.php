@@ -17,66 +17,71 @@ class query {
     }
 	
 	public function getField($params) {
-		
-		if($this->content['select']):
+            if($params == "*"):
+                return '*';
+            endif;
+            
+            if($this->content['select']):
         	$table = DBPREF.$this->table['select'];
-			$pref  = $this->table['select'];
-        elseif($this->content['delete']):
-            $table = DBPREF.$this->table['delete'];
-			$pref  = $this->table['delete'];
-        else:
-            $table = DBPREF.$this->table['set'];
-			$pref  = $this->table['set'];
-        endif;
+		$pref  = $this->table['select'];
+            elseif($this->content['delete']):
+                $table = DBPREF.$this->table['delete'];
+		$pref  = $this->table['delete'];
+            else:
+                $table = DBPREF.$this->table['set'];
+		$pref  = $this->table['set'];
+            endif;
 		
-		if(is_array($params)):
-			// Si le champ demandé est un array
-			$field = "";
-			$as    = "";
-			foreach($params as $key => $value):
-				switch($key):
-					case "AS":
-						// Création d'un alias
-						if(is_array($value) && count($value) == 2 ):
-							// Si l'allias est simple
-							return $this->getField($value[0]).' AS '.$value[1];
-						else:
-							// Si l'allias vient avec une fonction
-							$as = " AS ".$value;
-						endif;
-						break;
-					case "ALLIAS":
-						return $value;
-						break;
-					default:
-						if(strtoupper($key) == $key):
-							// Si l'identification se fait par une fonction
-							if(is_array($value)):
-								$field  = $key."(";
-								
-								$var = array();
-								foreach($value as $val):
-									if(!is_string($val)):
-										$var[] = $val;
-									else:
-										$var[] = $this->getField($val);
-									endif;
-								endforeach;
-								
-								$field .= implode(',', $var);
-								$field .= ")";
-							else:
-								$field = $key."(".$this->getField($value).")";
-							endif;
-						else:
-							// Si l'identification est simple (simple Join)
-							$field = $key.'_'.$value;
-						endif;
-						break;
-				endswitch;
-			endforeach;
+            if(is_array($params)):
+		// Si le champ demandé est un array
+		$field = "";
+		$as    = "";
+		foreach($params as $key => $value):
+                    switch($key):
+                        case "AS":
+                            // Création d'un alias
+                            if(is_array($value) && count($value) == 2 ):
+                            // Si l'allias est simple
+                                return $this->getField($value[0]).' AS '.$value[1];
+                            else:
+                                // Si l'allias vient avec une fonction
+				$as = " AS ".$value;
+                            endif;
+                            break;
+			case "ALLIAS":
+                            return $value;
+                            break;
+                        default:
+                            if(strtoupper($key) == $key):
+                                // Si l'identification se fait par une fonction
+                                if(is_array($value)):
+                                    $field  = $key."(";		
+                                    $var = array();
+                                    foreach($value as $val):
+					if(is_numeric($val)):
+                                            $var[] = $val;
+					else:
+                                            $var[] = $this->getField($val);
+                                        endif;
+                                    endforeach;
+                                    $field .= implode(',', $var);
+                                    $field .= ")";
+				else:
+                                    $field = $key."(".$this->getField($value).")";
+				endif;
+                            else:
+                                // Si l'identification est simple (simple Join)
+                                if($value != "*"):
+                                    $field = $key.'_'.$value;
+                                else:
+                                    $field = DBPREF.$key.'.*';
+                                endif;
+                            endif;
+			break;
+		endswitch;
+            endforeach;
 			
-			return $field.$as;
+            return $field.$as;
 			
         else:
 			// Si le champs demandé est simple
@@ -164,7 +169,7 @@ class query {
             debug::error("sql", "FROM method has been already requested.", __FILE__, __LINE__);
         endif;
         $this->table['select']  = $table;
-        if(count($this->fields)==0 || $this->fields[0] == '*'):
+        if(count($this->fields)==0):
             $this->prepare_request  .= ' SELECT * ';
         else:
             $this->prepare_request  .= ' SELECT ';
@@ -197,7 +202,7 @@ class query {
         return $this;
     }
 
-    public function on($value1, $value2, $value3 = '') {
+    public function on($value1, $value2) {
 		
         $this->content['countOn']++;
         
@@ -216,10 +221,16 @@ class query {
         if(($this->content['countOn'] > count($this->table['leftJoin']))):
             debug::error("sql", "ON method can't be requested before LEFT JOIN method.", __FILE__, __LINE__);
         endif;
-        if(empty($value3)):
-            $value3 = $this->table['select'];
+        
+        if(is_string($value1) && is_string($value2)):
+            // On gère la rétrocompatibilité
+            if(empty($value3)):
+                $value3 = $this->table['select'];
+            endif;
+            $this->prepare_request .= ' ON '.DBPREF.$value3.'.'.$value3.'_'.$value1.' = '.DBPREF.$this->table['leftJoin'][count($this->table['leftJoin'])-1].'.'.$this->table['leftJoin'][count($this->table['leftJoin'])-1].'_'.$value2;
+        else:
+            $this->prepare_request .= ' ON '.$this->getField($value1).' = '.$this->getField($value2);
         endif;
-        $this->prepare_request .= ' ON '.DBPREF.$value3.'.'.$value3.'_'.$value1.' = '.DBPREF.$this->table['leftJoin'][count($this->table['leftJoin'])-1].'.'.$this->table['leftJoin'][count($this->table['leftJoin'])-1].'_'.$value2;
         $this->content['on']    = true;
         return $this;
     }
@@ -254,10 +265,10 @@ class query {
             $this->prepare_request .= ' WHERE';
         endif;
 		
-		$field = $this->getField($field); 
+	$field = $this->getField($field); 
 		 
         if(is_array($value)):
-        	$this->prepare_request .= ' '.$field.' '.$calculator.' ("'.implode('", "', $value).'")';
+            $this->prepare_request .= ' '.$field.' '.$calculator.' ("'.implode('", "', $value).'")';
         elseif(is_object($value)):
             $this->prepare_request .= ' '.$field.' '.$calculator.' ( '.$value->getRequest().')';
         else:
@@ -315,14 +326,11 @@ class query {
         if(empty($field)):
             $field = "RAND()";
         else:
-			$field = $this->getField($field);
+            $field = $this->getField($field);
         endif;
-        //if($order != "ASC" && $order != "DESC"):
-			// Calcul de la distance entre deux valeurs
-            //$this->prepare_request .= ' ABS('.$field.' - '.$order.')';
-        //else:
-            $this->prepare_request .= ' '.$field.' '.$order.'';
-        //endif;
+        
+        $this->prepare_request .= ' '.$field.' '.$order.'';
+        
         return $this;
     }
 
