@@ -12,32 +12,32 @@ class query {
         $line            = array(),
         $content         = array(),
         $fields          = array();
-		
+
     public function __construct() {
         $this->reset();
     }
-	
-	public function getField($params) {
+
+    public function getField($params) {
             if($params == "*"):
                 return '*';
             endif;
             
             if($this->content['select']):
-        	$table = DBPREF.$this->table['select'];
-		$pref  = $this->table['select'];
+            $table = DBPREF.$this->table['select'];
+        $pref  = $this->table['select'];
             elseif($this->content['delete']):
                 $table = DBPREF.$this->table['delete'];
-		$pref  = $this->table['delete'];
+        $pref  = $this->table['delete'];
             else:
                 $table = DBPREF.$this->table['set'];
-		$pref  = $this->table['set'];
+        $pref  = $this->table['set'];
             endif;
-		
+
             if(is_array($params)):
-		// Si le champ demandé est un array
-		$field = "";
-		$as    = "";
-		foreach($params as $key => $value):
+        // Si le champ demandé est un array
+        $field = "";
+        $as    = "";
+        foreach($params as $key => $value):
                     switch($key):
                         case "AS":
                             $this->alias[] = $value;
@@ -47,30 +47,30 @@ class query {
                                 return $this->getField($value[0]).' AS '.$value[1];
                             else:
                                 // Si l'allias vient avec une fonction
-				$as = " AS ".$value;
+                $as = " AS ".$value;
                             endif;
                             break;
-			case "ALLIAS":
+            case "ALLIAS":
                             return $value;
                             break;
                         default:
                             if(strtoupper($key) == $key):
                                 // Si l'identification se fait par une fonction
                                 if(is_array($value)):
-                                    $field  = $key."(";		
+                                    $field  = $key."(";     
                                     $var = array();
                                     foreach($value as $val):
-					if(is_numeric($val)):
+                    if(is_numeric($val)):
                                             $var[] = $val;
-					else:
+                    else:
                                             $var[] = $this->getField($val);
                                         endif;
                                     endforeach;
                                     $field .= implode(',', $var);
                                     $field .= ")";
-				else:
+                else:
                                     $field = $key."(".$this->getField($value).")";
-				endif;
+                endif;
                             else:
                                 // Si l'identification est simple (simple Join)
                                 if($value != "*"):
@@ -79,12 +79,12 @@ class query {
                                     $field = DBPREF.$key.'.*';
                                 endif;
                             endif;
-			break;
-		endswitch;
+            break;
+        endswitch;
             endforeach;
-			
+
             return $field.$as;
-			
+
         else:
             // Si le champs demandé est simple
             if(in_array($params, $this->alias)):
@@ -95,7 +95,7 @@ class query {
                 return $pref.'_'.$params;
             endif;
         endif;
-	}
+    }
 
     public function select() {
         $this->reset();
@@ -211,7 +211,7 @@ class query {
     }
 
     public function on($value1, $value2) {
-		
+
         $this->content['countOn']++;
         
         if(empty($value1)):
@@ -272,9 +272,9 @@ class query {
             $this->content['where'] = true;
             $this->prepare_request .= ' WHERE';
         endif;
-		
-	$field = $this->getField($field); 
-		 
+
+    $field = $this->getField($field); 
+
         if(is_array($value)):
             $this->prepare_request .= ' '.$field.' '.$calculator.' ("'.implode('", "', $value).'")';
         elseif(is_object($value)):
@@ -349,7 +349,7 @@ class query {
         if(!$this->content['from']):
             debug::error("sql", "GROUP BY method can't be requested before FROM method.", __FILE__, __LINE__);
         endif;
-        if(($this->content['countOn'] > count($this->table['LeftJoin']))):
+        if(($this->content['countOn'] > count($this->table['leftJoin']))):
             debug::error("sql", "GROUP BY method can't be requested before ON method when LEFT JOIN method has been requested.", __FILE__, __LINE__);
         endif;
         if($this->content['limit']):
@@ -372,7 +372,7 @@ class query {
         if(!$this->content['from']):
             debug::error("sql", "LIMIT method can't be requested before FROM method.", __FILE__, __LINE__);
         endif;
-        if(($this->content['countOn'] > count($this->table['LeftJoin']))):
+        if(($this->content['countOn'] > count($this->table['leftJoin']))):
             debug::error("sql", "LIMIT method can't be requested before ON method when LEFT JOIN method has been requested.", __FILE__, __LINE__);
         endif;
         if(empty($limit2)):
@@ -474,7 +474,7 @@ class query {
         return $this->line;
 
     }
-	
+
     private function getRequest() {
         return $this->prepare_request;
     }
@@ -532,6 +532,14 @@ class query {
         return true;
     }
 
+    public function count() {
+        if(is_int($this->count)):
+            return $this->count;
+        else:
+            return false;
+        endif;
+    }
+
     public function ok() {
         if(is_int($this->count) && $this->count > 0):
             return true;
@@ -553,12 +561,8 @@ class query {
         return $this;
     }
     
-    public function page($get, $results, $variable = false) {
-        global $smarty;
-        
-        if(!$variable):
-            $variable = "pagination";
-        endif;
+    public function page($get, $results, $variable = "pagination") {
+        global $template;
         
         $nb = mysql_num_rows(mysql_query($this->prepare_request));
         $current = get($get);
@@ -578,7 +582,7 @@ class query {
             $prev  = '<a href="'.get($get, $current-1).'" class="prev">'. lang::text('pagination:prev') .'</a>';
         else:
             $start = '';
-            $next  = '';
+            $prev  = '';
         endif;
         
         if($current < ceil($nb / $results)):
@@ -589,7 +593,7 @@ class query {
             $next  = '';
         endif;
 
-        $smarty->append($variable, '<div class="pagination">'.$start.$prev.lang::text('pagination:page', $text).$end.$next.'</div>');
+        $template->assign($variable, '<div class="pagination">'.$start.$prev.lang::text('pagination:page', $text).$end.$next.'</div>');
         
         return $this;
     }
@@ -629,13 +633,13 @@ class query {
         $this->content['set']                  = false;
         $this->content['update']               = false;
         $this->content['onDuplicateKeyUpdate'] = false;
-        $this->content['countOn']	       = 0;
+        $this->content['countOn']          = 0;
 
         if(!isset($this->table['select'])):
             $this->table['select']   = '';
         endif;
 
-        $this->table['leftJoin'] = '';
+        $this->table['leftJoin'] = array();
         $this->table['set']      = '';
         $this->table['delete']   = '';
         $this->line              = array();
