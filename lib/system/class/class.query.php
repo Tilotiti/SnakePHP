@@ -8,6 +8,7 @@ class query {
         $table           = '',
         $duplicate       = '',
         $which           = 'all',
+        $alias           = array(),
         $line            = array(),
         $content         = array(),
         $fields          = array();
