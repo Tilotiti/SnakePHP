@@ -42,7 +42,7 @@ class query {
                             $this->alias[] = $value;
                             // Création d'un alias
                             if(is_array($value) && count($value) == 2 ):
-                            // Si l'allias est simple
+                                // Si l'allias est simple
                                 return $this->getField($value[0]).' AS '.$value[1];
                             else:
                                 // Si l'allias vient avec une fonction
@@ -279,7 +279,7 @@ class query {
         elseif(is_object($value)):
             $this->prepare_request .= ' '.$field.' '.$calculator.' ( '.$value->getRequest().')';
         else:
-            $this->prepare_request .= ' '.$field.' = "'.mysql_real_escape_string($value).'"';
+            $this->prepare_request .= ' '.$field.' '.$calculator.' "'.mysql_real_escape_string($value).'"';
         endif;
 
         return $this;
@@ -642,6 +642,5 @@ class query {
         $this->count             = 0;
         $this->duplicate         = '';
     }
-
 }
 ?>
