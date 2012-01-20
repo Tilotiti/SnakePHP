@@ -18,69 +18,69 @@ class query {
     }
 
     public function getField($params) {
-            if($params == "*"):
-                return '*';
-            endif;
+        if($params == "*"):
+            return '*';
+        endif;
             
-            if($this->content['select']):
+        if($this->content['select']):
             $table = DBPREF.$this->table['select'];
-        $pref  = $this->table['select'];
-            elseif($this->content['delete']):
-                $table = DBPREF.$this->table['delete'];
-        $pref  = $this->table['delete'];
-            else:
-                $table = DBPREF.$this->table['set'];
-        $pref  = $this->table['set'];
-            endif;
+            $pref  = $this->table['select'];
+        elseif($this->content['delete']):
+            $table = DBPREF.$this->table['delete'];
+            $pref  = $this->table['delete'];
+        else:
+            $table = DBPREF.$this->table['set'];
+            $pref  = $this->table['set'];
+        endif;
 
-            if(is_array($params)):
-        // Si le champ demandé est un array
-        $field = "";
-        $as    = "";
-        foreach($params as $key => $value):
-                    switch($key):
-                        case "AS":
-                            $this->alias[] = $value;
-                            // Création d'un alias
-                            if(is_array($value) && count($value) == 2 ):
-                                // Si l'allias est simple
-                                return $this->getField($value[0]).' AS '.$value[1];
+        if(is_array($params)):
+            // Si le champ demandé est un array
+            $field = "";
+            $as    = "";
+            foreach($params as $key => $value):
+                switch($key):
+                    case "AS":
+                        $this->alias[] = $value;
+                        // Création d'un alias
+                        if(is_array($value) && count($value) == 2 ):
+                            // Si l'allias est simple
+                            return $this->getField($value[0]).' AS '.$value[1];
+                        else:
+                            // Si l'allias vient avec une fonction
+                            $as = " AS ".$value;
+                        endif;
+                    break;
+                    case "ALLIAS":
+                        return $value;
+                    break;
+                    default:
+                        if(strtoupper($key) == $key):
+                            // Si l'identification se fait par une fonction
+                            if(is_array($value)):
+                                $field  = $key."(";     
+                                $var = array();
+                                foreach($value as $val):
+                                    if(is_numeric($val)):
+                                        $var[] = $val;
+                                    else:
+                                        $var[] = $this->getField($val);
+                                    endif;
+                                endforeach;
+                                $field .= implode(',', $var);
+                                $field .= ")";
                             else:
-                                // Si l'allias vient avec une fonction
-                $as = " AS ".$value;
+                                $field = $key."(".$this->getField($value).")";
                             endif;
-                            break;
-            case "ALLIAS":
-                            return $value;
-                            break;
-                        default:
-                            if(strtoupper($key) == $key):
-                                // Si l'identification se fait par une fonction
-                                if(is_array($value)):
-                                    $field  = $key."(";     
-                                    $var = array();
-                                    foreach($value as $val):
-                    if(is_numeric($val)):
-                                            $var[] = $val;
-                    else:
-                                            $var[] = $this->getField($val);
-                                        endif;
-                                    endforeach;
-                                    $field .= implode(',', $var);
-                                    $field .= ")";
-                else:
-                                    $field = $key."(".$this->getField($value).")";
-                endif;
+                        else:
+                            // Si l'identification est simple (simple Join)
+                            if($value != "*"):
+                                $field = $key.'_'.$value;
                             else:
-                                // Si l'identification est simple (simple Join)
-                                if($value != "*"):
-                                    $field = $key.'_'.$value;
-                                else:
-                                    $field = DBPREF.$key.'.*';
-                                endif;
+                                $field = DBPREF.$key.'.*';
                             endif;
-            break;
-        endswitch;
+                        endif;
+                    break;
+                endswitch;
             endforeach;
 
             return $field.$as;
@@ -273,12 +273,17 @@ class query {
             $this->prepare_request .= ' WHERE';
         endif;
 
-    $field = $this->getField($field); 
+        $field = $this->getField($field); 
 
         if(is_array($value)):
             $this->prepare_request .= ' '.$field.' '.$calculator.' ("'.implode('", "', $value).'")';
         elseif(is_object($value)):
-            $this->prepare_request .= ' '.$field.' '.$calculator.' ( '.$value->getRequest().')';
+            $name = get_class($value);
+            if($name == "query"):
+                $this->prepare_request .= ' '.$field.' '.$calculator.' ( '.$value->getRequest().')';
+            else:
+                $this->prepare_request .= ' '.$field.' '.$calculator.' "'.mysql_real_escape_string($value).'"';
+            endif;
         else:
             $this->prepare_request .= ' '.$field.' '.$calculator.' "'.mysql_real_escape_string($value).'"';
         endif;
