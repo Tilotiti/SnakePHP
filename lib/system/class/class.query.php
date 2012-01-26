@@ -289,7 +289,11 @@ class query {
                 $this->prepare_request .= ' '.$field.' '.$calculator.' "'.mysql_real_escape_string($value).'"';
             endif;
         else:
-            $this->prepare_request .= ' '.$field.' '.$calculator.' "'.mysql_real_escape_string($value).'"';
+            if(is_numeric($value)):
+                $this->prepare_request .= ' '.$field.' '.$calculator.' '.mysql_real_escape_string($value).'';
+            else:
+                $this->prepare_request .= ' '.$field.' '.$calculator.' "'.mysql_real_escape_string($value).'"';
+            endif;
         endif;
 
         return $this;
