@@ -276,7 +276,11 @@ class query {
         $field = $this->getField($field); 
 
         if(is_array($value)):
-            $this->prepare_request .= ' '.$field.' '.$calculator.' ("'.implode('", "', $value).'")';
+            if(array_key_exists('FUNCTION', $value)):
+                $this->prepare_request .= ' '.$field.' '.$calculator.' '.$value['FUNCTION'].'()';
+            else:
+                $this->prepare_request .= ' '.$field.' '.$calculator.' ("'.implode('", "', $value).'")';
+            endif;
         elseif(is_object($value)):
             $name = get_class($value);
             if($name == "query"):
