@@ -1,37 +1,22 @@
 <?php
 
-// Framework config
-
-/* Chemin de la racine de votre site */
-define('ROOT', $_SERVER['DOCUMENT_ROOT']);
-/* Nom du site (titre) */
-define('SITE', 'EdenPHP');
-/* URL du site */
-define('URL', 'http://localhost/');
-/* charset */
-define('CHARSET', 'utf-8');
+/* Configuration du Framework */
+define('ROOT', $_SERVER['DOCUMENT_ROOT']); // Chemin de la racine de votre site
+define('SITE', 'EdenPHP');                 // Nom du site
+define('URL', 'http://localhost/');        // URL du site
+define('CHARSET', 'utf-8');                // Encodage du site
+define('YEAR', 2012);                      // Début du développement
+define('DEV', true);                       // Mode développement
+define('TIMEZONE', 'Europe/Paris');        // Fuseau Horaire
 
 /* Configuration de la base de donnée */
-/* Hôte */                define('DBHOST', 'localhost');
-/* Utilisateur */         define('DBUSER', 'root');
-/* Mot de passe */        define('DBPASS', 'root');
-/* Nom de la base */      define('DBNAME', 'edenphp');
-/* Prefixe des tables */  define('DBPREF', 'eden_');
+define('DBHOST', 'localhost'); // Hôte
+define('DBUSER', 'root');      // Utilisateur
+define('DBPASS', 'root');      // Mot de passe
+define('DBNAME', 'edenphp');   // Base de donnée
+define('DBPREF', 'eden_');     // Préfixe des tables
 
-/* Année de développement */
-define('YEAR', 2012);
-
-/* Mode développeur : */
-define('DEV', true);
-/*
-    DEV = true
-      - Les erreurs sont affichées
-    
-    DEV = false
-      - Les erreurs sont cachées
-*/
-
-// Path global
+/* Chemins des dossiers */
 define('APP',        ROOT    .'/app');
 define('WEBROOT',    ROOT    .'/webroot');
 define('LIB',        ROOT    .'/lib');
