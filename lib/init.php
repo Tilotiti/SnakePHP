@@ -1,6 +1,11 @@
 <?php
 header('Content-Type: text/html; charset='.CHARSET);
 
+// Chargement du fuseau horaire par défaut
+if(function_exists('date_default_timezone_set')):
+    date_default_timezone_set(TIMEZONE);
+endif;
+
 // Implantation de toutes les fonctions système
 $dir = opendir(SYSTEM.'/function');
 while ($file = readdir($dir)):
@@ -12,8 +17,10 @@ closedir($dir);
 
 spl_autoload_register("autoload");
 
+// Connexion à la BDD
 require_once LIB.'/dbconnect.php';
 
+// Démarrage de la session
 session_start();
 
 // Implantation de tous les plugins
@@ -31,11 +38,9 @@ while ($file = readdir($dir)):
 endwhile;
 closedir($dir);
 
+// Instanciation des classes nécessaires au framework
             new lang('fr');
 $debug    = new debug();
-$compte   = array();
-$nb       = array();
-$selected = array();
 
 // Définition des Sessions
 if(!isset($_SESSION['message'])):
@@ -46,17 +51,16 @@ if(!isset($_SESSION['save'])):
     $_SESSION['save'] = false;
 endif;
 
+// Initialisation du template
 if(PAGE_LOADER):
     
     $page     = new page();
     $user     = new user();
-                new debug();
                 
     // initiation de smarty
     $template               = new smarty();
     $template->template_dir = TEMPLATE;
     $template->compile_dir  = CACHE;
-    $template->assign('pagination', array());
 
     if(!isset($_SESSION['error'])):
         $_SESSION['error'] = false;
