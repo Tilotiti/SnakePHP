@@ -4,10 +4,10 @@ function smarty_function_crop($params, &$smarty) {
     $info = @getimagesize($params['img']);
 
     if(!$info):
-        $info = getimagesize(config('empty'));
-        $params['alt'] = $params['img'];
-        $params['img'] = config('empty');
+        return false;
     endif;
+    
+    $style = '';
 
     // Définition des styles de la cropbox
     if(isset($params['align'])):
@@ -47,8 +47,8 @@ function smarty_function_crop($params, &$smarty) {
         $margin_x = 0;
     endif;
 
-    return '<span class="cropbox" style="width:'.$x_crop.'px; height:'.$y_crop.'px; '.$style.'">
-                <img src="'.$img.'" alt="'.$alt.'" width="'.$x_final.'" height="'.$y_final.'" style="margin-left:'.$margin_x.'px; margin-top:'.$margin_y.'px;" />
+    return '<span class="cropbox" style="width:'.round($x_crop).'px; height:'.round($y_crop).'px; '.$style.'">
+                <img src="'.$img.'" alt="'.$alt.'" width="'.round($x_final).'" height="'.round($y_final).'" style="margin-left:'.round($margin_x).'px; margin-top:'.round($margin_y).'px;" />
             </span>';
 
 }
