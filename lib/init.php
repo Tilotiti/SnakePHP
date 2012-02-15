@@ -23,6 +23,35 @@ require_once LIB.'/dbconnect.php';
 // Démarrage de la session
 session_start();
 
+// Instanciation des classes nécessaires au framework
+            new lang('fr');
+$debug    = new debug();
+
+// Initialisation du template
+if(PAGE_LOADER):
+    
+    $page = new page();
+                
+    // initiation de smarty
+    $template               = new smarty();
+    $template->template_dir = TEMPLATE;
+    $template->compile_dir  = CACHE;
+
+    if(!isset($_SESSION['error'])):
+        $_SESSION['error'] = false;
+    endif;
+	
+	// Définition des Sessions
+	if(!isset($_SESSION['message'])):
+	    $_SESSION['message'] = false;
+	endif;
+	
+	if(!isset($_SESSION['save'])):
+	    $_SESSION['save'] = false;
+	endif;
+
+endif;
+
 // Implantation de tous les plugins
 $dir = opendir(PLUGIN.'/');
 while ($file = readdir($dir)):
@@ -37,35 +66,5 @@ while ($file = readdir($dir)):
     endif;
 endwhile;
 closedir($dir);
-
-// Instanciation des classes nécessaires au framework
-            new lang('fr');
-$debug    = new debug();
-
-// Définition des Sessions
-if(!isset($_SESSION['message'])):
-    $_SESSION['message'] = false;
-endif;
-
-if(!isset($_SESSION['save'])):
-    $_SESSION['save'] = false;
-endif;
-
-// Initialisation du template
-if(PAGE_LOADER):
-    
-    $page     = new page();
-    $user     = new user();
-                
-    // initiation de smarty
-    $template               = new smarty();
-    $template->template_dir = TEMPLATE;
-    $template->compile_dir  = CACHE;
-
-    if(!isset($_SESSION['error'])):
-        $_SESSION['error'] = false;
-    endif;
-
-endif;
 
 ?>

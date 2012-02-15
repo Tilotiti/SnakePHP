@@ -1,2 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<language charset="UTF-8" lang="French" code="fr"><lang id="login" context="" get="/admin/login/">[login]</lang></language>
+	<language charset="UTF-8" lang="French" code="fr"><lang id="login" context="" get="/admin/login/">Vous êtes maintenant connecté.</lang>
+</language>

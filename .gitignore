@@ -1,4 +1,4 @@
-/cache/
-/log/
-/.DS_Store
-/.project
+cache/*
+log/*
+.DS_Store
+.project

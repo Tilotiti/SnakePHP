@@ -2,4 +2,5 @@
 <language charset="UTF-8" lang="French" code="fr">
     <lang id="error:unknow" context="" get="/">Erreur inconnue</lang>
     <lang id="error:sql" context="" get="/">Erreur base de donnée</lang>
+	<lang id="login" context="" get="/">Impossible de vous connecter : Mauvais nom d'utilisateur ou mot de passe.</lang>
 </language>
