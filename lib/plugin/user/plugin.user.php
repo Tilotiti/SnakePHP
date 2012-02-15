@@ -6,10 +6,12 @@
  * Site : http://www.tiloweb.com
  */
 
- require_once 'class.user.php';    // Gestion des utilisateurs
- require_once 'class.session.php'; // Gestion des sessions utilisateurs
+// Temps maximum d'une session avant rafraichissement des données automatique depuis la base de donnée
+define('SESSION_REFRESH', 1200); 
 
-define('SESSION_REFRESH', 10);  // Temps maximum d'une session avant rafraichissement des données automatique depuis la base de donnée
+// Insertion des classes User et Session
+require_once 'class.user.php';    // Gestion des utilisateurs
+require_once 'class.session.php'; // Gestion des sessions utilisateurs
 
 // Création de la session utilisateur par défault
 if(!isset($_SESSION['user'])):
