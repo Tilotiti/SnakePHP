@@ -9,11 +9,11 @@ define('YEAR', 2012);                      // Début du développement
 define('DEV', true);                       // Mode développement
 define('TIMEZONE', 'Europe/Paris');        // Fuseau Horaire
 
-/* Configuration de la base de donnée */
+/* Configuration de la base de données */
 define('DBHOST', 'localhost'); // Hôte
 define('DBUSER', 'root');      // Utilisateur
 define('DBPASS', 'root');      // Mot de passe
-define('DBNAME', 'edenphp');   // Base de donnée
+define('DBNAME', 'edenphp');   // Base de données
 define('DBPREF', 'eden_');     // Préfixe des tables
 
 /* Chemins des dossiers */
