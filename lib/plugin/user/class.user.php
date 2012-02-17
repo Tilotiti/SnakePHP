@@ -65,10 +65,6 @@ class user {
 					case "login":
 						// On ne modifie jamais l'ID de l'utilisateur et on enregistre pas le temps de mise à jour de la session s'il y en a une.
 						break;
-					case "password":
-						// On crypte le mot de passe
-						$user->set($key, md5($value));
-						break;
 					default:
 						// On modifie la ligne
 						$user->set($key, trim($value));
