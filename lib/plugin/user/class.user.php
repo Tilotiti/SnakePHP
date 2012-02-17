@@ -62,7 +62,8 @@ class user {
 	        foreach($this->field as $key => $value):
 	        	switch($key):
 					case "id":
-						// On ne modifie jamais l'ID de l'utilisateur
+					case "login":
+						// On ne modifie jamais l'ID de l'utilisateur et on enregistre pas le temps de mise à jour de la session s'il y en a une.
 						break;
 					case "password":
 						// On crypte le mot de passe
