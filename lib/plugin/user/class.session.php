@@ -174,7 +174,7 @@ class session {
 			$query->select()
 				  ->from('user')
 				  ->where('username', '=', $login)
-				  ->where('password', '=', md5($pass))
+				  ->where('password', '=', $pass)
 				  ->exec('FIRST');
 				  
 			if($query->ok()):
