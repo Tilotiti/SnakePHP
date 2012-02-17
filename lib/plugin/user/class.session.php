@@ -66,7 +66,6 @@ class session {
 	 * Retour : Aucun
 	 */
 	public function set($key, $value) {
-		$_SESSION['user'][$key] = $value;
 		$this->user->set($key, $value);
 	}
 	
@@ -80,7 +79,9 @@ class session {
 	 */
 	public function save() {
 		if($this->isOnline()):
-			return $this->user->save();
+			$this->user->save();
+			$this->login($this->get('id'));
+			return true;
 		else:
 			return false;
 		endif;
