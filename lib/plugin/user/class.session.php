@@ -66,6 +66,7 @@ class session {
 	 * Retour : Aucun
 	 */
 	public function set($key, $value) {
+		$_SESSION['user'][$key] = $value;
 		$this->user->set($key, $value);
 	}
 	
