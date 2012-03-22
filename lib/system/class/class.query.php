@@ -502,6 +502,8 @@ class query {
         if(!empty($field)):
             if(isset($this->line[$table.'_'.$field])):
                 return stripslashes($this->line[$table.'_'.$field]);
+            elseif(in_array($field, $this->alias)):
+                return $this->line[$field];
             else:
                 return false;
             endif;
