@@ -21,7 +21,8 @@ endif;
 // Instanciation de la session utilisateur 
 $session  = new session();
 
-// Assignation de la session dans le template
-$template->assign('session', $session);
-
+if(PAGE_LOADER):
+	// Assignation de la session dans le template
+	$template->assign('session', $session);
+endif;
 ?>
