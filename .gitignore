@@ -1,4 +1,4 @@
-cache/*
-log/*
+cache/*.php
+log/*.txt
 .DS_Store
 .project
