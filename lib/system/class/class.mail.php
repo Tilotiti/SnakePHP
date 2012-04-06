@@ -17,26 +17,32 @@ class mail {
 
     public function To($mail) {
         $this->to[] = $mail;
+        return $this;
     }
 
     public function From($mail) {
         $this->Header("From", $mail);
+        return $this;
     }
 
     public function Bcc($mail, $name = '') {
         $this->bcc[$mail] = $name;
+        return $this;
     }
 
     public function Confirm($mail, $name = '') {
         $this->confirm[$mail] = $name;
+        return $this;
     }
 
     public function ReplyTo($mail, $name = '') {
         $this->replyto[$mail] = $name;
+        return $this;
     }
 
     public function Subject($code) {
         $this->subject = lang::title($code);
+        return $this;
     }
 
     public function Priority($text) {
@@ -44,14 +50,17 @@ class mail {
         if($text == "normal" || $text == "non-urgent" || $text == "urgent"):
             $this->Header("Priority", $text);
         endif;
+        return $this;
     }
 
     public function Message($mail, $arg = false) {
         $this->message = lang::mail($mail, $arg);
+        return $this;
     }
 
     public function Header($header, $content) {
         $this->header[$header] = $content;
+        return $this;
     }
 
     public function convertmail($array) {
