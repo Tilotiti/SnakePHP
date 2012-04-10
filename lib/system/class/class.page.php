@@ -181,6 +181,12 @@ class page {
     public function getJS() {
         return $this->JS;
     }
+    
+    public function active($get) {
+        if($get == get(1)):
+            echo 'active';
+        endif;
+    }
 		
     public function get($key) {
         $this->time = round(($this->micro_time() - $this->start),4);
