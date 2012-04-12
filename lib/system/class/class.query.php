@@ -499,7 +499,13 @@ class query {
         if(empty($table)):
             $table = $this->table['select'];
         endif;
-        if(!empty($field)):
+        if(is_array($field)):
+            if(isset($this->line[$this->getField($field)])):
+                return stripslashes($this->line[$this->getField($field)]);
+            else:
+                return false;
+            endif;
+        elseif(!empty($field)):
             if(isset($this->line[$table.'_'.$field])):
                 return stripslashes($this->line[$table.'_'.$field]);
             elseif(in_array($field, $this->alias)):
