@@ -1,26 +1,29 @@
 <?php
 define('PAGE_LOADER', true);
+require_once '../config.php'; // Chargement des configurations
+require_once LIB.'/init.php'; // Initialisation du Framework
 
-require_once '../config.php';  // Loading data
-require_once LIB.'/init.php'; // Framework initiation
-
+// Inclusion des fichiers CSS par défaut
 $page->pushCSS('script');
 $page->pushCSS('global');
+
+// Inclusion des fichiers JS par défaut
 $page->pushJS('jquery');
-$page->pushJS('plugin');
 $page->pushJS('script');
 
+// Initalisation du premier dispatcher
 include $page->dispatcher("/");
 
-// Assign final
+// Assignation final au template
 $template->assign('page',    $page);
 $template->assign('save',    $_SESSION['save']);
 $template->assign('message', $_SESSION['message']);
-$template->assign('get',     get());
 $template->assign('debug',   $debug);
 
+// Génération du template
 $template->display("template.tpl");
 
+// Nettoyage des sessions et des variables
 $page->clear();
 exit();
 ?>
