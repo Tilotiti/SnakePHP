@@ -40,8 +40,13 @@ class mail {
         return $this;
     }
 
-    public function Subject($code) {
-        $this->subject = lang::title($code);
+    public function Subject($str, $lang = true) {
+        if($lang){
+            $this->subject = lang::title($str);
+        }
+        else{
+            $this->subject = $str;
+        }
         return $this;
     }
 
@@ -53,8 +58,13 @@ class mail {
         return $this;
     }
 
-    public function Message($mail, $arg = false) {
-        $this->message = lang::mail($mail, $arg);
+    public function Message($str, $arg = false, $lang = true) {
+        if($lang){
+            $this->message = lang::mail($str, $arg);
+        }
+        else{
+            $this->message = $str;
+        }
         return $this;
     }
 
