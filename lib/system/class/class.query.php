@@ -1,5 +1,4 @@
 <?php
-
 class query {
     public
         $prepare_request = '',
@@ -622,7 +621,11 @@ class query {
     public function debug($force = false) {
         $debug = array();
         $debug['request'] = $this->prepare_request;
-        $debug['results'] = $this->count;
+        $debug['count'] = $this->count;
+        
+        if($this->ok()):
+        	$debug['results'] = $this->getArray();
+        endif;
         
         if(!DEV):
             echo '<!-- DEBUG ';
@@ -669,4 +672,5 @@ class query {
         $this->duplicate         = '';
     }
 }
+
 ?>
