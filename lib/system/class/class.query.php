@@ -409,6 +409,11 @@ class query {
             if(!$this->content['from']):
                 debug::error("sql", "EXEC method can't be requested before FROM method.", __FILE__, __LINE__);
             endif;
+            
+            if($which == "FIRST"):
+                $this->limit(1);
+            endif;
+            
             $which        = strtoupper($which);
             $this->result = $this->sql($this->prepare_request);
             $this->which  = $which;
@@ -561,7 +566,7 @@ class query {
     }
 
     public function ok() {
-        if(is_int($this->count) && $this->count > 0):
+        if($this->content['select'] && is_int($this->count) && $this->count > 0):
             return true;
         else:
             return false;
@@ -623,8 +628,10 @@ class query {
         $debug['request'] = $this->prepare_request;
         $debug['count'] = $this->count;
         
-        if($this->ok()):
+        if($this->ok() && $this->which == "ALL"):
         	$debug['results'] = $this->getArray();
+        elseif($this->ok() && $this->which == "FIRST"):
+        	$debug['results'] = $this->get();
         endif;
         
         if(!DEV):
