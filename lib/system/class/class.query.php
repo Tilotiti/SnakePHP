@@ -143,6 +143,12 @@ class query {
         if($this->content['select']):
             debug::error("sql", "SET method can't be requested with the SELECT method.", __FILE__, __LINE__);
         endif;
+        if(is_array($field)):
+            foreach($field as $key => $value):
+        		$this->set($key, $value);
+        	endforeach;
+        	return $this;
+        endif;
         if($this->content['update']):
             if($this->content['set']):
                 $this->prepare_request .= ', ';
