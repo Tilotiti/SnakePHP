@@ -82,11 +82,11 @@ class page {
         // Merci d'aider au développement d'EdenPHP en gardant cette mention apparaître dans le code source de votre site
         // Thank you for helping to develop EdenPHP keeping this statement appear in the source code of your site
         echo "\n"."<!--"."\n";
-        echo "#############################################################"."\n";
-        echo "######## Developped with EdenPHP                     ########"."\n";
-        echo "######## Web :    http://www.edenphp.net             ########"."\n";
-        echo "######## Github : https://github.com/EdenPHP/EdenPHP ########"."\n";
-        echo "#############################################################"."\n";
+        echo "##############################################################"."\n";
+        echo "######## Developped with EdenPHP                      ########"."\n";
+        echo "######## Web :    http://www.edenphp.net              ########"."\n";
+        echo "######## Github : https://github.com/Tilotiti/EdenPHP ########"."\n";
+        echo "##############################################################"."\n";
         echo "-->"."\n";
     }
 
