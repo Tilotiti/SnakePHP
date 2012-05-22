@@ -15,32 +15,32 @@ class mail {
         $this->Header("Content-type", "text/html; charset=".CHARSET);
     }
 
-    public function To($mail) {
+    public function to($mail) {
         $this->to[] = $mail;
         return $this;
     }
 
-    public function From($mail) {
+    public function from($mail) {
         $this->Header("From", $mail);
         return $this;
     }
 
-    public function Bcc($mail, $name = '') {
+    public function bcc($mail, $name = '') {
         $this->bcc[$mail] = $name;
         return $this;
     }
 
-    public function Confirm($mail, $name = '') {
+    public function confirm($mail, $name = '') {
         $this->confirm[$mail] = $name;
         return $this;
     }
 
-    public function ReplyTo($mail, $name = '') {
+    public function replyTo($mail, $name = '') {
         $this->replyto[$mail] = $name;
         return $this;
     }
 
-    public function Subject($str, $lang = true) {
+    public function subject($str, $lang = true) {
         if($lang){
             $this->subject = lang::title($str);
         }
@@ -50,7 +50,7 @@ class mail {
         return $this;
     }
 
-    public function Priority($text) {
+    public function priority($text) {
         $text = strtolower($text);
         if($text == "normal" || $text == "non-urgent" || $text == "urgent"):
             $this->Header("Priority", $text);
@@ -58,7 +58,7 @@ class mail {
         return $this;
     }
 
-    public function Message($str, $arg = false, $lang = true) {
+    public function message($str, $arg = false, $lang = true) {
         if($lang){
             $this->message = lang::mail($str, $arg);
         }
@@ -68,7 +68,7 @@ class mail {
         return $this;
     }
 
-    public function Header($header, $content) {
+    public function header($header, $content) {
         $this->header[$header] = $content;
         return $this;
     }
@@ -110,11 +110,11 @@ class mail {
     }
 
 
-    public function Send() {
-        $this->Header("Bcc", $this->convertmail($this->bcc));
-        $this->Header("Cc", $this->convertmail($this->cc));
-        $this->Header("Reply-To", $this->convertmail($this->replyto));
-        $this->Header("X-Confirm-Reading-To", $this->convertmail($this->confirm));
+    public function send() {
+        $this->header("Bcc", $this->convertmail($this->bcc));
+        $this->header("Cc", $this->convertmail($this->cc));
+        $this->header("Reply-To", $this->convertmail($this->replyto));
+        $this->header("X-Confirm-Reading-To", $this->convertmail($this->confirm));
 
         $headers = $this->convertheader($this->header);
 
