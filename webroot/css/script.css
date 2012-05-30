@@ -1,8 +1,0 @@
-.cropbox {
-    overflow: hidden;
-    display: inline-block;
-}
-
-.cropbox img {
-    margin:auto;
-}

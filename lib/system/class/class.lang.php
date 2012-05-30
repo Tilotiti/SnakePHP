@@ -12,8 +12,6 @@ class lang {
         self::$type[] = "success";
         self::$type[] = "error";
         self::$type[] = "title";
-        self::$type[] = "warning";
-        self::$type[] = "flux";
         
         foreach(self::$type as $t):
             if(file_exists(LANG.'/'.$pays.'/lang.'.$t.'.xml')):
@@ -41,10 +39,6 @@ class lang {
     
     static function title($code, $arg = false) {
         return self::find('title', $code, $arg);
-    }
-    
-    static function warning($code, $arg = false) {
-        return self::find('warning', $code, $arg);
     }
     
     static function mail($file, $arg = false) {

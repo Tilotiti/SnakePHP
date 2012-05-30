@@ -4,11 +4,11 @@ require_once '../config.php'; // Chargement des configurations
 require_once LIB.'/init.php'; // Initialisation du Framework
 
 // Inclusion des fichiers CSS par défaut
-$page->pushCSS('script');
+$page->pushCSS('bootstrap');
 $page->pushCSS('global');
 
 // Inclusion des fichiers JS par défaut
-$page->pushJS('jquery');
+$page->pushJS('bootstrap');
 $page->pushJS('script');
 
 // Initalisation du premier dispatcher

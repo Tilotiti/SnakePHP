@@ -1,43 +1,69 @@
 <!doctype html>
 <html lang="fr">
 <head>
-    {include file="tools/meta.tpl"}
+    <meta charset="{$smarty.const.CHARSET}"/>
+	<title>{$smarty.const.SITE} - {$page->get('title')}</title>
+	
+	{foreach $page->getCSS()  as $css}
+	<link rel="stylesheet" media="screen" type="text/css" href="/css/{$css}.css" />
+	{/foreach}
+	
+	{foreach $page->getJS() as $js}
+	<script type="text/javascript" src="/js/{$js}.js"></script>
+	{/foreach}
 </head>
 <body>
-    <header>
-        {include file="tools/header.tpl"}
-        <nav id="menu">
-            {include file="tools/menu.tpl"}
-        </nav>
-        <div class="clear"></div>
-    </header>
-    <nav id="ariane">
-        {$page->ariane()}
-    </nav>
-    <aside id="sidebarLeft">
-        {foreach $page->getSidebar('left') as $sidebar}
-            <div class="sideBox">
-                {include file="sidebar/`$sidebar`.tpl"}
-            </div>
-        {/foreach}
-    </aside>
-    <section>
-	{if $message}
-            <h4 class="alert_{$message.type}">{$message.text}</h4>
-        {/if}
-        <h1>{$page->get('title')}</h1>
-        <article>
-            {include file="`$page->get('template')`.tpl"}
-        </article>
-        {$debug->clear()}
-    </section>
-    <aside id="sidebarRight">
-        {foreach $page->getSidebar('right') as $sidebar}
-            <div class="sideBox">
-                {include file="sidebar/`$sidebar`.tpl"}
-            </div>
-        {/foreach}
-    </aside>
-    <footer>{$page->copyright()}</footer>
+	<div class="navbar navbar-fixed-top">
+    	<div class="navbar-inner">
+        	<div class="container-fluid">
+        		<a class="brand" href="#">{$smarty.const.SITE}</a>
+        		<div class="btn-group pull-right">
+        			<span class="btn">
+        				<i class="icon-map-marker"></i> {$page->ariane()}
+        			</span>
+        		</div>
+        		<div class="nav-collapse">
+        			<!-- Menu -->
+        			<ul class="nav">
+        				<li class="{$page->active('index')}"><a href="/index/">Accueil</a></li>
+        				<li class="{$page->active('doc')}"><a href="/doc/">Documentation</a></li>
+        				<li class="{$page->active('download')}"><a href="/download/">T&eacute;l&eacute;chargement</a></li>
+        				<li class="{$page->active('contact')}"><a href="/contact/">Contact</a></li>
+        			</ul>
+        		</div>
+        	</div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+    	<div class="row-fluid">
+        	<div class="span3">
+        		<div class="well sidebar-nav">
+					{foreach $page->getSidebar() as $sidebar}
+						{include file="sidebar/`$sidebar`.tpl"}
+					{/foreach}
+				</div>
+			</div>
+			<div class="span9">
+				{if isset($message.text)}
+					<div class="alert alert-{$message.type}">
+						{$message.text}.
+					</div>
+				{/if}
+				{include file="`$page->get('template')`.tpl"}
+				{$debug->clear()}
+			</div>
+		</div>
+		<hr>
+		<footer>
+        	<p>{$page->copyright()}</p>
+        </footer>
+    </div>
+    
+	
+    
+    
+    
+    
 </body>
 </html>
