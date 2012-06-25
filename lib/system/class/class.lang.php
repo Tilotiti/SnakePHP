@@ -72,7 +72,12 @@ class lang {
             $lang->addAttribute('context', "");
             $lang->addAttribute('get', get());
             
-            $xml->asXML(LANG.'/'.self::$pays.'/lang.'.$type.'.xml');
+            $dom = new DOMDocument('1.0');
+            $dom->preserveWhiteSpace = false;
+            $dom->formatOutput = true;
+            $dom->loadXML($xml->asXML());
+            
+            $dom->save(LANG.'/'.self::$pays.'/lang.'.$type.'.xml');
             
             self::$lang[$type][$code] = '['.$code.']';
             return '['.$code.']';
