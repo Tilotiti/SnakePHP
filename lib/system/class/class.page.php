@@ -7,9 +7,9 @@ class page {
         $cat         = '',
         $ariane      = '',
         $year        = 0 ,
-        $time        = 0 ,
         $start       = 0 ,
         $template    = '',
+        $time        = array(),
         $sidebar     = false,
         $JS          = false,
         $CSS         = false,
@@ -19,19 +19,28 @@ class page {
         $sql         = 0;
    
     public function __construct() {
-        
-        $this->start   = $this->micro_time();
+        $this->start   = $this->timer("Initiation d'EdenPHP");
         $this->sidebar = array();
         $this->JS      = array();
         $this->CSS     = array();
         
     }
 	
-    public function micro_time() {
-	$time = explode(" ", microtime());
-        return ($time[1] + $time[0]);
+    public function timer($title) {
+		$time = explode(" ", microtime());
+        $time = ($time[1] + $time[0]);
+        
+        if($this->start == 0):
+        	// On définie le microtime de départ
+        	$this->start = $time;
+        endif;
+        
+        $this->timer[] = array(
+        	'title' => $title,
+        	'time'  => $time - $this->start
+        );
     }
-		
+
     public function dispatcher($path, $cat = '') {
 
         $g = explode('/', $path);
@@ -187,9 +196,40 @@ class page {
             echo 'active';
         endif;
     }
+    
+    /**
+     * Affiche la barre de debug sur le site
+     * 
+     * @return void
+     */
+    public function debug() {
+    	debug::clear();
+    	
+    	// Si l'adresse IP est définie
+	    if($_SERVER["REMOTE_ADDR"] == IPADMIN):
+	    	// On affiche la barre de debug
+	    	$this->timer("Barre d'administration");
+	    	
+	    	// Erreurs
+	    	// TODO : Lister les erreurs et leur backtrace
+	    	
+	    	// Requêtes SQL
+	    	// TODO : Afficher toutes les requêtes SQL et le nombre de résultat
+	    	 
+	    	// Plugins
+	    	// TODO : Lister les plugins chargés au démarrage
+	    	
+	    	// Debug
+	    	// TODO : Lister les différents var_dump sauvegardés
+	    	
+	    	// Timer
+	    	// TODO : Lister les différents timers
+	    	$this->timer("Fin du chargement");
+	    	
+	    endif;
+    }
 		
     public function get($key) {
-        $this->time = round(($this->micro_time() - $this->start),4);
         return $this->$key;
     }
 	

@@ -51,7 +51,6 @@
 					</div>
 				{/if}
 				{include file="`$page->get('template')`.tpl"}
-				{$debug->clear()}
 			</div>
 		</div>
 		<hr>
@@ -60,10 +59,6 @@
         </footer>
     </div>
     
-	
-    
-    
-    
-    
+    {$page->debug()}
 </body>
 </html>

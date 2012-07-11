@@ -12,6 +12,7 @@ $page->pushJS('bootstrap');
 $page->pushJS('script');
 
 // Initalisation du premier dispatcher
+$page->timer('Page dispatcher');
 include $page->dispatcher("/");
 
 // Assignation final au template
@@ -21,6 +22,7 @@ $template->assign('message', $_SESSION['message']);
 $template->assign('debug',   $debug);
 
 // Génération du template
+$page->timer('Génération du template');
 $template->display("template.tpl");
 
 // Nettoyage des sessions et des variables

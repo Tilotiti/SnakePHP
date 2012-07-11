@@ -1,13 +1,22 @@
 <?php
-// Connexion
+/*
+ * Connexion à la base de donnée (PDO)
+ */
+ 
 if(DBHOST):
-    if(mysql_connect(DBHOST, DBUSER, DBPASS)):
-        if(!mysql_select_db(DBNAME)):
-            debug::error('sql', 'Unable to find the database.');
-        endif;
-    else:
-        debug::error('sql', 'Unable to connect the database server.');
-    endif;
+	// Gestion des options d'instanciation de PDO
+	$options = array(
+    	PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES UTF8",
+    	PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION
+    );
+  
+	try {
+        $queryConnexion = new PDO('mysql:host='.DBHOST.';dbname='.DBNAME, DBUSER, DBPASS, $options);
+    }
+ 
+    catch(Exception $error) {
+        debug::error("sql", $error->getMessage(), LIB."/dbconnect.php");
+    }
 endif;
 
 ?>

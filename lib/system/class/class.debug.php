@@ -76,17 +76,18 @@ class debug {
     }
 
     static public function display($array, $title = false) {
+    	$debug = array();
         $debug['title'] = $title;
         $debug['array'] = $array;
-        $_SESSION['debug'][] = $debug;
-        self::$debug[] = $debug;
+        
+        self::$debug[]  = $debug;
     }
     
-    public function clear() {
+    public static function clear() {
         // Debug
         if(count(self::$debug)>0):
             if(DEV):
-                echo '<div class="debug">';
+                echo '<div id="debug">';
                 foreach(self::$debug as $debug):
                     if($debug['title']):
                         echo '<h4>'.$debug['title'].'</h4>';
@@ -112,7 +113,7 @@ class debug {
         unset($_SESSION['debug']);
 
         // Error
-        if(count(self::$error)>0):
+        if(count(self::$error) > 0):
             if(DEV):
                 echo '<div class="debug">';
                 foreach(self::$error as $error):
