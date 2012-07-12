@@ -5,42 +5,34 @@ class page {
         $mail        = '',
         $name        = '',
         $cat         = '',
+        $templateTPL = '',
         $ariane      = '',
-        $year        = 0 ,
-        $start       = 0 ,
-        $template    = '',
-        $time        = array(),
+        $meta        = '',
+        $year        = 0,
+        $template    = false,
         $sidebar     = false,
         $JS          = false,
         $CSS         = false,
-        $meta        = '';
-
-    static
-        $sql         = 0;
+        $time        = array();
    
     public function __construct() {
-        $this->start   = $this->timer("Initiation d'EdenPHP");
+        debug::timer('timer:start', true);
+        
         $this->sidebar = array();
         $this->JS      = array();
         $this->CSS     = array();
         
-    }
-	
-    public function timer($title) {
-		$time = explode(" ", microtime());
-        $time = ($time[1] + $time[0]);
+         // initiation de smarty
+	    $this->template               = new smarty();
+	    $this->template->template_dir = TEMPLATE;
+	    $this->template->compile_dir  = CACHE;
+	    
+	    // Définition des sessions
+	    isset($_SESSION['error'])   or $_SESSION['error']   = false;
+	    isset($_SESSION['save'])    or $_SESSION['save']    = false;
+	    isset($_SESSION['message']) or $_SESSION['message'] = false;
         
-        if($this->start == 0):
-        	// On définie le microtime de départ
-        	$this->start = $time;
-        endif;
-        
-        $this->timer[] = array(
-        	'title' => $title,
-        	'time'  => $time - $this->start
-        );
     }
-
     public function dispatcher($path, $cat = '') {
 
         $g = explode('/', $path);
@@ -67,9 +59,9 @@ class page {
             header("HTTP/1.0 404 Not Found");
         endif;
 
-        $this->template = substr($path.$page,1);
-        $this->cat      = $cat;
-        $this->name     = get($nb);
+        $this->templateTPL = substr($path.$page, 1);
+        $this->cat         = $cat;
+        $this->name        = get($nb);
         
         return SOURCE.'/'.$path.$page.'.php';
     }
@@ -203,30 +195,208 @@ class page {
      * @return void
      */
     public function debug() {
-    	debug::clear();
+    	//debug::clear();
     	
     	// Si l'adresse IP est définie
-	    if($_SERVER["REMOTE_ADDR"] == IPADMIN):
+	    if($_SERVER["REMOTE_ADDR"] == IPADMIN && DEV):
+	    	$bar     = ""; // Affichage de la barre
+	    	$content = ""; // Affichage du contenu
+	    	
+	    	// On affiche le debugContent
+	    	$content .= '<div id="debugContent">';
+	    	
 	    	// On affiche la barre de debug
-	    	$this->timer("Barre d'administration");
+	    	$bar .= '<div id="debug" class="navbar navbar-fixed-bottom"><div class="navbar-inner"> <div class="container">';
+	    	$bar .= '<span class="brand" href="#">Debug</span>';
+	    	$bar .= '<ul class="nav">';
 	    	
-	    	// Erreurs
-	    	// TODO : Lister les erreurs et leur backtrace
 	    	
-	    	// Requêtes SQL
-	    	// TODO : Afficher toutes les requêtes SQL et le nombre de résultat
+	    	/*
+	    	 * Erreurs
+	    	 */
 	    	 
-	    	// Plugins
-	    	// TODO : Lister les plugins chargés au démarrage
+	    	$bar .= '<li id="debugError">';
 	    	
-	    	// Debug
-	    	// TODO : Lister les différents var_dump sauvegardés
+	    	// On compte le nombre d'erreur
+	    	if(count(debug::$error) > 0):
+	    		$bar     .= '<a href="#">'.lang::text('debug:error').' <span class="badge badge-important">'.count(debug::$error).'</span></a>';
+	    		$content .= '<div id="debugErrorContent" class="debugContent">';
+	    		
+	    		// On affiche les erreurs dans le debugContent
+	    		foreach(debug::$error as $error):
+                    $content .= "<ul>";
+                    $content .= "    <li><b>".lang::text('debug:error:type')."</b> : ".$error['type']."</li>";
+                    $content .= "    <li><b>".lang::text('debug:error:file')."</b> : ".$error['file']."</li>";
+                    $content .= "    <li><b>".lang::text('debug:error:line')."</b> : ".$error['line']."</li>";
+                    $content .= "    <li><b>".lang::text('debug:error:str') ."</b> : ".$error['str'] ."</li>";
+                    $content .= "</ul>";
+	    		endforeach;
+	    		
+	    		$content .= '</div>';
+	    	else:
+	    		// Aucune erreur
+	    		$bar .= '<a href="#">'.lang::text('debug:error').' <span class="badge">0</span></a>';
+	    		$content .= '<div id="debugErrorContent" class="debugContent empty">'.lang::text('debug:noError').'</div>';
+	    	endif;
 	    	
-	    	// Timer
-	    	// TODO : Lister les différents timers
-	    	$this->timer("Fin du chargement");
+	    	$bar .= '</li>';
 	    	
+	    	/*
+	    	 * Requêtes SQL
+	    	 */
+	    	 
+	    	$bar .= '<li id="debugSQL">';
+	    	
+	    	// On compte le nombre de requête SQL effectuée
+	    	if(count(debug::$sql) > 0):
+	    		$bar     .= '<a href="#">'.lang::text('debug:SQL').' <span class="badge badge-important">'.count(debug::$sql).'</span></a>';
+	    		$content .= '<div id="debugSQLContent" class="debugContent">';
+	    		
+	    		// On affiche les requêtes dans le debugContent
+	    		foreach(debug::$sql as $sql):
+                    $content .= "<ul>";
+                    $content .= "    <li><b>".lang::text('debug:sql:req')  ."</b> : ".$sql['req']  ."</li>";
+                    $content .= "    <li><b>".lang::text('debug:sql:count')."</b> : ".$sql['count']."</li>";
+                    $content .= "</ul>";
+	    		endforeach;
+	    		$content .= '</div>';
+	    	else:
+	    		$bar .= '<a href="#">'.lang::text('debug:SQL').' <span class="badge">0</span></a>';
+	    		$content .= '<div id="debugSQLContent" class="debugContent empty">'.lang::text('debug:noSQL').'</div>';
+	    	endif;
+	    	
+	    	$bar .= '</li>';
+
+	    	/*
+	    	 * Variables
+	    	 */
+	    	 
+	    	$bar .= '<li id="debugDump">';
+	    	
+	    	// On compte le nombre de débug de variable
+	    	if(count(debug::$dump) > 0):
+	    		$bar     .= '<a href="#">'.lang::text('debug:dump').' <span class="badge badge-important">'.count(debug::$dump).'</span></a>';
+	    		$content .= '<div id="debugDumpContent" class="debugContent">';
+	    		
+	    		// On affiche les requêtes dans le debugContent
+	    		foreach(debug::$dump as $dump):
+	    		
+	    			// On enregistre le var_dump();
+	    			ob_start();
+	    			var_dump($dump['array']);
+	    			$dump['array'] = ob_get_clean();
+	    			
+	    			// On met un titre pas default
+	    			if(!$dump['title']):
+	    				$dump['title'] = lang::text('debug:dump:default');
+	    			endif;
+	    			
+                    $content .= "<ul>";
+                    $content .= "    <li><b>".lang::text('debug:dump:title')  ."</b> : ".$dump['title']  ."</li>";
+                    $content .= "    <li><b>".lang::text('debug:dump:content')."</b> : <br /><pre>".$dump['array']."</pre></li>";
+                    $content .= "</ul>";
+	    		endforeach;
+	    		$content .= '</div>';
+	    	else:
+	    		$bar .= '<a href="#">'.lang::text('debug:dump').' <span class="badge">0</span></a>';
+	    		$content .= '<div id="debugDumpContent" class="debugContent empty">'.lang::text('debug:noDump').'</div>';
+	    	endif;
+	    	
+	    	$bar .= '</li>';
+	    	
+	    	/*
+	    	 * Globales
+	    	 */
+	    	 
+	    	$bar .= '<li id="debugGlobal">';
+    		$bar     .= '<a href="#">'.lang::text('debug:global').' <span class="badge badge-info">3</a>';
+    		$content .= '<div id="debugGlobalContent" class="debugContent">';
+    		
+    		$global = array();
+    		
+    		$global[] = array(
+    			'title' => '$_SERVER',
+    			'var'   => $_SERVER
+    		);
+    		
+    		$global[] = array(
+    			'title' => '$_SESSION',
+    			'var'   => $_SESSION
+    		);
+    		
+    		$global[] = array(
+    			'title' => '$_POST',
+    			'var'   => $_POST
+    		);
+    		
+    		// On affiche les globales dans le debugContent
+    		foreach($global as $glob):
+    		
+    			// On enregistre le var_dump();
+    			ob_start();
+    			var_dump($glob['var']);
+    			$glob['var'] = ob_get_clean();
+    			
+                $content .= "<ul>";
+                $content .= "    <li><b>".lang::text('debug:global:title')  ."</b> : ".$glob['title']  ."</li>";
+                $content .= "    <li><b>".lang::text('debug:global:content')."</b> : <br /><pre>".$glob['var']."</pre></li>";
+                $content .= "</ul>";
+    		endforeach;
+    		$content .= '</div>';
+	    	$bar .= '</li>';
+	    	
+	    	
+	    	
+	    	/*
+	    	 * Timer
+	    	 */
+	    	 
+	    	debug::timer(lang::text('timer:end'));
+	    	
+	    	$bar .= '<li id="debugTimer">';
+    		$bar     .= '<a href="#">'.lang::text('debug:timer').' <span class="badge badge-info">'.count(debug::$timer).'</a>';
+    		$content .= '<div id="debugTimerContent" class="debugContent">';
+    		
+    		// Calcul du temp total
+    		$total = debug::$timer[count(debug::$timer) -1]['time'];
+    		
+    		$content .= "<ul>";
+    		// On affiche les timers dans le debugContent
+    		foreach(debug::$timer as $timer):
+    			$pourcent = ($timer['time'] / $total)*100;
+                
+                $content .= '<li>
+                				<span class="timerTitle"><b>'.$timer['title'].'</b></span>
+                				<div class="progress"><div class="bar" style="width: '.$pourcent.'%"></div></div>
+                				<span class="timerSeconde">'.$timer['time'].' secondes</span>
+                			</li>';
+                
+    		endforeach;
+    		$content .= "</ul>";
+    		$content .= '</div>';
+	    	$bar .= '</li>';
+	   
+	    	
+	    	// Affichage de la barre et de son contenu
+	    	$bar .= '</ul></div></div></div>';
+	    	$content .= '</div>';
+	    	
+	    	echo $content;
+	    	echo $bar;
 	    endif;
+    }
+    
+    public function template($assign, $var) {
+	    $this->template->assign($assign, $var);
+    }
+    
+    public function setTemplate($file) {
+	    $this->templateTPL = $file;
+    }
+    
+    public function display() {
+	    debug::timer(lang::text('timer:template'));
+	    $this->template->display("template.tpl");
     }
 		
     public function get($key) {
@@ -234,7 +404,7 @@ class page {
     }
 	
     public function __set($key, $value) {
-	$this->$key = $value;
+		$this->$key = $value;
         return true;
     }
 		

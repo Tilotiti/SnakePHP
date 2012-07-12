@@ -24,35 +24,16 @@ require_once LIB.'/dbconnect.php';
 session_start();
 
 // Instanciation des classes nécessaires au framework
-            new lang('fr');
-$debug    = new debug();
+new lang('fr');
+new debug();
 
-// Initialisation du template
+// Initialisation de la page
 if(PAGE_LOADER):
-    
     $page = new page();
-                
-    // initiation de smarty
-    $template               = new smarty();
-    $template->template_dir = TEMPLATE;
-    $template->compile_dir  = CACHE;
-
-    if(!isset($_SESSION['error'])):
-        $_SESSION['error'] = false;
-    endif;
-	
-	// Définition des Sessions
-	if(!isset($_SESSION['message'])):
-	    $_SESSION['message'] = false;
-	endif;
-	
-	if(!isset($_SESSION['save'])):
-	    $_SESSION['save'] = false;
-	endif;
-
 endif;
 
 // Implantation de tous les plugins
+debug::timer('timer:plugin', true);
 $dir = opendir(PLUGIN.'/');
 while ($file = readdir($dir)):
     if ($file !="." && $file != ".."):

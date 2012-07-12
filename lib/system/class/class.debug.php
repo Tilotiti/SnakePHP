@@ -3,12 +3,16 @@ class debug {
     static $html;
     static $error;
     static $debug;
+    static $sql;
+    static $dump;
+    static $start = 0;
+    static $timer = array();
     
     public function __construct() {
+    
+    	//error_reporting(0);
         set_error_handler(array($this, 'error'));
-        if(isset($_SESSION['debug'])):
-            debug::$html = $_SESSION['debug'];
-        endif;
+        
     }
     
     static function error($errno, $errstr, $errfile = "unknow", $errline = "unknow") {
@@ -30,7 +34,7 @@ class debug {
                 debug("Message : ".$errstr, 'error');
                 debug("----------------------------------------", 'error');
                 
-                exit(1);
+                //exit(1);
             break;
 
             case E_USER_WARNING:
@@ -48,18 +52,10 @@ class debug {
                                        'line' => $errline,
                                        'str'  => $errstr);
             break;
-        
-            case "sql":
-                $type = 'sql';
-                self::$error[] = array('type' => 'sql',
-                                       'file' => $errfile,
-                                       'line' => $errline,
-                                       'str'  => $errstr);
-            break;
-
+ 
             default:
-                $type = "unknow";
-                self::$error[] = array('type' => 'unknow',
+            	$type = $errno;
+                self::$error[] = array('type' => $type,
                                        'file' => $errfile,
                                        'line' => $errline,
                                        'str'  => $errstr);
@@ -75,66 +71,34 @@ class debug {
         return true;
     }
 
-    static public function display($array, $title = false) {
-    	$debug = array();
-        $debug['title'] = $title;
-        $debug['array'] = $array;
+    static public function dump($array, $title = false) {
+    	$dump = array();
+        $dump['title'] = $title;
+        $dump['array'] = $array;
         
-        self::$debug[]  = $debug;
+        self::$dump[]  = $dump;
     }
     
-    public static function clear() {
-        // Debug
-        if(count(self::$debug)>0):
-            if(DEV):
-                echo '<div id="debug">';
-                foreach(self::$debug as $debug):
-                    if($debug['title']):
-                        echo '<h4>'.$debug['title'].'</h4>';
-                    else:
-                        echo '<h4>Var_dump</h4>';
-                    endif;
-                    echo '<pre>';
-                    var_dump($debug['array']);
-                    echo '</pre>';
-                endforeach;
-                echo '</div>';
-            else:
-                foreach(self::$debug as $debug):
-                    echo "<!-- \n";
-                    if($debug['title']):
-                        echo $debug['title']."\n";
-                    endif;
-                    var_dump($debug['array']);
-                    echo "\n -->"."\n";
-                endforeach;
-            endif;
+    public static function sql($req, $count) {
+	    $sql           = array();
+        $sql['req']    = $req;
+        $sql['count']  = $count;
+        
+        self::$sql[] = $sql;
+    }
+    
+    public static function timer($title, $lang = false) {
+		$time = explode(" ", microtime());
+        $time = ($time[1] + $time[0]);
+        
+        if(self::$start == 0):
+        	self::$start = $time;
         endif;
-        unset($_SESSION['debug']);
-
-        // Error
-        if(count(self::$error) > 0):
-            if(DEV):
-                echo '<div class="debug">';
-                foreach(self::$error as $error):
-                    echo '<h4>'.lang::error('error:'.$error['type']).'</h4>';
-                    echo "<ul>";
-                    echo "    <li><b>File</b> : ".$error['file']."</li>";
-                    echo "    <li><b>Line</b> : ".$error['line']."</li>";
-                    echo "    <li><b>Message</b> : ".$error['str']."</li>";
-                    echo "</ul>";
-                endforeach;
-                echo '</div>';
-            else:
-                foreach(self::$error as $error):
-                    echo "<!-- \n".lang::error('error:'.$error['type'])."\n";
-                    echo "File : ".$error['file']."\n";
-                    echo "Line : ".$error['line']."\n";
-                    echo "Message : ".$error['str']."\n";
-                    echo "\n -->"."\n";
-                endforeach;
-            endif;
-        endif;
+        
+        self::$timer[] = array(
+        	'title' => (!$lang) ? $title : lang::text($title),
+        	'time'  => $time - self::$start
+        );
     }
 
 }

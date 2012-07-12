@@ -23,6 +23,6 @@ $session  = new session();
 
 if(PAGE_LOADER):
 	// Assignation de la session dans le template
-	$template->assign('session', $session);
+	$page->template('session', $session);
 endif;
 ?>

@@ -50,7 +50,7 @@
 						{$message.text}.
 					</div>
 				{/if}
-				{include file="`$page->get('template')`.tpl"}
+				{include file="`$page->get('templateTPL')`.tpl"}
 			</div>
 		</div>
 		<hr>

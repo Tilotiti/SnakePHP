@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <language charset="UTF-8" lang="French" code="fr">
-  <lang id="error:sql" context="" get="/announce?info_hash=%bf%7c%edO%fc1ggG%93%b98%7d%84%15%18%5e%f0%7c%19&amp;peer_id=-UM1640-wj%8b2%e7%2b%b7%bc%e1%10%8d%fd&amp;port=50302&amp;uploaded=364142392&amp;downloaded=0&amp;left=0&amp;corrupt=0&amp;key=7CBFCC05&amp;event=started&amp;numwant=200&amp;compact=1&amp;no_peer_id=1&amp;ipv6=fe80%3a%3a3e07%3a54ff%3afe2e%3ad5be">[error:sql]</lang>
+  <lang id="error:sql" context="" get="">Erreur SQL</lang>
+  <lang id="error:unknow" context="" get="">Erreur PHP</lang>
 </language>

@@ -8,22 +8,21 @@ $page->pushCSS('bootstrap');
 $page->pushCSS('global');
 
 // Inclusion des fichiers JS par défaut
+$page->pushJS('jquery');
 $page->pushJS('bootstrap');
 $page->pushJS('script');
 
 // Initalisation du premier dispatcher
-$page->timer('Page dispatcher');
+debug::timer('timer:dispatcher', true);
 include $page->dispatcher("/");
 
 // Assignation final au template
-$template->assign('page',    $page);
-$template->assign('save',    $_SESSION['save']);
-$template->assign('message', $_SESSION['message']);
-$template->assign('debug',   $debug);
+$page->template('page',    $page);
+$page->template('save',    $_SESSION['save']);
+$page->template('message', $_SESSION['message']);
 
 // Génération du template
-$page->timer('Génération du template');
-$template->display("template.tpl");
+$page->display();
 
 // Nettoyage des sessions et des variables
 $page->clear();

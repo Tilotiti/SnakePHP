@@ -11,10 +11,10 @@ define('TIMEZONE', 'Europe/Paris');             // Fuseau Horaire
 define('IPADMIN',  $_SERVER['REMOTE_ADDR']);    // IP du poste de développement
 
 /* Configuration de la base de données */
-define('DBHOST',  '193.37.145.60'); // Hôte
-define('DBUSER',  'edenp273544'); // Utilisateur
-define('DBPASS',  'eden123'); // Mot de passe
-define('DBNAME',  'edenp273544'); // Base de données
+define('DBHOST',  'localhost:3306'); // Hôte
+define('DBUSER',  'root'); // Utilisateur
+define('DBPASS',  ''); // Mot de passe
+define('DBNAME',  'test'); // Base de données
 define('DBPREF',  'eden_'); // Préfixe des tables
 
 /* Chemins des dossiers */
