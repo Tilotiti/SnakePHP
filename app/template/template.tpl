@@ -45,6 +45,7 @@
 				</div>
 			</div>
 			<div class="span9">
+				<h1>{$page->get('title')}</h1>
 				{if isset($message.text)}
 					<div class="alert alert-{$message.type}">
 						{$message.text}.

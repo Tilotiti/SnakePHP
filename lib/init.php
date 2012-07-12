@@ -47,5 +47,6 @@ while ($file = readdir($dir)):
     endif;
 endwhile;
 closedir($dir);
+unset($dir);
 
 ?>

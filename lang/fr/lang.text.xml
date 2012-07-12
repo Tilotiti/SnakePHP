@@ -24,6 +24,6 @@
   <lang id="timer:start" context="" get="/index/">Inititation d'EdenPHP</lang>
   <lang id="timer:template" context="" get="/index/">Génération du template</lang>
   <lang id="timer:end" context="" get="/index/">Fin de chargement</lang>
-  <lang id="timer:dispatcher" context="" get="/index/">Dispatcher</lang>
+  <lang id="timer:dispatcher" context="" get="/index/">Dispatcher général</lang>
   <lang id="timer:plugin" context="" get="/index/">Chargement des plugins</lang>
 </language>
