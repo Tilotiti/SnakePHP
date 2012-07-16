@@ -1031,7 +1031,7 @@ class query {
             echo '-->';
         else:
             if(!$force):
-                debug::display($debug, 'Requête SQL');
+                debug::dump($debug, 'Requête SQL');
             else:
                 echo '<pre>';
                 print_r($debug);
