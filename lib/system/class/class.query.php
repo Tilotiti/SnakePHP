@@ -618,7 +618,7 @@ class query {
             debug::error("SQL", "LIMIT method can't be requested before FROM method.", __FILE__, __LINE__);
             $this->error = true;
         endif;
-        if(($this->content['countOn'] > count($this->table['leftJoin']))):
+        if(($this->content['countOn'] > count($this->table['join']))):
             debug::error("SQL", "LIMIT method can't be requested before ON method when JOIN method has been requested.", __FILE__, __LINE__);
             $this->error = true;
         endif;
