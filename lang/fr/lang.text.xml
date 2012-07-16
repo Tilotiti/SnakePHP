@@ -26,4 +26,9 @@
   <lang id="timer:end" context="" get="/index/">Fin de chargement</lang>
   <lang id="timer:dispatcher" context="" get="/index/">Dispatcher général</lang>
   <lang id="timer:plugin" context="" get="/index/">Chargement des plugins</lang>
+  <lang id="pagination:page" context="" get="/">Page [page] sur [total]</lang>
+  <lang id="pagination:next" context="" get="/">Page suivante</lang>
+  <lang id="pagination:end" context="" get="/">Dernière page</lang>
+  <lang id="pagination:start" context="" get="/2/">Première page</lang>
+  <lang id="pagination:prev" context="" get="/2/">Page précédente</lang>
 </language>

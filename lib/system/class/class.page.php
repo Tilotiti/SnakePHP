@@ -91,7 +91,7 @@ class page {
         echo "-->"."\n";
     }
 
-    public function addAriane($name, $url = "") {
+    public function pushAriane($name, $url = "") {
         $array = array("name" => $name, "url" => $url);
         $this->ariane[] = $array;
     }
@@ -119,6 +119,10 @@ class page {
     
     public function title($title, $array = false) {
         $this->title = lang::title($title, $array);
+    }
+    
+    public function getTitle() {
+        return $this->title;
     }
     
     public function pushSidebar($file, $id = false, $params = false) {

@@ -732,14 +732,13 @@ class query {
      * @param mixed $req Requête à éxecuter
      * @return void
      */
-    public function sql($req) {
+    public function sql($req, $debug = true) {
     	// On vérifie que jusque là, tout se passe bien
         if(DBHOST && !$this->error):
         
         	// Log de la requête
             
             try {
-            	$debug = array();
             	
             	if($this->content['select']):
 		            $return = $this->bdd->query($req);
@@ -754,7 +753,9 @@ class query {
 	            	$this->count = $return;
 	            endif;
 	            
-	            debug::sql($req, $this->count);
+	            if($debug):
+	            	debug::sql($req, $this->count);
+	            endif;
 	            
 	            return $return;
             } catch( Exception $error ) {
@@ -970,9 +971,12 @@ class query {
      * @return $this pour maintenir la chaînabilité de la classe
      */
     public function page($get, $results, $variable = "pagination") {
-        global $template;
+        global $page;
         
-        $nb = mysql_num_rows(mysql_query($this->prepare_request));
+        $this->sql($this->prepare_request, false);
+        
+        $nb = $this->count();
+        
         $current = get($get);
         if($current == "index"):
             $current = 1;
@@ -986,22 +990,24 @@ class query {
         $text['total'] = ceil($nb / $results);
         
         if($current > 1):
-            $start = '<a href="'.get($get, 1)         .'" class="start">'.lang::text('pagination:start').'</a>';
-            $prev  = '<a href="'.get($get, $current-1).'" class="prev">'. lang::text('pagination:prev') .'</a>';
+            $start = '<li><a href="'.get($get, 1)         .'" class="start">'.lang::text('pagination:start').'</a></li>';
+            $prev  = '<li><a href="'.get($get, $current-1).'" class="prev">'. lang::text('pagination:prev') .'</a></li>';
         else:
             $start = '';
             $prev  = '';
         endif;
         
         if($current < ceil($nb / $results)):
-            $next  = '<a href="'.get($get, $current+1)          .'" class="next">'. lang::text('pagination:next') .'</a>';
-            $end   = '<a href="'.get($get, ceil($nb / $results)).'" class="end">'.  lang::text('pagination:end')  .'</a>';
+            $next  = '<li><a href="'.get($get, $current+1)          .'" class="next">'. lang::text('pagination:next') .'</a></li>';
+            $end   = '<li><a href="'.get($get, ceil($nb / $results)).'" class="end">'.  lang::text('pagination:end')  .'</a></li>';
         else:
             $end   = '';
             $next  = '';
         endif;
+        
+        $center = '<li class="disabled"><a href="'.get().'">'.lang::text('pagination:page', $text).'</a></li>';
 
-        $page->template($variable, '<div class="pagination">'.$start.$prev.lang::text('pagination:page', $text).$end.$next.'</div>');
+        $page->template($variable, '<div class="pagination pagination-centered"><ul>'.$start.$prev.$center.$next.$end.'</ul></div>');
         
         return $this;
     }
