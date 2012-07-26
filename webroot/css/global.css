@@ -21,6 +21,7 @@ body {
 	color: #333;
 	width: 100%;
 	display: none;
+	left: 0;
 }
 
 .debugContent {
