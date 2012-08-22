@@ -1067,7 +1067,7 @@ class query {
             $this->table['select']   = '';
         endif;
 
-        $this->table['leftJoin'] = array();
+        $this->table['join']     = array();
         $this->table['set']      = '';
         $this->table['delete']   = '';
         $this->line              = array();
