@@ -538,8 +538,7 @@ class query {
             $this->error = true;
         endif;
         if($order != 'ASC' && $order != 'DESC'):
-            debug::error("SQL", "ORDER BY method only accept blank, DESC or ASC for second argument.", __FILE__, __LINE__);
-            $this->error = true;
+            $order = 'ASC';
         endif;
         if($this->content['limit']):
             debug::error("SQL", "ORDER BY method can't be requested after LIMIT method.", __FILE__, __LINE__);
