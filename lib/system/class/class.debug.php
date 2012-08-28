@@ -10,7 +10,7 @@ class debug {
     
     public function __construct() {
     
-    	error_reporting(E_ERROR | E_PARSE | E_COMPILE | E_CORE);
+    	error_reporting(E_ERROR | E_PARSE);
         set_error_handler(array($this, 'error'));
         
     }
