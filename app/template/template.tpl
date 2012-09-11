@@ -2,6 +2,9 @@
 <html lang="fr">
 <head>
     <meta charset="{$smarty.const.CHARSET}"/>
+    <meta name="description" content="{$page->get('description')}">
+    <meta name="keywords" content="{$page->get('keywords')}">
+    
 	<title>{$smarty.const.SITE} - {$page->get('title')}</title>
 	
 	{foreach $page->getCSS()  as $css}

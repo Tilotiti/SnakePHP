@@ -31,4 +31,6 @@
   <lang id="pagination:end" context="" get="/">Dernière page</lang>
   <lang id="pagination:start" context="" get="/2/">Première page</lang>
   <lang id="pagination:prev" context="" get="/2/">Page précédente</lang>
+  <lang id="meta:description" context="" get="/">Framework EdenPHP</lang>
+  <lang id="meta:keywords" context="" get="/">EdenPHP, Framework, PHP</lang>
 </language>

@@ -7,20 +7,19 @@ class page {
         $cat         = '',
         $templateTPL = '',
         $ariane      = '',
-        $meta        = '',
+        $description = '',
+        $keywords    = '',
         $year        = 0,
         $template    = false,
-        $sidebar     = false,
-        $JS          = false,
-        $CSS         = false,
+        $sidebar     = array(),
+        $JS          = array(),
+        $CSS         = array(),
+        $sitemap     = array(),
         $time        = array();
    
     public function __construct() {
+
         debug::timer('timer:start', true);
-        
-        $this->sidebar = array();
-        $this->JS      = array();
-        $this->CSS     = array();
         
          // initiation de smarty
 	    $this->template               = new smarty();
@@ -31,6 +30,16 @@ class page {
 	    isset($_SESSION['error'])   or $_SESSION['error']   = false;
 	    isset($_SESSION['save'])    or $_SESSION['save']    = false;
 	    isset($_SESSION['message']) or $_SESSION['message'] = false;
+	    
+	    // Génération du siteMap
+	    $xml = simplexml_load_file(WEBROOT.'/sitemap.xml', 'SimpleXMLElement', LIBXML_NOCDATA);
+        foreach($xml->url as $url):
+        	$this->sitemap[(string)$url->loc] = array(
+        		'lasmod'     => (string) $url->lasmod,
+        		'changefreq' => (string) $url->changefreq,
+        		'priority'   => (string) $url->priority,
+        	);
+        endforeach;
         
     }
     public function dispatcher($path, $cat = '') {
@@ -401,6 +410,45 @@ class page {
     public function display() {
 	    debug::timer(lang::text('timer:template'));
 	    $this->template->display("template.tpl");
+    }
+    
+    public function description($text) {
+	    $this->description = $text;
+    }
+    
+    public function pushKeyword($keyword) {
+    	if(!empty($this->keywords)):
+	    	$keywords       = explode(', ', $this->keywords);
+	    else:
+	    	$keywords = array();
+	    endif;
+	    $keywords[]     = $keyword;
+	    $this->keywords = implode(', ', $keywords);
+    }
+    
+    public function sitemap($changefreq = "monthly", $priority = 0.5) {
+    	if(!isset($this->sitemap[URL.get()])):
+	    	$this->sitemap[URL.get()] = array(
+        		'lasmod'     => date('Y-m-d'),
+        		'changefreq' => $changefreq,
+        		'priority'   => $priority
+        	);
+        	
+        	$xml = simplexml_load_file(WEBROOT.'/sitemap.xml');
+            $url = $xml->addChild('url');
+            
+            $url->addChild('loc',        URL.get());
+            $url->addChild('lasmod',     date('Y-m-d'));
+            $url->addChild('changefreq', $changefreq);
+            $url->addChild('priority',   $priority);
+            
+            $dom = new DOMDocument('1.0');
+            $dom->preserveWhiteSpace = false;
+            $dom->formatOutput = true;
+            $dom->loadXML($xml->asXML());
+            
+            $dom->save(WEBROOT.'/sitemap.xml');
+        endif;
     }
 		
     public function get($key) {

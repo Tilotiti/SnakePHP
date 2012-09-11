@@ -30,7 +30,13 @@ new debug();
 // Initialisation de la page
 if(PAGE_LOADER):
     $page = new page();
+    
+    // Initialisation du référencement naturel
+	$page->description(lang::text('meta:description')); // Description du site par défaut
+	$page->pushKeyword(lang::text('meta:keywords')); // Mots clefs par défaut
 endif;
+
+
 
 // Implantation de tous les plugins
 debug::timer('timer:plugin', true);
