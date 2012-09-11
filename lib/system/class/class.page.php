@@ -36,7 +36,7 @@ class page {
 	    $xml = simplexml_load_file(WEBROOT.'/sitemap.xml', 'SimpleXMLElement', LIBXML_NOCDATA);
         foreach($xml->url as $url):
         	$this->sitemap[(string)$url->loc] = array(
-        		'lasmod'     => (string) $url->lasmod,
+        		'lastmod'     => (string) $url->lasmod,
         		'changefreq' => (string) $url->changefreq,
         		'priority'   => (string) $url->priority,
         	);
@@ -432,7 +432,7 @@ class page {
     public function sitemap($changefreq = "monthly", $priority = 0.5) {
     	if(!isset($this->sitemap[URL.get()]) && !$this->notFound):
 	    	$this->sitemap[URL.get()] = array(
-        		'lasmod'     => date('Y-m-d'),
+        		'lastmod'    => date('Y-m-d'),
         		'changefreq' => $changefreq,
         		'priority'   => $priority
         	);
@@ -441,7 +441,7 @@ class page {
             $url = $xml->addChild('url');
             
             $url->addChild('loc',        URL.get());
-            $url->addChild('lasmod',     date('Y-m-d'));
+            $url->addChild('lastmod',    date('Y-m-d'));
             $url->addChild('changefreq', $changefreq);
             $url->addChild('priority',   $priority);
             
