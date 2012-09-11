@@ -11,6 +11,7 @@ class page {
         $keywords    = '',
         $year        = 0,
         $template    = false,
+        $notFound    = false,
         $sidebar     = array(),
         $JS          = array(),
         $CSS         = array(),
@@ -59,12 +60,14 @@ class page {
         // On inclue la page demandée si elle existe
         if(!file_exists(SOURCE.'/'.$path.$page.'.php')):
             $page = "index";
+            $this->notFound = true;
             header("HTTP/1.0 404 Not Found");
         endif;
         
         // On redirige en cas d'erreur (La page TPL n'existe pas)
         if(!file_exists(TEMPLATE.$path.$page.'.tpl')):
             $page = "index";
+            $this->notFound = true;
             header("HTTP/1.0 404 Not Found");
         endif;
 
@@ -427,7 +430,7 @@ class page {
     }
     
     public function sitemap($changefreq = "monthly", $priority = 0.5) {
-    	if(!isset($this->sitemap[URL.get()])):
+    	if(!isset($this->sitemap[URL.get()]) && !$this->notFound):
 	    	$this->sitemap[URL.get()] = array(
         		'lasmod'     => date('Y-m-d'),
         		'changefreq' => $changefreq,
