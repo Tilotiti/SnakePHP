@@ -410,9 +410,9 @@ class page {
 	    $this->templateTPL = $file;
     }
     
-    public function display() {
+    public function display($template = "template") {
 	    debug::timer(lang::text('timer:template'));
-	    $this->template->display("template.tpl");
+	    $this->template->display($template.".tpl");
     }
     
     public function description($text) {
