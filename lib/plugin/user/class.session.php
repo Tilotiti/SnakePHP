@@ -23,14 +23,14 @@ class session {
 	}
 	
 	/*
-	 * Méthode     : isOnline
+	 * Méthode     : ok
 	 * Description : Précise si l'utilisateur est connecté ou non
 	 * Paramètres  : Aucun
 	 * Retour      :
 	 *     - (bool) "true"  : L'utilisateur est connecté
 	 *     - (bool) "false" : L'utilisateur n'est pas connecté
 	 */
-	public function isOnline() {
+	public function ok() {
 		// Une session existe
 		if(isset($_SESSION['user']) && is_array($_SESSION['user']) && array_key_exists('id', $_SESSION['user'])):
 			// l'utilisateur est connecté
@@ -78,7 +78,7 @@ class session {
 	 *     - (bool) 'true"  : Sauvegarde réussie
 	 */
 	public function save() {
-		if($this->isOnline()):
+		if($this->ok()):
 			$this->user->save();
 			$this->login($this->get('id'));
 			return true;
@@ -99,7 +99,7 @@ class session {
 	 *     - (string)       : Valeur l'option dans la BDD si le paramètre $value n'est pas renseignée lors de l'appel de la méthode.
 	 */
 	public function option($key, $value = false) {
-		if($this->isOnline()):
+		if($this->ok()):
 			return $this->user->option($key, $value);
 		else:
 			return false;
@@ -118,7 +118,7 @@ class session {
 	 */
 	public function sign($require = false) {
 		// Si l'utilisateur est déjà en ligne
-		if($this->isOnline()):
+		if($this->ok()):
 			return false;
 			
 		// Si l'utilisateur peut s'inscrire
