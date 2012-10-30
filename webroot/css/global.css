@@ -81,4 +81,5 @@ body {
 
 .cropbox img {
     margin:auto;
+    max-width: none;
 }
