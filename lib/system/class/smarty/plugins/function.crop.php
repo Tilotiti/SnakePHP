@@ -1,6 +1,9 @@
 <?php
 function smarty_function_crop($params, &$smarty) {
-    $params['img'] = str_replace(" ", "-", $params['img']);
+    if(!preg_match('#^http(.+)#', $params['img'])):
+        $params['img'] = URL.$params['img'];
+    endif;
+    
     $info = @getimagesize($params['img']);
 
     if(!$info):
