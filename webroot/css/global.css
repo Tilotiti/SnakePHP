@@ -69,3 +69,16 @@ body {
 #debugTimerContent ul {
 	border: none;
 }
+
+/*
+ * Cropbox
+ */
+
+.cropbox {
+    overflow: hidden;
+    display: inline-block;
+}
+
+.cropbox img {
+    margin:auto;
+}
