@@ -402,7 +402,7 @@ class query {
      * @param string $calcul Type de test à effectuer ("where" ou "and")
      * @return $this pour assurer la chaînabilité de la classe
      */
-    public function where($field, $calculator, $value, $calcul = "where") {
+    public function where($field, $calculator, $value = false, $calcul = "where") {
         if(!$this->content['select'] && !$this->content['update'] && !$this->content['delete']):
             debug::error("SQL", $calcul." method can't be requested before SELECT, DELETE or UPDATE method.", __FILE__, __LINE__);
             $this->error = true;
@@ -458,6 +458,8 @@ class query {
             	// Utilisation d'un string sous forme d'object comme paramètre à vérifier
                 $this->prepare_request .= ' '.$field.' '.$calculator.' "'.addslashes((string) $value).'"';
             endif;
+        elseif($value === false):
+        	$this->prepare_request .= ' '.$field.' '.$calculator;
         else:
             if(is_numeric($value)):
             	// Utilisation d'un nombre comme paramètre à vérifier
