@@ -9,9 +9,10 @@ class debug {
     static $timer = array();
     
     public function __construct() {
-    
-    	error_reporting(E_ERROR | E_PARSE);
-        set_error_handler(array($this, 'error'));
+    	if(PAGE_LOADER):
+		    error_reporting(E_ERROR | E_PARSE);
+		    set_error_handler(array($this, 'error'));
+        endif;
         
     }
     
@@ -72,15 +73,30 @@ class debug {
     }
 
     static public function dump($array, $title = false) {
-    	$dump = array();
-        $dump['title'] = $title;
-        $dump['array'] = $array;
-        
-        self::$dump[]  = $dump;
+    	if(PAGE_LOADER):
+		    $dump = array();
+		    $dump['title'] = $title;
+		    $dump['array'] = $array;
+		        
+		    self::$dump[]  = $dump;
+        else:
+            if($_SERVER["REMOTE_ADDR"] == IPADMIN && DEV):
+            	if(!$title):
+		    	    $title = lang::text('debug:dump:default');
+		    	endif;
+		    			
+		        echo "<hr />";
+		        echo "<b><big>".$title."</big></b>";
+		        echo "<pre>";
+		        var_dump($array);
+		        echo "</pre>";
+		        echo "<hr />";
+            endif;
+        endif;
     }
     
     public static function sql($req, $count) {
-	    $sql           = array();
+		$sql           = array();
         $sql['req']    = $req;
         $sql['count']  = $count;
         
@@ -92,13 +108,15 @@ class debug {
         $time = ($time[1] + $time[0]);
         
         if(self::$start == 0):
-        	self::$start = $time;
+             self::$start = $time;
         endif;
         
-        self::$timer[] = array(
-        	'title' => (!$lang) ? $title : lang::text($title),
-        	'time'  => $time - self::$start
-        );
+        if(PAGE_LOADER):
+            self::$timer[] = array(
+        		'title' => (!$lang) ? $title : lang::text($title),
+        		'time'  => $time - self::$start
+            );
+        endif;
     }
 
 }
