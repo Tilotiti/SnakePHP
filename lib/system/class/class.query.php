@@ -1019,7 +1019,7 @@ class query {
      * @param bool $force Si activé, alors la requête ne sera pas affichée dans le template mais directement (default: false)
      * @return void
      */
-    public function debug($force = false) {
+    public function debug() {
         $debug = array();
         $debug['request'] = $this->prepare_request;
         $debug['count'] = $this->count;
@@ -1030,19 +1030,7 @@ class query {
         	$debug['results'] = $this->get();
         endif;
         
-        if(!DEV):
-            echo '<!-- DEBUG ';
-            print_r($debug);
-            echo '-->';
-        else:
-            if(!$force):
-                debug::dump($debug, 'Requête SQL');
-            else:
-                echo '<pre>';
-                print_r($debug);
-                echo '</pre>';
-            endif;
-        endif;
+        debug::dump($debug, lang::text('sql:request'));
     }
 
     public function reset() {
