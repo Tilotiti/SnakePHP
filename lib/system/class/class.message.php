@@ -17,7 +17,7 @@ class message {
         self::send("Warning", $lang, $uri, $arg);
     }
     
-    private function send($type = "success", $lang = "", $uri = false, $arg = false) {
+    static function send($type = "success", $lang = "", $uri = false, $arg = false) {
         
         $_SESSION['message']['type'] = $type;
          if(!empty($lang)):
