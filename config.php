@@ -8,7 +8,7 @@ define('CHARSET',  'utf-8');                    // Encodage du site
 define('YEAR',     2012);                       // Début du développement
 define('DEV',      true);                       // Mode développement
 define('TIMEZONE', 'Europe/Paris');             // Fuseau Horaire
-define('IPADMIN',  $_SERVER['REMOTE_ADDR']);    // IP du poste de développement
+define('IPADMIN',  $_SERVER['REMOTE_ADDR']);    // IP du poste de développement, pour plusieurs posts, séparer les IPs par un pipe "|"
 
 /* Configuration de la base de données */
 define('DBHOST',  'localhost:3306'); // Hôte
