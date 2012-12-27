@@ -214,7 +214,7 @@ class page {
     	//debug::clear();
     	
     	// Si l'adresse IP est définie
-	    if($_SERVER["REMOTE_ADDR"] == IPADMIN && DEV):
+	    if(($_SERVER["REMOTE_ADDR"] == IPADMIN || in_array($_SERVER["REMOTE_ADDR"], explode('|', IPADMIN))) && DEV):
 	    	$bar     = ""; // Affichage de la barre
 	    	$content = ""; // Affichage du contenu
 	    	
