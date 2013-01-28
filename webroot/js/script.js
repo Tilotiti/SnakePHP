@@ -27,8 +27,11 @@ $(function() {
 	});
 });
 
+var Message = function(){};
+
 /**
- * pushMessage(type[string], content[string], cfg[object])
+ * push(type[string], content[string], cfg[object])
+ *
  * @var type : type de message (cussess, alert, ...)
  * @var content : le message en lui-même
  * @var cfg : tableau de configuration (optionel) permetant de gérer :
@@ -45,7 +48,7 @@ $(function() {
  * 		fade : 750
  * 	});
  */
-function pushMessage(type, content, cfg){
+Message.prototype.push = function(type, content, cfg){
 	
 	if(typeof type == 'undefined'){
 		return false;
@@ -59,7 +62,7 @@ function pushMessage(type, content, cfg){
  	var delay 	= 10000;
  	var fade 	= 2500;
 
- 	if(typeof cfg == 'array' || typeof cfg == 'object'){
+ 	if(typeof cfg == 'object'){
  		delay 	= typeof cfg.delay 	== 'undefined' ? delay 	: cfg.delay;
  		fade 	= typeof cfg.fade 	== 'undefined' ? fade 	: cfg.fade;
  		target 	= typeof cfg.target == 'undefined' ? target : cfg.target;
@@ -72,3 +75,27 @@ function pushMessage(type, content, cfg){
  		$(newItem).delay(delay).fadeOut(fade);
  	}
 }
+
+/**
+ * Message.success(content[string], cfg[object])
+ * Simple alias de la fonction Message.push avec la variable type égale à 'success'
+ * 
+ * @var content : le message en lui-même
+ * @var cfg : tableau de configuration (optionel) permetant de gérer :
+ * 	- la cible (pour l'integration du message)
+ * 	- le delai avant la disparition du message
+ * 	- la durée de l'effet de fondue 
+ */
+Message.prototype.success = function(content, cfg){
+	this.push('success', content, cfg);
+}
+
+/**
+ * Message.success(content[string], cfg[object])
+ * Simple alias de la fonction Message.push avec la variable type égale à 'error'
+ */
+Message.prototype.error = function(content, cfg){
+	this.push('error', content, cfg);
+}
+
+message = new Message();
