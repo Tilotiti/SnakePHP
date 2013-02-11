@@ -21,7 +21,7 @@
   <lang id="debug:global:title" context="" get="/index/">Titre</lang>
   <lang id="debug:global:content" context="" get="/index/">Export</lang>
   <lang id="debug:timer" context="" get="/index/">Chronomètre</lang>
-  <lang id="timer:start" context="" get="/index/">Inititation d'EdenPHP</lang>
+  <lang id="timer:start" context="" get="/index/">Inititation d'SnakePHP</lang>
   <lang id="timer:template" context="" get="/index/">Génération du template</lang>
   <lang id="timer:end" context="" get="/index/">Fin de chargement</lang>
   <lang id="timer:dispatcher" context="" get="/index/">Dispatcher général</lang>
@@ -31,6 +31,6 @@
   <lang id="pagination:end" context="" get="/">Dernière page</lang>
   <lang id="pagination:start" context="" get="/2/">Première page</lang>
   <lang id="pagination:prev" context="" get="/2/">Page précédente</lang>
-  <lang id="meta:description" context="" get="/">Framework EdenPHP</lang>
-  <lang id="meta:keywords" context="" get="/">EdenPHP, Framework, PHP</lang>
+  <lang id="meta:description" context="" get="/">Framework SnakePHP</lang>
+  <lang id="meta:keywords" context="" get="/">SnakePHP, Framework, PHP</lang>
 </language>
