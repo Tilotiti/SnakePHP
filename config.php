@@ -2,8 +2,8 @@
 
 /* Configuration du Framework */
 define('ROOT',      $_SERVER['DOCUMENT_ROOT']); // Chemin de la racine de votre site
-define('SITE',     'EdenPHP');                  // Nom du site
-define('URL',      'http://edenphp.dev');      // URL du site
+define('SITE',     'SnakePHP');                  // Nom du site
+define('URL',      'http://snakephp.dev');      // URL du site
 define('CHARSET',  'utf-8');                    // Encodage du site
 define('YEAR',     2012);                       // Début du développement
 define('DEV',      true);                       // Mode développement
@@ -15,7 +15,7 @@ define('DBHOST',  'localhost:3306'); // Hôte
 define('DBUSER',  'root'); // Utilisateur
 define('DBPASS',  ''); // Mot de passe
 define('DBNAME',  'test'); // Base de données
-define('DBPREF',  'eden_'); // Préfixe des tables
+define('DBPREF',  'snake_'); // Préfixe des tables
 
 /* Chemins des dossiers */
 define('APP',        ROOT    .'/app');
