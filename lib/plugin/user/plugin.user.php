@@ -2,7 +2,7 @@
 /*
  * Plugin : User
  * Description : Gestion d'une base de donnée utilisateur et de leurs actions sur le site
- * Auteur : Tilotiti
+ * Auteur : Thibault HENRY
  * Site : http://www.tiloweb.com
  */
 
