@@ -7,6 +7,7 @@ class page {
         $cat         = '',
         $templateTPL = '',
         $ariane      = '',
+        $title       = '',
         $description = '',
         $keywords    = '',
         $year        = 0,
@@ -22,24 +23,27 @@ class page {
 
         debug::timer('timer:start', true);
         
-         // initiation de smarty
-	    $this->template               = new smarty();
-	    $this->template->template_dir = TEMPLATE;
-	    $this->template->compile_dir  = CACHE;
+        // Set a title by default
+        $this->title = get(1);
+        
+        // initiation de smarty
+        $this->template               = new smarty();
+        $this->template->template_dir = TEMPLATE;
+        $this->template->compile_dir  = CACHE;
 	    
-	    // Définition des sessions
-	    isset($_SESSION['error'])   or $_SESSION['error']   = false;
-	    isset($_SESSION['save'])    or $_SESSION['save']    = false;
-	    isset($_SESSION['message']) or $_SESSION['message'] = false;
+        // Définition des sessions
+        isset($_SESSION['error'])   or $_SESSION['error']   = false;
+        isset($_SESSION['save'])    or $_SESSION['save']    = false;
+        isset($_SESSION['message']) or $_SESSION['message'] = false;
 	    
-	    // Génération du siteMap
-	    $xml = simplexml_load_file(WEBROOT.'/sitemap.xml', 'SimpleXMLElement', LIBXML_NOCDATA);
+        // Génération du siteMap
+        $xml = simplexml_load_file(WEBROOT.'/sitemap.xml', 'SimpleXMLElement', LIBXML_NOCDATA);
         foreach($xml->url as $url):
-        	$this->sitemap[(string)$url->loc] = array(
-        		'lastmod'     => (string) $url->lasmod,
-        		'changefreq' => (string) $url->changefreq,
-        		'priority'   => (string) $url->priority,
-        	);
+            $this->sitemap[(string)$url->loc] = array(
+                'lastmod'     => (string) $url->lasmod,
+                'changefreq' => (string) $url->changefreq,
+                'priority'   => (string) $url->priority,
+            );
         endforeach;
         
     }
