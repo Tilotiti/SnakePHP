@@ -15,7 +15,7 @@ define('DBHOST',  'localhost:3306'); // Hôte
 define('DBUSER',  'root'); // Utilisateur
 define('DBPASS',  ''); // Mot de passe
 define('DBNAME',  'test'); // Base de données
-define('DBPREF',  'eden_'); // Préfixe des tables
+define('DBPREF',  'snake_'); // Préfixe des tables
 
 /* Chemins des dossiers */
 define('APP',        ROOT    .'/app');
