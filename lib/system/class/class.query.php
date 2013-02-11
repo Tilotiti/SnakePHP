@@ -1,6 +1,7 @@
 <?php
 class query {
     public
+        $id              = 0,
         $prepare_request = '',
         $result          = '',
         $values          = '',
@@ -22,7 +23,6 @@ class query {
      * @access public
      * @return void
      */
-     
     public function __construct($prefix = DBPREF) {
     	global $queryConnexion;
         $this->reset();
@@ -32,8 +32,16 @@ class query {
         if(isset($queryConnexion)):
         	// La connexion à la BDD a bien été faite.
         	$this->bdd = $queryConnexion;
+
+            // Handle prepared queries
+            if (!isset($_SESSION['preparedId']) || $_SESSION['preparedId'] < 0):
+                $_SESSION['preparedId'] = 0;
+            else:
+                $_SESSION['preparedId']++;
+            endif;
+            $this->id = intval($_SESSION['preparedId']);
         else:
-        	/// La connexion ne s'est pas faite, on ne donne pas suite à la requête.
+        	// La connexion ne s'est pas faite, on ne donne pas suite à la requête.
         	$this->bdd = false;
         	$this->error = true;
         endif;
@@ -1063,6 +1071,54 @@ class query {
         $this->prepare_request   = '';
         $this->count             = 0;
         $this->duplicate         = '';
+    }
+
+    /*
+     * 
+    */
+    public function prepare() {
+        // On vérifie que jusque là, tout se passe bien
+        if(DBHOST && !$this->error):
+        
+            // Log de la requête
+            try {
+                $prep = $this->bdd->prepare($this->prepare_request);
+
+                if ($prep):
+                    $_SESSION['prepared'][$this->id] = $prep;
+                    return $this;
+                else:
+                    debug::error("SQL", "Request could not be prepared", __FILE__, __LINE__);
+                    $this->error = true;
+                endif;
+            } catch( Exception $error ) {
+                debug::error("SQL", $error->getMessage()."<br />".$req, __FILE__, __LINE__);
+                $this->error = true;
+            }
+        else:
+            $this->error = true;
+        endif;
+        if ($this->error):
+            return false;
+        endif;
+    }
+
+    /*
+     * 
+    */
+    public function execPrepared() {
+        if ($return = $_SESSION['prepared'][$this->id]->execute()):
+            return $return;
+        else:
+            debug::error("SQL", "Request could not be execute", __FILE__, __LINE__);
+            $this->error = true;
+        endif;
+
+        // Decrement the counter, remove the PDOHandler
+        $_SESSION['preparedId']--;
+        unset($_SESSION['prepared'][$this->id]);
+        $this->id = 0;
+        $_SESSION['prepared'][$this->id]->closeCursor();
     }
 }
 
