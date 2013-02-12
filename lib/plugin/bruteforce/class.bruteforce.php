@@ -1,7 +1,7 @@
 <?php
 /*
  *	Bruteforce counter and alerter
-*/ 
+*/
 class Bruteforce {
 
     /*

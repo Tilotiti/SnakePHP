@@ -3,8 +3,7 @@
  *	CSRF-token generator and checker
 */
 class CSRF {
-	public
-		$name		= sha1('CSRF-token');
+	public $name = '';
 
 	/*
 	 * Method       : __construct
@@ -16,6 +15,9 @@ class CSRF {
     public function __construct($name = '') {
         if (!empty($name)):
         	$this->name = $name;
+        else:
+        	$this->name = sha1('CSRF-token');
+        endif;
 	}
 
 	/*
