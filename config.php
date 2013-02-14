@@ -16,6 +16,7 @@ define('DBUSER',  'root'); // Utilisateur
 define('DBPASS',  ''); // Mot de passe
 define('DBNAME',  'test'); // Base de données
 define('DBPREF',  'snake_'); // Préfixe des tables
+define('SQLCACHETIME', 1200); // SQL-cache lifetime, default: 20min
 
 /* Chemins des dossiers */
 define('APP',        ROOT    .'/app');
@@ -24,6 +25,7 @@ define('LIB',        ROOT    .'/lib');
 define('LANG',       ROOT    .'/lang');
 define('LOG',        ROOT    .'/log');
 define('CACHE',      ROOT    .'/cache/');
+define('SQLCACHE',   CACHE   .'/sql/');
 define('PLUGIN',     LIB     .'/plugin');
 define('SYSTEM',     LIB     .'/system');
 define('SMARTY_DIR', SYSTEM  .'/class/smarty/');
