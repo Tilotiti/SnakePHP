@@ -47,8 +47,6 @@ while ($file = readdir($dir)):
             if(!function_exists($match[1])):
                 require_once PLUGIN.'/'.$file;
             endif;
-        elseif(file_exists(PLUGIN.'/'.$file.'/plugin.'.$file.'.php')):
-            require_once PLUGIN.'/'.$file.'/plugin.'.$file.'.php';
         endif;
     endif;
 endwhile;
