@@ -2,6 +2,7 @@
 class query {
     public
         $id              = 0,
+        $cacheLifetime   = SQLCACHETIME,
         $prepare_request = '',
         $result          = '',
         $values          = '',
@@ -11,6 +12,7 @@ class query {
         $prefix          = '',
         $error           = false,
         $queryConnexion  = false,
+        $cache           = false,
         $alias           = array(),
         $line            = array(),
         $content         = array(),
@@ -23,7 +25,7 @@ class query {
      * @access public
      * @return void
      */
-    public function __construct($prefix = DBPREF) {
+    public function __construct($cache = false, $cacheLifetime = 0, $prefix = DBPREF) {
     	global $queryConnexion;
         $this->reset();
         
@@ -44,6 +46,14 @@ class query {
         	// La connexion ne s'est pas faite, on ne donne pas suite à la requête.
         	$this->bdd = false;
         	$this->error = true;
+        endif;
+
+        if ($cache):
+            $this->cache = true;
+        endif;
+
+        if ($cacheLifetime > 0):
+            $this->cacheLifetime = $cacheLifetime;
         endif;
     }
 
@@ -744,11 +754,18 @@ class query {
     public function sql($req, $debug = true) {
     	// On vérifie que jusque là, tout se passe bien
         if(DBHOST && !$this->error):
-        
-        	// Log de la requête
-            
+
+        	// Before executing the request, we look if it was cached
+            if ($cacheContent = $this->isCached($req)):
+                if($debug):
+                    debug::sql($req, $this->count);
+                endif;
+                
+                return $cacheContent;
+            endif;
+
+            // No cache, so execute the request
             try {
-            	
             	if($this->content['select']):
 		            $return = $this->bdd->query($req);
 		            $return->setFetchMode(PDO::FETCH_ASSOC);
@@ -765,7 +782,7 @@ class query {
 	            if($debug):
 	            	debug::sql($req, $this->count);
 	            endif;
-	            
+
 	            return $return;
             } catch( Exception $error ) {
 	            debug::error("SQL", $error->getMessage()."<br />".$req, __FILE__, __LINE__);
@@ -774,6 +791,28 @@ class query {
             }
         else:
             return false;
+        endif;
+    }
+
+    public function isCached($req) {
+        if ($this->cache):
+            $file = SQLCACHE.md5($req).'.cache';
+
+            // There is a cache file
+            if (is_file($file) && (time() - filemtime($file) <= $this->cacheLifetime)):
+                return unserialize(file_get_contents($file));
+            endif;
+        endif;
+
+        return false;
+    }
+
+    public function writeCache($sql, $return) {
+        if ($this->cache):
+            if(false !== ($f = @fopen(SQLCACHE.md5($sql).'.cache', 'w+'))):
+                fwrite($f, serialize($return));
+                fclose($f);
+            endif;
         endif;
     }
 
@@ -823,11 +862,16 @@ class query {
      * 
      * @access public
      * @param string $field (default: '')
+     * @param bool $isGetArray (default: false)
      * @return Soit la valeur du champs sélectionné soit un tableau contenant tous les champs
      */
-    public function get($field = '') {
-    	if($this->error):
-    		return false;
+    public function get($field = '', $isGetArray = false) {
+    	if ($cached = $this->isCached($this->prepare_request) && !$isGetArray):
+            return $this->result;
+        endif;
+
+        if($this->error):
+    		$return = false;
     	endif;
     	
         if(empty($this->result)):
@@ -842,19 +886,19 @@ class query {
         // Si on demande un champ spécifique avec la methode getField
         if(is_array($field)):
             if(isset($this->line[$this->getField($field)])):
-                return stripslashes($this->line[$this->getField($field)]);
+                $return = stripslashes($this->line[$this->getField($field)]);
             else:
-                return false;
+                $return = false;
             endif;
             
         // Si on demande un champ spécifique simple
         elseif(!empty($field)):
             if(isset($this->line[$table.'_'.$field])):
-                return stripslashes($this->line[$table.'_'.$field]);
+                $return = stripslashes($this->line[$table.'_'.$field]);
             elseif(in_array($field, $this->alias)):
-                return $this->line[$field];
+                $return = $this->line[$field];
             else:
-                return false;
+                $return = false;
             endif;
             
         // Si on demande tous les champs
@@ -877,14 +921,20 @@ class query {
                     endif;
                 endforeach;
                 if(count($array) == 0):
-                    return false;
+                    $return = false;
                 else:
-                    return $array;
+                    $return = $array;
                 endif;
             else:
-                return false;
+                $return = false;
             endif;
         endif;
+        
+        if (!$isGetArray):
+            $this->writeCache($this->prepare_request, $return);
+        endif;
+        
+        return $return;
     }
 
     
@@ -951,8 +1001,14 @@ class query {
     public function getArray() {
         $array = array();
         while($this->next()):
-            array_push($array, $this->get());
+            array_push($array, $this->get('', true));
         endwhile;
+
+        if ($cached = $this->isCached($this->prepare_request)):
+            return $cached;
+        endif;
+
+        $this->writeCache($this->prepare_request, $array);
         return $array;
     }
 
@@ -1120,6 +1176,8 @@ class query {
         $this->id = 0;
         $_SESSION['prepared'][$this->id]->closeCursor();
     }
+
+    
 }
 
 ?>
