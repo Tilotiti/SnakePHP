@@ -32,7 +32,7 @@ var Message = function(){};
 /**
  * push(type[string], content[string], cfg[object])
  *
- * @var type : type de message (cussess, alert, ...)
+ * @var type : type de message (success, alert, ...)
  * @var content : le message en lui-même
  * @var cfg : tableau de configuration (optionel) permetant de gérer :
  * 	- la cible (pour l'integration du message)
@@ -63,8 +63,8 @@ Message.prototype.push = function(type, content, cfg){
  	var fade 	= 2500;
 
  	if(typeof cfg == 'object'){
- 		delay 	= typeof cfg.delay 	== 'undefined' ? delay 	: cfg.delay;
- 		fade 	= typeof cfg.fade 	== 'undefined' ? fade 	: cfg.fade;
+ 		delay 	= typeof cfg.delay  == 'undefined' ? delay 	: cfg.delay;
+ 		fade 	= typeof cfg.fade   == 'undefined' ? fade 	: cfg.fade;
  		target 	= typeof cfg.target == 'undefined' ? target : cfg.target;
  	}
 
