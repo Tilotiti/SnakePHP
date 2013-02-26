@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<language charset="UTF-8" lang="French" code="fr">
-  <lang id="ariane" context="" get="/">Vous êtes ici</lang>
-  <lang id="ariane:separator" context="" get="/"> &gt; </lang>
-  <lang id="debug:noError" context="" get="/index/">Aucune erreur</lang>
-  <lang id="debug:error" context="" get="/index/">Erreurs</lang>
-  <lang id="debug:error:type" context="" get="/index/">Type</lang>
-  <lang id="debug:error:file" context="" get="/index/">Fichier</lang>
-  <lang id="debug:error:line" context="" get="/index/">Ligne</lang>
-  <lang id="debug:error:str" context="" get="/index/">Message</lang>
-  <lang id="debug:SQL" context="" get="/index/">Requêtes SQL</lang>
-  <lang id="debug:noSQL" context="" get="/index/">Aucune requête SQL</lang>
-  <lang id="debug:sql:req" context="" get="/index/">Requête</lang>
-  <lang id="debug:sql:count" context="" get="/index/">Résultats</lang>
-  <lang id="debug:dump" context="" get="/index/">Variables</lang>
-  <lang id="debug:noDump" context="" get="/index/">Aucune variable</lang>
-  <lang id="debug:dump:title" context="" get="/index/">Titre</lang>
-  <lang id="debug:dump:content" context="" get="/index/">Détail</lang>
-  <lang id="debug:dump:default" context="" get="/index/">Aucun</lang>
-  <lang id="debug:global" context="" get="/index/">Globales</lang>
-  <lang id="debug:global:title" context="" get="/index/">Titre</lang>
-  <lang id="debug:global:content" context="" get="/index/">Export</lang>
-  <lang id="debug:timer" context="" get="/index/">Chronomètre</lang>
-  <lang id="timer:start" context="" get="/index/">Inititation d'SnakePHP</lang>
-  <lang id="timer:template" context="" get="/index/">Génération du template</lang>
-  <lang id="timer:end" context="" get="/index/">Fin de chargement</lang>
-  <lang id="timer:dispatcher" context="" get="/index/">Dispatcher général</lang>
-  <lang id="timer:plugin" context="" get="/index/">Chargement des plugins</lang>
-  <lang id="pagination:page" context="" get="/">Page [page] sur [total]</lang>
-  <lang id="pagination:next" context="" get="/">Page suivante</lang>
-  <lang id="pagination:end" context="" get="/">Dernière page</lang>
-  <lang id="pagination:start" context="" get="/2/">Première page</lang>
-  <lang id="pagination:prev" context="" get="/2/">Page précédente</lang>
-  <lang id="meta:description" context="" get="/">Framework SnakePHP</lang>
-  <lang id="meta:keywords" context="" get="/">SnakePHP, Framework, PHP</lang>
+<language charset="UTF-8" code="fr">
+  <lang id="ariane">Vous êtes ici</lang>
+  <lang id="ariane:separator"> &gt; </lang>
+  <lang id="debug:noError">Aucune erreur</lang>
+  <lang id="debug:error">Erreurs</lang>
+  <lang id="debug:error:type">Type</lang>
+  <lang id="debug:error:file">Fichier</lang>
+  <lang id="debug:error:line">Ligne</lang>
+  <lang id="debug:error:str">Message</lang>
+  <lang id="debug:SQL">Requêtes SQL</lang>
+  <lang id="debug:noSQL">Aucune requête SQL</lang>
+  <lang id="debug:sql:req">Requête</lang>
+  <lang id="debug:sql:count">Résultats</lang>
+  <lang id="debug:dump">Variables</lang>
+  <lang id="debug:noDump">Aucune variable</lang>
+  <lang id="debug:dump:title">Titre</lang>
+  <lang id="debug:dump:content">Détail</lang>
+  <lang id="debug:dump:default">Aucun</lang>
+  <lang id="debug:global">Globales</lang>
+  <lang id="debug:global:title">Titre</lang>
+  <lang id="debug:global:content">Valeur</lang>
+  <lang id="debug:timer">Chronomètre</lang>
+  <lang id="timer:start">Inititation d'SnakePHP</lang>
+  <lang id="timer:template">Génération du template</lang>
+  <lang id="timer:end">Fin de chargement</lang>
+  <lang id="timer:dispatcher">Dispatcher général</lang>
+  <lang id="timer:plugin">Chargement des plugins</lang>
+  <lang id="pagination:page">Page [page] sur [total]</lang>
+  <lang id="pagination:next">Page suivante</lang>
+  <lang id="pagination:end">Dernière page</lang>
+  <lang id="pagination:start">Première page</lang>
+  <lang id="pagination:prev">Page précédente</lang>
+  <lang id="meta:description">Framework SnakePHP</lang>
+  <lang id="meta:keywords">SnakePHP, Framework, PHP</lang>
 </language>
