@@ -205,7 +205,7 @@ class page {
     
     public function active($get, $class = 'active') {
         $get = preg_replace("#\%#isU", "(.+)?", $get);
-        if(preg_match("#^".$get."#isU", get()) || $get == get(1)):
+        if(preg_match("#^".$get."$#isU", get()) || $get == get(1)):
             echo $class;
         endif;
     }
