@@ -1,24 +1,61 @@
 <?php
 
-/* Configuration du Framework */
-define('ROOT',      $_SERVER['DOCUMENT_ROOT']); // Chemin de la racine de votre site
-define('SITE',     'SnakePHP');                  // Nom du site
-define('URL',      'http://snakephp.dev');      // URL du site
-define('CHARSET',  'utf-8');                    // Encodage du site
-define('YEAR',     2012);                       // Début du développement
-define('DEV',      true);                       // Mode développement
-define('TIMEZONE', 'Europe/Paris');             // Fuseau Horaire
-define('IPADMIN',  $_SERVER['REMOTE_ADDR']);    // IP du poste de développement, pour plusieurs posts, séparer les IPs par un pipe "|"
+/* Framework configuration */
 
-/* Configuration de la base de données */
-define('DBHOST',  'localhost:3306'); // Hôte
-define('DBUSER',  'root'); // Utilisateur
-define('DBPASS',  ''); // Mot de passe
-define('DBNAME',  'test'); // Base de données
-define('DBPREF',  'snake_'); // Préfixe des tables
-define('SQLCACHETIME', 1200); // SQL-cache lifetime, default: 20min
+// Way to the root of your application
+define('ROOT',      $_SERVER['DOCUMENT_ROOT']);
 
-/* Chemins des dossiers */
+// Your application's name
+define('SITE',     'SnakePHP');
+
+// Your application's version
+define('VERSION', '0.9');
+
+// Your application's URL
+define('URL',      'http://snakephp.dev');
+
+// Your application's charset
+define('CHARSET',  'utf-8');
+
+// Your application's first year of development
+define('YEAR',     2012);
+
+// Is this a development version?
+define('DEV',      true);
+
+// Timezone
+define('TIMEZONE', 'Europe/Paris');
+
+// Available languages.For several languages, separate them with a pipe "|"
+//define('LANG', 'fr|de');
+
+// IP du poste de développement, pour plusieurs posts, séparer les IPs par un pipe "|"
+define('IPADMIN',  $_SERVER['REMOTE_ADDR']);
+
+
+/* Database configuration */
+
+// Host
+define('DBHOST',  'localhost:3306');
+
+// User
+define('DBUSER',  'root');
+
+// Password
+define('DBPASS',  '');
+
+// Database
+define('DBNAME',  'test');
+
+// Table's prefixes
+define('DBPREF',  'snake_');
+
+// SQL-cache lifetime, default: 20min
+define('SQLCACHETIME', 1200);
+
+
+/* Directories */
+
 define('APP',        ROOT    .'/app');
 define('WEBROOT',    ROOT    .'/webroot');
 define('LIB',        ROOT    .'/lib');
@@ -32,5 +69,3 @@ define('SMARTY_DIR', SYSTEM  .'/class/smarty/');
 define('FILE',       WEBROOT .'/file');
 define('TEMPLATE',   APP     .'/template');
 define('SOURCE',     APP     .'/source/');
-
-?>

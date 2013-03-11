@@ -4,6 +4,7 @@ SnakePHP
 SnakePHP is a light PHP framework created by Tilotiti.
 It's aim is to provide you with a simple set of methods and functions, so you can quickly develop your web application.
 
+SnakePHP supports currently the french and german language, but feel free to contribute translating!
 SnakePHP natively supports natural referncering, so you won't have to worry about that.
 
 Requirements & Dependencies
