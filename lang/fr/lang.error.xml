@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<language charset="UTF-8" lang="French" code="fr">
-  <lang id="error:sql" context="" get="">Erreur SQL</lang>
-  <lang id="error:unknow" context="" get="">Erreur PHP</lang>
+<language charset="UTF-8" code="fr">
+  <lang id="error:sql">Erreur SQL</lang>
+  <lang id="error:unknow">Erreur PHP</lang>
 </language>

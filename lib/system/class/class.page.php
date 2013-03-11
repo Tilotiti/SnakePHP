@@ -203,9 +203,10 @@ class page {
         return $this->JS;
     }
     
-    public function active($get) {
-        if($get == get(1)):
-            echo 'active';
+    public function active($get, $class = 'active') {
+        $get = preg_replace("#\%#isU", "(.+)?", $get);
+        if(preg_match("#^".$get."$#isU", get()) || $get == get(1)):
+            echo $class;
         endif;
     }
     
