@@ -80,7 +80,7 @@ class debug {
 		        
 		    self::$dump[]  = $dump;
         else:
-            if($_SERVER["REMOTE_ADDR"] == IPADMIN && DEV):
+            if(($_SERVER["REMOTE_ADDR"] == IPADMIN || in_array($_SERVER["REMOTE_ADDR"], explode('|', IPADMIN))) && DEV):
             	if(!$title):
 		    	    $title = lang::text('debug:dump:default');
 		    	endif;
