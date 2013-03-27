@@ -161,7 +161,7 @@ class session {
  		// Si l'utilisateur est loggué avec son ID
  		if(is_numeric($login) && !$pass):
 			$this->user = new user($login);
-			if($this->user->exists()):
+			if($this->user->ok()):
 				$_SESSION['user'] = $this->user->get();
 			else:
 				return false;
