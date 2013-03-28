@@ -3,6 +3,9 @@ define('PAGE_LOADER', true);
 require_once '../config.php'; // Chargement des configurations
 require_once LIB.'/init.php'; // Initialisation du Framework
 
+// Inclusion par défaut des plugins
+$session = new session(); // Plugin session
+
 // Inclusion des fichiers CSS par défaut
 $page->pushCSS('bootstrap');
 $page->pushCSS('global');
