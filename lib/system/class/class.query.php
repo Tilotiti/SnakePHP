@@ -866,7 +866,7 @@ class query {
      * @return Soit la valeur du champs sélectionné soit un tableau contenant tous les champs
      */
     public function get($field = '', $isGetArray = false) {
-    	if ($cached = $this->isCached($this->prepare_request) && !$isGetArray):
+    	if($cached = $this->isCached($this->prepare_request) && !$isGetArray):
             return $this->result;
         endif;
 
@@ -879,10 +879,6 @@ class query {
             $this->error = true;
         endif;
         
-        if(empty($table)):
-            $table = $this->table['select'];
-        endif;
-        
         // Si on demande un champ spécifique avec la methode getField
         if(is_array($field)):
             if(isset($this->line[$this->getField($field)])):
@@ -893,8 +889,16 @@ class query {
             
         // Si on demande un champ spécifique simple
         elseif(!empty($field)):
-            if(isset($this->line[$table.'_'.$field])):
-                $return = stripslashes($this->line[$table.'_'.$field]);
+        	if(in_array($field, $this->table['join'])):
+        		$array = array();
+        		foreach($this->line as $ligne => $value):
+        			if(preg_match('#^'.$field.'#', $ligne)):
+        				$array[str_replace($field.'_', '', $ligne)] = $value; 
+        			endif;
+        		endforeach;
+        		$return = $array;
+            elseif(isset($this->line[$this->table['select'].'_'.$field])):
+                $return = stripslashes($this->line[$this->table['select'].'_'.$field]);
             elseif(in_array($field, $this->alias)):
                 $return = $this->line[$field];
             else:
@@ -905,21 +909,36 @@ class query {
         else:
             if(is_array($this->line) && count($this->line)!=0):
                 $array = array();
+                
+                foreach($this->table['join'] as $table):
+                    $array[$table] = array();
+                endforeach;
+                
                 foreach($this->line as $ligne => $value):
-                    $key = str_replace($this->table['select'].'_', '', $ligne);
-                    if ($this->content['join']):
-                        $underscore = '';
-                        foreach ($this->table['join'] as $table):
-                            $underscore .= "_";
-                            $key = str_replace($table.'_', $underscore, $key);
-                        endforeach;
-                    endif;
-                    if(!is_string($value)):
-                        $array[$key] = $value;
+                    if(preg_match('#^'.$this->table['select'].'#', $ligne)):
+                    	$key = str_replace($this->table['select'].'_', '', $ligne);
+                    	if(!isset($array[$key])):
+                    		if(!is_string($value)):
+		                        $array[$key] = $value;
+		                    else:
+		                        $array[$key] = stripslashes($value);
+		                    endif;
+                    	endif;
                     else:
-                        $array[$key] = stripslashes($value);
+                    	foreach($this->table['join'] as $table):
+                    		if(preg_match('#^'.$table.'#', $ligne)):
+                    			$key = str_replace($table.'_', '', $ligne);
+                    			if(!is_string($value)):
+			                        $array[$table][$key] = $value;
+			                    else:
+			                        $array[$table][$key] = stripslashes($value);
+			                    endif;
+                    			break;
+                    		endif;
+                    	endforeach;
                     endif;
                 endforeach;
+                
                 if(count($array) == 0):
                     $return = false;
                 else:
