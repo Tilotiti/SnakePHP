@@ -27,6 +27,20 @@ $(function() {
 	});
 });
 
+$(window).load(function () {
+	/*
+	 * Automatic image croping
+	 */
+	 
+	$('.cropbox').each(function(i, e) {
+		var cropbox = $(e);
+		var img     = $(e).find('img').first();
+		
+		img.css("margin-top", (cropbox.height() - img.height()) / 2);
+		
+	});
+});
+
 var Message = function(){};
 
 /**
