@@ -1,15 +1,5 @@
 <?php
-function smarty_function_crop($params, &$smarty) {
-    if(!preg_match('#^http(.+)#', $params['img'])):
-        $params['img'] = URL.$params['img'];
-    endif;
-    
-    $info = @getimagesize($params['img']);
-
-    if(!$info):
-        return false;
-    endif;
-    
+unction smarty_function_crop($params, &$smarty) {
     $style = '';
 
     // Définition des styles de la cropbox
@@ -24,36 +14,15 @@ function smarty_function_crop($params, &$smarty) {
     if(isset($params['margin'])):
         $style .= "margin: ".$params['margin'].";";
     endif;
-
+    
     $img         = $params['img'];
     $alt         = $params['alt'];
-    $x_orig      = $info[0];
-    $y_orig      = $info[1];
-    $x_crop      = $params['width'];
-    $y_crop      = $params['height'];
-    $margin_x    = 0;
-    $margin_y    = 0;
-    $ratio_orig  = $y_orig/$x_orig;
-    $ratio_crop  = $y_crop/$x_crop;
-    $ratio_x     = $x_crop/$x_orig;
-    $ratio_y     = $y_crop/$y_orig;
-
-    // On calcul les dimmension en se basant sur la hauteur fixe
-    $y_final  = $y_crop;
-    $x_final  = $x_orig * $ratio_y;
-    $margin_x = -($x_final - $x_crop)/2;
-
-    if($x_final < $x_crop): // Si ça ne colle pas
-        $y_final  = $y_orig * $ratio_x;
-        $x_final  = $x_crop;
-        $margin_y = -($y_final - $y_crop)/2;
-        $margin_x = 0;
-    endif;
-
-    return '<span class="cropbox" style="width:'.round($x_crop).'px; height:'.round($y_crop).'px; '.$style.'">
-                <img src="'.$img.'" alt="'.$alt.'" width="'.round($x_final).'" height="'.round($y_final).'" style="margin-left:'.round($margin_x).'px; margin-top:'.round($margin_y).'px;" />
+    $x           = $params['width'];
+    $y           = $params['height'];
+    
+    return '<span class="cropbox" style="width:'.$x.'px; height:'.$y.'px; '.$style.'">
+                <img src="'.$img.'" alt="'.$alt.'" width="'.$x.'" />
             </span>';
 
 }
-
 ?>
