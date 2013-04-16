@@ -13,12 +13,7 @@ class mail {
         $limite   = false;
 
     public function __construct() {
-        $this->Header("Mime-Version", "1.0");
         
-        // used to mark out html and text parts of the body
-        $this->limite = "_----------=_parties_".md5(uniqid (rand()));
-        // now charset is defined in message headers (@see convertMessage)
-        $this->Header("Content-type", 'multipart/alternative; boundary="'.$this->limite.'"');
     }
 
     public function to($mail) {
@@ -147,36 +142,42 @@ class mail {
         }
         // --> mail body in plain text is now ready <--
         
+        $br      = "\r\n";
         $message = "";
         
         // adding plain text message header
-        $message .= "--".$this->limite."\n";
-        $message .= "Content-Type: text/plain\n";
-        $message .= "charset=\"" . CHARSET . "\"\n";
-        $message .= "Content-Transfer-Encoding: 8bit\n\n";
-        $message .= $texte;
+        $message .= $br."--".$this->limite.$br;
+        $message .= 'Content-Type: text/plain; charset="'.CHARSET.'"'.$br;
+        $message .= "Content-Transfer-Encoding: 8bit".$br;
+        $message .= $br.$texte.$br;
         
         // html message header
-        $message .= "\n\n--".$this->limite."\n";
-        $message .= "Content-Type: text/html; ";
-        $message .= "charset=\"" . CHARSET . "\"; ";
-        $message .= "Content-Transfer-Encoding: 8bit;\n\n";
-        $message .= $this->message;
+        $message .= $br."--".$this->limite.$br;
+        $message .= 'Content-Type: text/html; charset="'.CHARSET.'"'.$br;
+        $message .= "Content-Transfer-Encoding:8bit;"."\r\n";
+        $message .= $br.$this->message.$br;
+        
+        $message .= $br."--".$this->limite."--".$br;
+        $message .= $br."--".$this->limite."--".$br;
         
         return $message;
     }
 
 
     public function send() {
+        $this->limite = "-----=".md5(rand());
         $this->header("Bcc", $this->convertmail($this->bcc));
         $this->header("Cc", $this->convertmail($this->cc));
         $this->header("Reply-To", $this->convertmail($this->replyto));
         $this->header("X-Confirm-Reading-To", $this->convertmail($this->confirm));
+        $this->header("MIME-Version", "1.0");
+        $this->header("Content-type", 'multipart/alternative;'."\r\n".' boundary="'.$this->limite.'"');
 
         $headers = $this->convertheader($this->header);
-        
         $message = $this->convertMessage();
         
+        $this->subject = mb_encode_mimeheader($this->subject, CHARSET, "Q");
+                
         foreach($this->to as $to):
             mail($to, $this->subject, $message, $headers);
         endforeach;
