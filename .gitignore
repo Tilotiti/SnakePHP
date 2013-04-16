@@ -1,5 +1,6 @@
 cache/*.php
 cache/sql/*.cache
+cache/mail/*.cache
 log/*
 .DS_Store
 .project
