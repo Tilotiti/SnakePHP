@@ -1,18 +1,17 @@
 <?php
 class query {
     public
-        $id              = 0,
-        $cacheLifetime   = SQLCACHETIME,
         $prepare_request = '',
-        $result          = '',
+        $results         = '',
         $values          = '',
         $table           = '',
-        $duplicate       = '',
         $which           = 'all',
         $prefix          = '',
+        $i               = 0,
         $error           = false,
         $queryConnexion  = false,
         $cache           = false,
+        $cached          = false,
         $alias           = array(),
         $line            = array(),
         $content         = array(),
@@ -25,7 +24,7 @@ class query {
      * @access public
      * @return void
      */
-    public function __construct($cache = false, $cacheLifetime = 0, $prefix = DBPREF) {
+    public function __construct($cache = false, $prefix = DBPREF) {
     	global $queryConnexion;
         $this->reset();
         
@@ -34,26 +33,14 @@ class query {
         if(isset($queryConnexion)):
         	// La connexion à la BDD a bien été faite.
         	$this->bdd = $queryConnexion;
-
-            // Handle prepared queries
-            if (!isset($_SESSION['preparedId']) || $_SESSION['preparedId'] < 0):
-                $_SESSION['preparedId'] = 0;
-            else:
-                $_SESSION['preparedId']++;
-            endif;
-            $this->id = intval($_SESSION['preparedId']);
         else:
         	// La connexion ne s'est pas faite, on ne donne pas suite à la requête.
         	$this->bdd = false;
         	$this->error = true;
         endif;
 
-        if ($cache):
+        if($cache):
             $this->cache = true;
-        endif;
-
-        if ($cacheLifetime > 0):
-            $this->cacheLifetime = $cacheLifetime;
         endif;
     }
 
@@ -698,7 +685,7 @@ class query {
             
             // Si on demande un résultat unique, on le place directement en mémoire
             if($this->which == "FIRST" && $this->ok()):
-            	$this->line = $this->result->fetch();
+            	$this->line = $this->results[0];
             endif;
 
             return $this->result;
@@ -710,7 +697,9 @@ class query {
                 $this->error = true;
             endif;
             
-            return $this->sql($this->prepare_request);
+            $this->sql($this->prepare_request);
+            
+            return $this->count();
             
         // Requête INSERT
         elseif($this->content['insert']):
@@ -729,12 +718,12 @@ class query {
             
             $this->sql($this->prepare_request);
             
-            // TODO : Remplacer mysql_insert_id
             return $this->bdd->lastInsertId();
             
         // Requête DELETE
         elseif($this->content['delete']):
-            return $this->sql($this->prepare_request);
+            $this->sql($this->prepare_request);
+            return $this->count();
         
         // Erreur
         else:
@@ -751,27 +740,48 @@ class query {
      * @param mixed $req Requête à éxecuter
      * @return void
      */
-    public function sql($req, $debug = true) {
+    public function sql($req) {
     	// On vérifie que jusque là, tout se passe bien
         if(DBHOST && !$this->error):
-
-        	// Before executing the request, we look if it was cached
-            if ($cacheContent = $this->isCached($req)):
-                if($debug):
-                    debug::sql($req, $this->count);
-                endif;
-                
-                return $cacheContent;
-            endif;
-
-            // No cache, so execute the request
             try {
             	if($this->content['select']):
-		            $return = $this->bdd->query($req);
-		            $return->setFetchMode(PDO::FETCH_ASSOC);
+            		// Cache verification
+	            	if($this->cache):
+	            		// Already cached
+	            		$file = SQLCACHE.'/'.md5($req).'.cache';
+	            		if(file_exists($file)):
+	            			// Not to old
+	            			if(filemtime($file) > time() - SQLCACHETIME):
+	            				$this->cached = true;
+	            			else:
+	            				$this->cached = false;
+	            			endif;
+	            		else:
+	            			$this->cached = false;
+	            		endif;
+	            	endif;
+	            	
+	            	if(!$this->cached):
+			            $return = $this->bdd->query($req);
+			            $return->setFetchMode(PDO::FETCH_ASSOC);
+			            
+			            $results = $return->fetchAll();
+			            
+			            // Must caching the request
+			            if($this->cache):
+			            	$file = fopen(SQLCACHE.'/'.md5($req).'.cache', 'w+');
+			            	fwrite($file, serialize($results));
+			            	fclose($file);
+			            endif;
+		            else:
+		            	$results = unserialize(file_get_contents(SQLCACHE.'/'.md5($req).'.cache'));
+		            endif;
 		            
 		            // On compte le nombre d'occurence trouvée
-		            $this->count = $return->rowCount();
+		            $this->count = count($results);
+		            
+		            // On enregistre les résultats
+		            $this->results = $results;
 		            
 	            else:
 	            	// On récupère le nombre d'occurence touchée par la requête
@@ -779,11 +789,8 @@ class query {
 	            	$this->count = $return;
 	            endif;
 	            
-	            if($debug):
-	            	debug::sql($req, $this->count);
-	            endif;
-
-	            return $return;
+	            debug::sql($req, $this->count, $this->cached);
+	            return true;
             } catch( Exception $error ) {
 	            debug::error("SQL", $error->getMessage()."<br />".$req, __FILE__, __LINE__);
 	            $this->error = true;
@@ -793,29 +800,6 @@ class query {
             return false;
         endif;
     }
-
-    public function isCached($req) {
-        if ($this->cache):
-            $file = SQLCACHE.md5($req).'.cache';
-
-            // There is a cache file
-            if (is_file($file) && (time() - filemtime($file) <= $this->cacheLifetime)):
-                return unserialize(file_get_contents($file));
-            endif;
-        endif;
-
-        return false;
-    }
-
-    public function writeCache($sql, $return) {
-        if ($this->cache):
-            if(false !== ($f = @fopen(SQLCACHE.md5($sql).'.cache', 'w+'))):
-                fwrite($f, serialize($return));
-                fclose($f);
-            endif;
-        endif;
-    }
-
     
     /**
      * Méthode next : Affiche le résultat suivant.
@@ -824,8 +808,8 @@ class query {
      * @return void
      */
     public function next() {
-    	
-        if(empty($this->result)):
+        	
+        if(!is_array($this->results)):
             debug::error("SQL", "NEXT method can't be requested before SELECT and EXEC method.", __FILE__, __LINE__);
             $this->error = true;
         endif;
@@ -834,15 +818,18 @@ class query {
             debug::error("SQL", "NEXT method can't be requested with FIRST as argument for EXEC method.", __FILE__, __LINE__);
             $this->error = true;
         endif;
-
+                
         if(!$this->ok()):
             return false;
         endif;
-
-        $this->line = $this->result->fetch(PDO::FETCH_ASSOC);
-        
-        return $this->line;
-
+                
+        if(isset($this->results[$this->i])):
+	        $this->line = $this->results[$this->i];
+	        $this->i++;
+	        return $this->line;
+	    else:
+	    	return false;
+	    endif;
     }
 
     
@@ -861,20 +848,17 @@ class query {
      * Méthode get : Récupère le ou les champs de la ligne en cours.
      * 
      * @access public
-     * @param string $field (default: '')
+     * @param string $field (default: false)
      * @param bool $isGetArray (default: false)
      * @return Soit la valeur du champs sélectionné soit un tableau contenant tous les champs
      */
-    public function get($field = '', $isGetArray = false) {
-    	if($cached = $this->isCached($this->prepare_request) && !$isGetArray):
-            return $this->result;
-        endif;
+    public function get($field = false) {
 
         if($this->error):
     		$return = false;
     	endif;
     	
-        if(empty($this->result)):
+        if(!is_array($this->results)):
             debug::error("SQL", "GET method can't be requested before SELECT and EXEC method.", __FILE__, __LINE__);
             $this->error = true;
         endif;
@@ -888,7 +872,7 @@ class query {
             endif;
             
         // Si on demande un champ spécifique simple
-        elseif(!empty($field)):
+        elseif($field != false):
         	if(in_array($field, $this->table['join'])):
         		$array = array();
         		foreach($this->line as $ligne => $value):
@@ -949,13 +933,8 @@ class query {
             endif;
         endif;
         
-        if (!$isGetArray):
-            $this->writeCache($this->prepare_request, $return);
-        endif;
-        
         return $return;
     }
-
     
     /**
      * Méthode put : Modifie le tableau de sortie d'une ligne.
@@ -991,7 +970,7 @@ class query {
         if(is_int($this->count)):
             return $this->count;
         else:
-            return false;
+            return 0;
         endif;
     }
 
@@ -1018,17 +997,11 @@ class query {
      * @return void
      */
     public function getArray() {
-        $array = array();
-        while($this->next()):
-            array_push($array, $this->get('', true));
-        endwhile;
-
-        if ($cached = $this->isCached($this->prepare_request)):
-            return $cached;
+    	if(is_array($this->results)):
+	        return $this->results;
+        else:
+        	return array();
         endif;
-
-        $this->writeCache($this->prepare_request, $array);
-        return $array;
     }
 
     
@@ -1106,8 +1079,10 @@ class query {
      */
     public function debug() {
         $debug = array();
-        $debug['request'] = $this->prepare_request;
-        $debug['count'] = $this->count;
+        $debug['request']  = $this->prepare_request;
+        $debug['count']    = $this->count;
+        $debug['cache']    = $this->cache;
+        $debug['cached']   = $this->cached;
         
         if($this->ok() && $this->which == "ALL"):
         	$debug['results'] = $this->getArray();
@@ -1147,56 +1122,5 @@ class query {
         $this->count             = 0;
         $this->duplicate         = '';
     }
-
-    /*
-     * 
-    */
-    public function prepare() {
-        // On vérifie que jusque là, tout se passe bien
-        if(DBHOST && !$this->error):
-        
-            // Log de la requête
-            try {
-                $prep = $this->bdd->prepare($this->prepare_request);
-
-                if ($prep):
-                    $_SESSION['prepared'][$this->id] = $prep;
-                    return $this;
-                else:
-                    debug::error("SQL", "Request could not be prepared", __FILE__, __LINE__);
-                    $this->error = true;
-                endif;
-            } catch( Exception $error ) {
-                debug::error("SQL", $error->getMessage()."<br />".$req, __FILE__, __LINE__);
-                $this->error = true;
-            }
-        else:
-            $this->error = true;
-        endif;
-        if ($this->error):
-            return false;
-        endif;
-    }
-
-    /*
-     * 
-    */
-    public function execPrepared() {
-        if ($return = $_SESSION['prepared'][$this->id]->execute()):
-            return $return;
-        else:
-            debug::error("SQL", "Request could not be execute", __FILE__, __LINE__);
-            $this->error = true;
-        endif;
-
-        // Decrement the counter, remove the PDOHandler
-        $_SESSION['preparedId']--;
-        unset($_SESSION['prepared'][$this->id]);
-        $this->id = 0;
-        $_SESSION['prepared'][$this->id]->closeCursor();
-    }
-
     
 }
-
-?>
