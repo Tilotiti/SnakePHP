@@ -12,23 +12,11 @@ function flushSQL($fileName = '') {
 	// Specific filename was passed
 	if (!empty($fileName)):
 		$fileName .= '.cache';
-		return (is_file($dir.$fileName) && unlink($dir.$fileName));
+		return (is_file($dir.'/'.$fileName) && unlink($dir.'/'.$fileName));
 	else:
 		// What files are in the directory?
-		$dirContent = scandir($dir);
-
-		// Are there any cache files in it?
-		if (count($dirContent) > 3):
-			
-			unset($dirContent[0], $dirContent[1], $dirContent[2]);
-			foreach ($dirContent as $fileName) {
-				if (!unlink($dir.$fileName)):
-					return false;
-				endif;
-			}
-			return true;
-		else:
-			return false;
-		endif;
+		foreach(glob(SQLCACHE.'/*.cache') as $file):
+			unlink($file);
+		endforeach;
 	endif;
 }
