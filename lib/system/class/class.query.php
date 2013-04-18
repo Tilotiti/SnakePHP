@@ -828,6 +828,7 @@ class query {
 	        $this->i++;
 	        return $this->line;
 	    else:
+	    	$this->i = 0;
 	    	return false;
 	    endif;
     }
@@ -998,7 +999,13 @@ class query {
      */
     public function getArray() {
     	if(is_array($this->results)):
-	        return $this->results;
+    	
+    		$return = array();
+    		while($this->next()):
+    			$return[] = $this->get();
+    		endwhile;
+    		
+	        return $return;
         else:
         	return array();
         endif;
@@ -1030,7 +1037,7 @@ class query {
     public function page($get, $results, $variable = "pagination") {
         global $page;
         
-        $this->sql($this->prepare_request, false);
+        $this->sql($this->prepare_request);
         
         $nb = $this->count();
         
