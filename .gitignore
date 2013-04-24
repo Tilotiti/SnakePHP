@@ -1,6 +1,8 @@
-cache/*
-cache/sql/*
-cache/mail/*
-log/*
+cache/*.php
+cache/sql/*.cache
+cache/mail/*.php
+log/*.txt
+log/*.log
+webroot/sitemap.xml
 .DS_Store
 .project
