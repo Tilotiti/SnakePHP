@@ -102,9 +102,9 @@ class page {
         // Thank you for helping to develop SnakePHP keeping this statement appear in the source code of your site
         echo "\n"."<!--"."\n";
         echo "##############################################################"."\n";
-        echo "######## Developped with SnakePHP                      ########"."\n";
-        echo "######## Web :    http://www.SnakePHP.net              ########"."\n";
-        echo "######## Github : https://github.com/Tilotiti/SnakePHP ########"."\n";
+        echo "######## Developped with SnakePHP                      #######"."\n";
+        echo "######## Web :    http://www.SnakePHP.net              #######"."\n";
+        echo "######## Github : https://github.com/Tilotiti/SnakePHP #######"."\n";
         echo "##############################################################"."\n";
         echo "-->"."\n";
     }
