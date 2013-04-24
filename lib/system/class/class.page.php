@@ -37,14 +37,16 @@ class page {
         isset($_SESSION['message']) or $_SESSION['message'] = false;
 	    
         // Génération du siteMap
-        $xml = simplexml_load_file(WEBROOT.'/sitemap.xml', 'SimpleXMLElement', LIBXML_NOCDATA);
-        foreach($xml->url as $url):
-            $this->sitemap[(string)$url->loc] = array(
-                'lastmod'     => (string) $url->lasmod,
-                'changefreq' => (string) $url->changefreq,
-                'priority'   => (string) $url->priority,
-            );
-        endforeach;
+        if(file_exists(WEBROOT.'/sitemap.xml')):
+	        $xml = simplexml_load_file(WEBROOT.'/sitemap.xml', 'SimpleXMLElement', LIBXML_NOCDATA);
+	        foreach($xml->url as $url):
+	            $this->sitemap[(string)$url->loc] = array(
+	                'lastmod'     => (string) $url->lasmod,
+	                'changefreq' => (string) $url->changefreq,
+	                'priority'   => (string) $url->priority,
+	            );
+	        endforeach;
+        endif;
         
     }
     public function dispatcher($path, $cat = '') {
@@ -435,13 +437,13 @@ class page {
     }
     
     public function sitemap($changefreq = "monthly", $priority = 0.5) {
-    	if(!isset($this->sitemap[URL.get()]) && !$this->notFound):
+    	if(!isset($this->sitemap[URL.get()]) && !$this->notFound && file_exists(WEBROOT.'/sitemap.xml') && is_writable(WEBROOT.'/sitemap.xml')):
 	    	$this->sitemap[URL.get()] = array(
         		'lastmod'    => date('Y-m-d'),
         		'changefreq' => $changefreq,
         		'priority'   => $priority
         	);
-        	
+        	   	
         	$xml = simplexml_load_file(WEBROOT.'/sitemap.xml');
             $url = $xml->addChild('url');
             
