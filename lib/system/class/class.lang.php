@@ -59,7 +59,9 @@ class lang {
             $return = self::$lang[$type][$code];
             if(is_array($arg)):
                 foreach($arg as $key => $value):
-                    $return = str_replace("[".$key."]", $value, $return);
+                    if(!is_array($value)):
+                        $return = str_replace("[".$key."]", $value, $return);
+                    endif;
                 endforeach;
             elseif(is_string($arg) || is_int($arg)):
                 $return = str_replace("[]", $arg, $return);
