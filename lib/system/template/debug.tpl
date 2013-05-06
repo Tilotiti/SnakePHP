@@ -17,8 +17,8 @@
 		{foreach $listSQL as $sql}
 			<ul>
             	<li><b>Request</b> :{$sql.req}</li>
-                <li><b>Results</b> : {$sql.count}</li>
-                <li><b>Cache</b> : {$sql.cached}</li>
+                <li><b>Result</b> : {$sql.count}</li>
+                <li><b>Cached</b> : {if $sql.cached}true{else}false{/if}</li>
 			</ul>
 		{foreachelse}
 			<div class="empty">No SQL</div>

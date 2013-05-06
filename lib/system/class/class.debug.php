@@ -95,10 +95,11 @@ class debug {
         endif;
     }
     
-    public static function sql($req, $count) {
+    public static function sql($req, $count, $cached) {
 		$sql           = array();
         $sql['req']    = $req;
         $sql['count']  = $count;
+        $sql['cached'] = $cached;
         
         self::$sql[] = $sql;
     }
@@ -120,4 +121,3 @@ class debug {
     }
 
 }
-?>
