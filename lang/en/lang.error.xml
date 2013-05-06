@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<language charset="UTF-8" code="en">
-  <lang id="error:sql">SQL Error</lang>
-  <lang id="error:unknow">PHP Error</lang>
-</language>

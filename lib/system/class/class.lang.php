@@ -13,7 +13,25 @@ class lang {
         self::$type[] = "error";
         self::$type[] = "title";
         
+        // Automatic creation of language folder
+        if(!is_dir(LANG.'/'.$pays)):
+        	mkdir(LANG.'/'.$pays);
+        	mkdir(LANG.'/'.$pays.'/mail');
+        endif;
+        
         foreach(self::$type as $t):
+        	if(!file_exists(LANG.'/'.$pays.'/lang.'.$t.'.xml')):
+        		// Automatic creation of language files
+        		$template = new smarty();
+		        $template->template_dir = SYSTEM.'/template/';
+		        $template->compile_dir  = CACHE;
+		        $template->assign('lang', $pays);
+		        $content = $template->fetch('lang.tpl');
+		        $file = fopen(LANG.'/'.$pays.'/lang.'.$t.'.xml', "w+");
+			    fputs($file, $content);
+			    fclose($file);
+        	endif;
+        	
             if(file_exists(LANG.'/'.$pays.'/lang.'.$t.'.xml')):
                 $xml = simplexml_load_file(LANG.'/'.$pays.'/lang.'.$t.'.xml', 'SimpleXMLElement', LIBXML_NOCDATA);
                 foreach($xml->lang as $line):
