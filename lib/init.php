@@ -36,10 +36,8 @@ if(PAGE_LOADER):
 	$page->pushKeyword(lang::text('meta:keywords')); // Mots clefs par défaut
 endif;
 
-
-
 // Implantation de tous les plugins
-debug::timer('timer:plugin', true);
+debug::timer('Loading plugins');
 $dir = opendir(PLUGIN.'/');
 while ($file = readdir($dir)):
     if ($file !="." && $file != ".."):

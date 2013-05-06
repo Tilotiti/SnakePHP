@@ -16,7 +16,7 @@ $page->pushJS('bootstrap');
 $page->pushJS('script');
 
 // Initalisation du premier dispatcher
-debug::timer('timer:dispatcher', true);
+debug::timer('Index dispatcher');
 include $page->dispatcher("/");
 
 // Assignation final au template

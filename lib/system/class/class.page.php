@@ -21,7 +21,7 @@ class page {
    
     public function __construct() {
 
-        debug::timer('timer:start', true);
+        debug::timer('Initialization', true);
         
         // Set a title by default
         $this->title = get(1);
@@ -218,194 +218,90 @@ class page {
      * @return void
      */
     public function debug() {
-    	//debug::clear();
     	
-    	// Si l'adresse IP est définie
 	    if(($_SERVER["REMOTE_ADDR"] == IPADMIN || in_array($_SERVER["REMOTE_ADDR"], explode('|', IPADMIN))) && DEV):
 	    	$bar     = ""; // Affichage de la barre
 	    	$content = ""; // Affichage du contenu
 	    	
-	    	// On affiche le debugContent
-	    	$content .= '<div id="debugContent">';
+	    	$template = new smarty();
+	        $template->template_dir = SYSTEM.'/template/';
+	        $template->compile_dir  = CACHE;
+	        
+	        $badge = array();
+	        
+	    	// Errors
+	    	$badge['error'] = array(
+	        	'count' => count(debug::$error),
+	        	'type'  => (count(debug::$error) > 0) ? 'badge-important' : ''
+	        );
+	    	$template->assign('listError', debug::$error);
 	    	
-	    	// On affiche la barre de debug
-	    	$bar .= '<div id="debug" class="navbar navbar-fixed-bottom"><div class="navbar-inner"> <div class="container">';
-	    	$bar .= '<span class="brand" href="#">Debug</span>';
-	    	$bar .= '<ul class="nav">';
-	    	
-	    	
-	    	/*
-	    	 * Erreurs
-	    	 */
-	    	 
-	    	$bar .= '<li id="debugError">';
-	    	
-	    	// On compte le nombre d'erreur
-	    	if(count(debug::$error) > 0):
-	    		$bar     .= '<a href="#">'.lang::text('debug:error').' <span class="badge badge-important">'.count(debug::$error).'</span></a>';
-	    		$content .= '<div id="debugErrorContent" class="debugContent">';
-	    		
-	    		// On affiche les erreurs dans le debugContent
-	    		foreach(debug::$error as $error):
-                    $content .= "<ul>";
-                    $content .= "    <li><b>".lang::text('debug:error:type')."</b> : ".$error['type']."</li>";
-                    $content .= "    <li><b>".lang::text('debug:error:file')."</b> : ".$error['file']."</li>";
-                    $content .= "    <li><b>".lang::text('debug:error:line')."</b> : ".$error['line']."</li>";
-                    $content .= "    <li><b>".lang::text('debug:error:str') ."</b> : ".$error['str'] ."</li>";
-                    $content .= "</ul>";
-	    		endforeach;
-	    		
-	    		$content .= '</div>';
-	    	else:
-	    		// Aucune erreur
-	    		$bar .= '<a href="#">'.lang::text('debug:error').' <span class="badge">0</span></a>';
-	    		$content .= '<div id="debugErrorContent" class="debugContent empty">'.lang::text('debug:noError').'</div>';
-	    	endif;
-	    	
-	    	$bar .= '</li>';
-	    	
-	    	/*
-	    	 * Requêtes SQL
-	    	 */
-	    	 
-	    	$bar .= '<li id="debugSQL">';
-	    	
-	    	// On compte le nombre de requête SQL effectuée
-	    	if(count(debug::$sql) > 0):
-	    		$bar     .= '<a href="#">'.lang::text('debug:SQL').' <span class="badge badge-important">'.count(debug::$sql).'</span></a>';
-	    		$content .= '<div id="debugSQLContent" class="debugContent">';
-	    		
-	    		// On affiche les requêtes dans le debugContent
-	    		foreach(debug::$sql as $sql):
-                    $content .= "<ul>";
-                    $content .= "    <li><b>".lang::text('debug:sql:req')  ."</b> : ".$sql['req']  ."</li>";
-                    $content .= "    <li><b>".lang::text('debug:sql:count')."</b> : ".$sql['count']."</li>";
-                    $content .= "</ul>";
-	    		endforeach;
-	    		$content .= '</div>';
-	    	else:
-	    		$bar .= '<a href="#">'.lang::text('debug:SQL').' <span class="badge">0</span></a>';
-	    		$content .= '<div id="debugSQLContent" class="debugContent empty">'.lang::text('debug:noSQL').'</div>';
-	    	endif;
-	    	
-	    	$bar .= '</li>';
+	    	// SQL
+	    	$badge['sql'] = array(
+	        	'count' => count(debug::$sql),
+	        	'type'  => (count(debug::$sql) > 0) ? 'badge-info' : ''
+	        );
+	    	$template->assign('listSQL', debug::$sql);
 
-	    	/*
-	    	 * Variables
-	    	 */
-	    	 
-	    	$bar .= '<li id="debugDump">';
+	    	// Dump
+	    	$badge['dump'] = array(
+	        	'count' => count(debug::$dump),
+	        	'type'  => (count(debug::$dump) > 0) ? 'badge-info' : ''
+	        );
+	        
+	        $listDump = array();
+    		foreach(debug::$dump as $dump):
+    			ob_start();
+    			var_dump($dump['array']);
+    			$dump['array'] = ob_get_clean();
+    			$dump['title'] = ($dump['title'])? $dump['title'] : 'Dump';
+                $listDump[] = $dump;
+    		endforeach;
+    		$template->assign('listDump', $listDump);
 	    	
-	    	// On compte le nombre de débug de variable
-	    	if(count(debug::$dump) > 0):
-	    		$bar     .= '<a href="#">'.lang::text('debug:dump').' <span class="badge badge-important">'.count(debug::$dump).'</span></a>';
-	    		$content .= '<div id="debugDumpContent" class="debugContent">';
-	    		
-	    		// On affiche les requêtes dans le debugContent
-	    		foreach(debug::$dump as $dump):
-	    		
-	    			// On enregistre le var_dump();
-	    			ob_start();
-	    			var_dump($dump['array']);
-	    			$dump['array'] = ob_get_clean();
-	    			
-	    			// On met un titre pas default
-	    			if(!$dump['title']):
-	    				$dump['title'] = lang::text('debug:dump:default');
-	    			endif;
-	    			
-                    $content .= "<ul>";
-                    $content .= "    <li><b>".lang::text('debug:dump:title')  ."</b> : ".$dump['title']  ."</li>";
-                    $content .= "    <li><b>".lang::text('debug:dump:content')."</b> : <br /><pre>".$dump['array']."</pre></li>";
-                    $content .= "</ul>";
-	    		endforeach;
-	    		$content .= '</div>';
-	    	else:
-	    		$bar .= '<a href="#">'.lang::text('debug:dump').' <span class="badge">0</span></a>';
-	    		$content .= '<div id="debugDumpContent" class="debugContent empty">'.lang::text('debug:noDump').'</div>';
-	    	endif;
-	    	
-	    	$bar .= '</li>';
-	    	
-	    	/*
-	    	 * Globales
-	    	 */
-	    	 
-	    	$bar .= '<li id="debugGlobal">';
-    		$bar     .= '<a href="#">'.lang::text('debug:global').' <span class="badge badge-info">3</a>';
-    		$content .= '<div id="debugGlobalContent" class="debugContent">';
-    		
+	    	// Globals
     		$global = array();
-    		
     		$global[] = array(
     			'title' => '$_SERVER',
     			'var'   => $_SERVER
     		);
-    		
     		$global[] = array(
     			'title' => '$_SESSION',
     			'var'   => $_SESSION
     		);
-    		
     		$global[] = array(
     			'title' => '$_POST',
     			'var'   => $_POST
     		);
-    		
-    		// On affiche les globales dans le debugContent
+    		    		
+    		$listGlobal = array();
     		foreach($global as $glob):
-    		
-    			// On enregistre le var_dump();
     			ob_start();
     			var_dump($glob['var']);
     			$glob['var'] = ob_get_clean();
-    			
-                $content .= "<ul>";
-                $content .= "    <li><b>".lang::text('debug:global:title')  ."</b> : ".$glob['title']  ."</li>";
-                $content .= "    <li><b>".lang::text('debug:global:content')."</b> : <br /><pre>".$glob['var']."</pre></li>";
-                $content .= "</ul>";
+                $listGlobal[] = $glob;
     		endforeach;
-    		$content .= '</div>';
-	    	$bar .= '</li>';
-	    	
-	    	
-	    	
-	    	/*
-	    	 * Timer
-	    	 */
-	    	 
-	    	debug::timer(lang::text('timer:end'));
-	    	
-	    	$bar .= '<li id="debugTimer">';
-    		$bar     .= '<a href="#">'.lang::text('debug:timer').' <span class="badge badge-info">'.count(debug::$timer).'</a>';
-    		$content .= '<div id="debugTimerContent" class="debugContent">';
     		
-    		// Calcul du temp total
+    		$template->assign('listGlobal', $listGlobal);
+	    	
+	    	// Timer
+	    	debug::timer("Loaded");
+	    	$badge['timer'] = array(
+	        	'count' => count(debug::$timer),
+	        	'type'  => (count(debug::$timer) > 0) ? 'badge-info' : ''
+	        );
+	    	    		
     		$total = debug::$timer[count(debug::$timer) -1]['time'];
-    		
-    		$content .= "<ul>";
-    		// On affiche les timers dans le debugContent
+    		$listTimer = array();
     		foreach(debug::$timer as $timer):
-    			$pourcent = ($timer['time'] / $total)*100;
-                
-                $content .= '<li>
-                				<span class="timerTitle"><b>'.$timer['title'].'</b></span>
-                				<div class="progress"><div class="bar" style="width: '.$pourcent.'%"></div></div>
-                				<span class="timerSeconde">'.$timer['time'].' secondes</span>
-                			</li>';
-                
+    			$timer['pourcent'] = ($timer['time'] / $total)*100;
+                $listTimer[] = $timer;
     		endforeach;
-    		$content .= "</ul>";
-    		$content .= '</div>';
-	    	$bar .= '</li>';
-	   
+	    	$template->assign('listTimer', $listTimer);
 	    	
-	    	// Affichage de la barre et de son contenu
-	    	$bar .= '</ul></div></div></div>';
-	    	$content .= '</div>';
+	    	$template->assign('badge', $badge);
+	        return $template->fetch('debug.tpl');
 	    	
-	    	echo $content;
-	    	echo $bar;
 	    endif;
     }
     
@@ -418,7 +314,7 @@ class page {
     }
     
     public function display($template = "template") {
-	    debug::timer(lang::text('timer:template'));
+	    debug::timer('Loading templates');
 	    $this->template->display($template.".tpl");
     }
     

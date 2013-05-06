@@ -103,7 +103,7 @@ class debug {
         self::$sql[] = $sql;
     }
     
-    public static function timer($title, $lang = false) {
+    public static function timer($title) {
 		$time = explode(" ", microtime());
         $time = ($time[1] + $time[0]);
         
@@ -113,7 +113,7 @@ class debug {
         
         if(PAGE_LOADER):
             self::$timer[] = array(
-        		'title' => (!$lang) ? $title : lang::text($title),
+        		'title' => $title,
         		'time'  => $time - self::$start
             );
         endif;
