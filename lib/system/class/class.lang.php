@@ -89,8 +89,21 @@ class lang {
             $xml = simplexml_load_file(LANG.'/'.self::$pays.'/lang.'.$type.'.xml', 'SimpleXMLElement', LIBXML_NOCDATA);
             $lang = $xml->addChild('lang', '['.$code.']');
             $lang->addAttribute('id', $code);
-            $lang->addAttribute('context', "");
             $lang->addAttribute('get', get());
+            
+            $var = array();
+            if($arg):
+            	if(is_array($arg)):
+            		foreach($arg as $key => $value):
+	                    if(!is_array($value)):
+	                        $var[] = "[".$key."]";
+	                    endif;
+                endforeach;
+            	else:
+            		$var = array('[]');
+            	endif;
+            endif;
+            $lang->addAttribute('var', implode('|', $var));
             
             $dom = new DOMDocument('1.0');
             $dom->preserveWhiteSpace = false;
@@ -104,4 +117,3 @@ class lang {
         endif;
     }
 }
-?>
