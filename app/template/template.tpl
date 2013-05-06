@@ -7,12 +7,10 @@
     
 	<title>{$smarty.const.SITE} - {$page->get('title')}</title>
 	
-	{foreach $page->getCSS()  as $css}
-	<link rel="stylesheet" media="screen" type="text/css" href="/css/{$css}.css" />
+	{foreach $page->getCSS()  as $css}<link rel="stylesheet" media="screen" type="text/css" href="/css/{$css}.css" />
 	{/foreach}
 	
-	{foreach $page->getJS() as $js}
-	<script type="text/javascript" src="/js/{$js}.js"></script>
+	{foreach $page->getJS() as $js}<script type="text/javascript" src="/js/{$js}.js"></script>
 	{/foreach}
 </head>
 <body>
@@ -37,7 +35,6 @@
         	</div>
         </div>
     </div>
-
     <div class="container-fluid">
     	<div class="row-fluid">
         	<div class="span3">

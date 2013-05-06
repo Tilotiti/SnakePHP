@@ -12,10 +12,8 @@ if(DBHOST):
   
 	try {
         $queryConnexion = new PDO('mysql:host='.DBHOST.';dbname='.DBNAME, DBUSER, DBPASS, $options);
-    }
- 
-    catch(Exception $error) {
-        debug::error("sql", $error->getMessage(), LIB."/dbconnect.php");
+    } catch(Exception $error) {
+        fatalError('Unable to connect with the database : <code>'.$error->getMessage().'</code>');
     }
 endif;
 

@@ -10,32 +10,22 @@ class debug {
     
     public function __construct() {
     	if(PAGE_LOADER):
-		    error_reporting(E_ERROR | E_PARSE);
+		    error_reporting(0);
 		    set_error_handler(array($this, 'error'));
         endif;
-        
     }
     
     static function error($errno, $errstr, $errfile = "unknow", $errline = "unknow") {
-
         switch ($errno):
             case E_USER_ERROR:
-
-                echo "<h1>Fatal error</h1>";
-                echo "<p>An unexpected error has occured.</p>";
-                echo "<ul>";
-                echo "    <li><b>File</b> : ".$errfile."</li>";
-                echo "    <li><b>Line</b> : ".$errline."</li>";
-                echo "    <li><b>Message</b> : ".$errstr."</li>";
-                echo "</ul>";
+            	$error  = '';
+                $error .= '<p>A <b>Fatal Error</b> has occured.</p>';
+				$error .= '<dl>';
+				$error .= '<dt>'.$errstr.'</dt>';
+				$error .= '<dd>'.$errfile.' ('.$errline.')</dd>';
+				$error .= '</dl>';
                 
-                debug("------------- Fatal Error --------------", 'error');
-                debug("File : ".$errfile, 'error');
-                debug("Line : ".$errline, 'error');
-                debug("Message : ".$errstr, 'error');
-                debug("----------------------------------------", 'error');
-                
-                //exit(1);
+                fatalError($error);
             break;
 
             case E_USER_WARNING:

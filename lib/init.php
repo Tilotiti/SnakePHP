@@ -17,11 +17,15 @@ closedir($dir);
 
 spl_autoload_register("autoload");
 
-// Connexion à la BDD
+// DB connexion
 require_once LIB.'/dbconnect.php';
 
 // Démarrage de la session
 session_start();
+
+// Checklist
+require_once LIB.'/checklist.php';
+
 
 // Instanciation des classes nécessaires au framework
 new lang('fr');
@@ -50,5 +54,7 @@ while ($file = readdir($dir)):
 endwhile;
 closedir($dir);
 unset($dir);
+
+register_shutdown_function("fatalError");
 
 ?>

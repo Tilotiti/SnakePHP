@@ -250,13 +250,15 @@ class page {
 	        );
 	        
 	        $listDump = array();
-    		foreach(debug::$dump as $dump):
-    			ob_start();
-    			var_dump($dump['array']);
-    			$dump['array'] = ob_get_clean();
-    			$dump['title'] = ($dump['title'])? $dump['title'] : 'Dump';
-                $listDump[] = $dump;
-    		endforeach;
+	        if(is_array(debug::$dump)):
+	    		foreach(debug::$dump as $dump):
+	    			ob_start();
+	    			var_dump($dump['array']);
+	    			$dump['array'] = ob_get_clean();
+	    			$dump['title'] = ($dump['title'])? $dump['title'] : 'Dump';
+	                $listDump[] = $dump;
+	    		endforeach;
+    		endif;
     		$template->assign('listDump', $listDump);
 	    	
 	    	// Globals

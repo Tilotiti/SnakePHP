@@ -1,7 +1,6 @@
 <?php
 
 /* Framework configuration */
-
 // Way to the root of your application
 define('ROOT',      $_SERVER['DOCUMENT_ROOT']);
 
@@ -26,15 +25,11 @@ define('DEV',      true);
 // Timezone
 define('TIMEZONE', 'Europe/Paris');
 
-// Available languages.For several languages, separate them with a pipe "|"
-//define('LANG', 'fr|de');
-
-// IP du poste de développement, pour plusieurs posts, séparer les IPs par un pipe "|"
+// Developement client IP, For several IPs, separate them with a pipe "|"
 define('IPADMIN',  $_SERVER['REMOTE_ADDR']);
 
 
 /* Database configuration */
-
 // Host
 define('DBHOST',  'localhost:3306');
 
@@ -55,7 +50,6 @@ define('SQLCACHETIME', 1200);
 
 
 /* Directories */
-
 define('APP',        ROOT    .'/app');
 define('WEBROOT',    ROOT    .'/webroot');
 define('LIB',        ROOT    .'/lib');
