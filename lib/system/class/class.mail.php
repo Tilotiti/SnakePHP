@@ -12,11 +12,14 @@ class mail {
         $cc       = false,
         $limite   = false;
 
-    public function __construct() {
-    }
-
     public function to($mail) {
-        $this->to[] = $mail;
+        if(is_array($mail)):
+    		foreach($mail as $email):
+    			$this->to[] = $email;
+    		endforeach;
+    	else:
+        	$this->to[] = $mail;
+        endif;
         return $this;
     }
 
