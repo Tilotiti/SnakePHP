@@ -6,6 +6,8 @@ function autoload($class) {
 	    	require_once PLUGIN.'/'.$class.'/plugin.'.$class.'.php';
 	    elseif(file_exists(SYSTEM.'/class/class.'.$class.'.php')):
 	        require_once SYSTEM.'/class/class.'.$class.'.php';
+		elseif (preg_match('#^swift_#i', $class)):
+			require_once SYSTEM.'/class/swift/swift_required.php';
 	    else:
 	    	debug::error("Plugin autoload", "Plugin could not be loaded", PLUGIN.'/'.$class.'/plugin.'.$class.'.php');
 	    endif;

@@ -29,15 +29,23 @@ $(function() {
 
 $(window).load(function () {
 	/*
-	 * Automatic image croping
+	 * Automatic image croping - TODO test
 	 */
-	 
 	$('.cropbox').each(function(i, e) {
+		
 		var cropbox = $(e);
 		var img     = $(e).find('img').first();
+		img.css('opacity', '0');
 		
-		img.css("margin-top", (cropbox.height() - img.height()) / 2);
-		
+		if (img.width()/img.height() > cropbox.width()/cropbox.height()) {
+			img.css('height', '100%');img.css('width', 'auto');
+			img.css("margin-left", (cropbox.width() - img.width()) / 2);
+		}
+		else {
+			img.css('width', '100%');img.css('height', 'auto');
+			img.css("margin-top", (cropbox.height() - img.height()) / 2);
+		}
+		img.css('opacity', '');
 	});
 });
 
