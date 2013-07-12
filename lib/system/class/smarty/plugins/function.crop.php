@@ -1,5 +1,5 @@
 <?php
-function smarty_function_crop($params, &$smarty) {
+unction smarty_function_crop($params, &$smarty) {
     $style = '';
 
     // Définition des styles de la cropbox
