@@ -13,7 +13,7 @@
  * @param string
  * @return string|void
  */
-function smarty_modifier_date($timestamp, $type) {
+function smarty_modifier_date($timestamp, $type = false) {
     
     $mois = lang::text("date/month:".date("m", $timestamp));
     $jour = lang::text("date/day:".date("D", $timestamp));
