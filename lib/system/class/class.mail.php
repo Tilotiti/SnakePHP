@@ -152,8 +152,8 @@ class mail {
 		if ($this->cc && count((array) $this->cc)>0) {
 			$message->setCc((array) $this->cc);
 		}
-		if ($this->replyTo && count((array) $this->replyTo)>0) {
-			$message->setReplyTo((array) $this->replyTo);
+		if ($this->replyto && count((array) $this->replyto)>0) {
+			$message->setReplyTo((array) $this->replyto);
 		}
 		if ($this->confirm && count((array) $this->confirm)>0) {
 			$message->setReadReceiptTo($this->confirm);
