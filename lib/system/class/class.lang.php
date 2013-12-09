@@ -64,8 +64,13 @@ class lang {
         $template->template_dir = LANG.'/'.self::$pays.'/mail/';
         $template->compile_dir  = CACHE.'/mail/'.self::$pays.'/';
         $template->assign('mail', $arg);
-        if(file_exists(LANG.'/'.self::$pays.'/mail/'.$file.'.tpl')):
-            return $template->fetch($file.'.tpl');
+		
+		$file = ROOT . '/lang/' .self::$pays.'/mail/'.$file.'.tpl';
+		if (!file_exists($file)) {
+			$file = LANG.'/'.self::$pays.'/mail/'.$file.'.tpl';
+		}
+        if(file_exists($file)):
+            return $template->fetch($file);
         else:
             return false;
         endif;
