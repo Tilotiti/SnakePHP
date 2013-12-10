@@ -31,6 +31,12 @@ require_once LIB.'/checklist.php';
 new lang('fr');
 new debug();
 
+/**
+ * Page manager
+ * @var page
+ */
+$page;
+
 // Initialisation de la page
 if(PAGE_LOADER):
     $page = new page();
