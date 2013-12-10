@@ -100,7 +100,7 @@ class query {
                         if(strtoupper($key) == $key):
                             // Si l'identification se fait par une fonction
                             if(is_array($value)):
-                                $field  = $key."(";     
+                                $field  = $key."(";
                                 $var = array();
                                 foreach($value as $val):
                                     if(is_numeric($val)):
@@ -279,7 +279,7 @@ class query {
      * @param mixed $table
      * @return query $this pour assurer la chaînabilité de la classe
      */
-    public function from($table) {
+    public function from($table,$as=false) {
         if(empty($table)):
             debug::error("SQL", "TABLE argument must be valid in FROM method.", __FILE__, __LINE__);
             $this->error = true;
@@ -292,8 +292,16 @@ class query {
             debug::error("SQL", "FROM method has been already requested.", __FILE__, __LINE__);
              $this->error = true;
         endif;
-        
-        $this->table['select']  = $table;
+		
+		
+		if($table instanceof query) {
+			$as = ($as===false?$table->table['select']:$as);
+			$this->table['select']  = $as;
+		}
+		else {
+			$this->table['select']  = $table;
+		}
+		
         if(count($this->fields)==0):
             $this->prepare_request  .= ' SELECT * ';
         else:
@@ -304,7 +312,15 @@ class query {
             endforeach;
             $this->prepare_request .= implode(', ', $array);
         endif;
-        $table_name             = $this->prefix.$table;
+		
+		$table_name = $as;
+		if($table instanceof query) {
+			$table_name             = '('.$table->getRequest().') AS ' . $as;
+		}
+		else {
+			$table_name             = $this->prefix.$table;
+		}
+		
         $this->prepare_request .= ' FROM '.$table_name;
         $this->content['from']  = true;
         
@@ -334,7 +350,7 @@ class query {
              $this->error = true;
         endif;
 		
-		$joins = array('RIGHT', 'LEFT', 'OUTER', 'INNER');
+		$joins = array('RIGHT', 'LEFT', 'FULL OUTER', 'INNER', 'OUTER');
 		$joinType = strtoupper($joinType);
 		
 		if(!in_array($joinType, $joins)):
@@ -342,6 +358,14 @@ class query {
             debug::error("SQL", "JOIN type must be one of these : ".implode(', ', $joins), __FILE__, __LINE__);
 			$this->error = true;
         endif;
+		
+		switch ($joinType):
+			case 'OUTER':
+				$joinType = 'FULL OUTER';
+			break;
+			
+			default: break;
+		endswitch;
 		
         $table_name                 = $this->prefix.$table;
         $this->prepare_request     .= ' '.$joinType.' JOIN '.$table_name;
@@ -359,11 +383,13 @@ class query {
      * @return query $this pour assurer la chaînabilité de la classe
      */
     public function leftJoin($table) {
-    	return $this->join($table, 'left');
+    	return $this->join($table);
     }
 
 	/**
-     * Performs an INNER JOIN
+     * Performs a RIGHT JOIN - should NOT be used according to MySQL documentation
+	 * @see http://dev.mysql.com/doc/refman/5.0/en/join.html
+	 * "To keep code portable across databases, it is recommended that you use LEFT JOIN instead of RIGHT JOIN."
      * 
      * @access public
      * @param mixed $table
@@ -386,13 +412,39 @@ class query {
 	
 	/**
      * Performs an OUTER JOIN
-     * 
+	 * 
+	 * Although OUTER JOIN doesn't exists in MySQL, this method allow to simulate it.
+	 * Because of that, this method must be called instead of the FROM method.
+	 * 
+	 * Beware of the parameters though, because you have to provide both tables, and "ON" values.
+     * This method is based on UNION, LEFT JOIN and RIGHT JOIN.
+	 * 
      * @access public
      * @param mixed $table
      * @return query $this pour assurer la chaînabilité de la classe
      */
-    public function outerJoin($table) {
-    	return $this->join($table, 'outer');
+    public function outerJoin($table, $join, $on1, $on2) {
+    	// sub-join 2 (right part of outer join)
+    	$subrequest2 = new query($this->cache);
+		$subrequest2->select()
+					->from($table)
+					->rightJoin($join)
+					->on($on1, $on2)
+					// do not duplicate
+					->where($on1, 'IS NULL', false);
+		
+		// sub-join 1 (left part of outer join)
+    	$subRequest1 = new query($this->cache);
+		$subRequest1->select()
+					->from($table)
+					->leftJoin($join)
+					->on($on1, $on2)
+					
+					// union part
+					->addString(' UNION ALL ('.$subrequest2->getRequest().') ');
+		
+		// small workaround
+		return 	$this->from($subRequest1);
     }
     
     /**
@@ -442,6 +494,37 @@ class query {
         return $this;
     }
 
+	/**
+	 * Méthode USING : peut être appelée uniquement après un des JOIN
+	 * 
+	 */
+	public function using() {
+		
+		$this->content['countOn']++;
+		
+		if(!$this->content['select']):
+            debug::error("SQL", "USING method can't be requested before SELECT method.", __FILE__, __LINE__);
+             $this->error = true;
+        endif;
+        if(!$this->content['from']):
+            debug::error("SQL", "USING method can't be requested before FROM method.", __FILE__, __LINE__);
+             $this->error = true;
+        endif;
+        if(($this->content['countOn'] > count($this->table['join']))):
+            debug::error("SQL", "USING method can't be requested before JOIN method.", __FILE__, __LINE__);
+             $this->error = true;
+        endif;
+		$usings = func_get_args();
+		$this->prepare_request .= ' USING ';
+		
+		foreach ($usings as $k => $using) {
+			$usings[$k] = $this->getField($using);
+		}
+		$this->prepare_request .= implode(',', $usings);
+		
+		$this->content['using']    = true;
+	}
+
     /**
      * Méthode where : Détermine les conditions de sélection de la requête
      * 
@@ -461,10 +544,10 @@ class query {
             debug::error("SQL", $calcul." method can't be requested before FROM or UPDATE method.", __FILE__, __LINE__);
             $this->error = true;
         endif;
-        if($this->content['join'] && !$this->content['on']):
+        /*if($this->content['join'] && !$this->content['on']):
             debug::error("SQL", $calcul." method can't be requested before ON method when JOIN method has been requested.", __FILE__, __LINE__);
             $this->error = true;
-        endif;
+        endif;*/
         if($this->content['orderBy']):
             debug::error("SQL", $calcul." method can't be requested after ORDER BY method.", __FILE__, __LINE__);
             $this->error = true;
