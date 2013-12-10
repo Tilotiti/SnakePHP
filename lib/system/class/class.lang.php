@@ -66,9 +66,9 @@ class lang {
         $template->assign('mail', $arg);
 		
 		$file = ROOT . '/lang/' .self::$pays.'/mail/'.$file.'.tpl';
-		if (!file_exists($file)) {
+		if (!file_exists($file)):
 			$file = LANG.'/'.self::$pays.'/mail/'.$file.'.tpl';
-		}
+		endif;
         if(file_exists($file)):
             return $template->fetch($file);
         else:
