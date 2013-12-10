@@ -294,13 +294,12 @@ class query {
         endif;
 		
 		
-		if($table instanceof query) {
+		if($table instanceof query):
 			$as = ($as===false?$table->table['select']:$as);
 			$this->table['select']  = $as;
-		}
-		else {
+		else:
 			$this->table['select']  = $table;
-		}
+		endif;
 		
         if(count($this->fields)==0):
             $this->prepare_request  .= ' SELECT * ';
@@ -314,12 +313,11 @@ class query {
         endif;
 		
 		$table_name = $as;
-		if($table instanceof query) {
+		if($table instanceof query):
 			$table_name             = '('.$table->getRequest().') AS ' . $as;
-		}
-		else {
+		else:
 			$table_name             = $this->prefix.$table;
-		}
+		endif;
 		
         $this->prepare_request .= ' FROM '.$table_name;
         $this->content['from']  = true;
@@ -517,9 +515,10 @@ class query {
 		$usings = func_get_args();
 		$this->prepare_request .= ' USING ';
 		
-		foreach ($usings as $k => $using) {
+		foreach ($usings as $k => $using):
 			$usings[$k] = $this->getField($using);
-		}
+		endforeach;
+		
 		$this->prepare_request .= implode(',', $usings);
 		
 		$this->content['using']    = true;
