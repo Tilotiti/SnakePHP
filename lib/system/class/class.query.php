@@ -12,6 +12,7 @@ class query {
         $queryConnexion  = false,
         $cache           = false,
         $cached          = false,
+        $cacheHash		 = false,
         $alias           = array(),
         $line            = array(),
         $content         = array(),
@@ -22,6 +23,8 @@ class query {
      * Méthode __construct : Construction de la requête SQL, test la connexion à la base de donnée.
      * 
      * @access public
+	 * @param Boolean|String $cache indique la catégorie de cache (ou simplement la mise en cache) - default: false
+	 * @param String $prefix prefixe de la table
      * @return void
      */
     public function __construct($cache = false, $prefix = DBPREF) {
@@ -38,9 +41,9 @@ class query {
         	$this->bdd = false;
         	$this->error = true;
         endif;
-
-        if($cache):
-            $this->cache = true;
+		
+		if (is_string($cache) || $cache):
+            $this->cache = $cache;
         endif;
     }
 
@@ -143,7 +146,7 @@ class query {
      * 
      * @access public
      * @param mixed champs Insérez autant de paramètre que vous le souhaitez. Chaque paramètre représente un champs, celon les syntaxes autorisés par la méthode getField.
-     * @return  $this pour assurer la chaînabilité de la classe
+     * @return query $this pour assurer la chaînabilité de la classe
      */
     public function select() {
     	// On récupère tous les champs et on les enregistres
@@ -158,7 +161,7 @@ class query {
      * 
      * @access public
      * @param mixed $table table à modifier
-     * @return $this pour assurer la chaînabilité de la classe
+     * @return query $this pour assurer la chaînabilité de la classe
      */
     public function update($table) {
     	if(empty($table)):
@@ -179,7 +182,7 @@ class query {
      * 
      * @access public
      * @param mixed $table
-     * @return $this pour assurer la chaînabilité de la classe
+     * @return query $this pour assurer la chaînabilité de la classe
      */
     public function insert($table) {
         if(empty($table)):
@@ -199,7 +202,7 @@ class query {
      * 
      * @access public
      * @param mixed $table
-     * @return $this pour assurer la chaînabilité de la classe
+     * @return query $this pour assurer la chaînabilité de la classe
      */
     public function delete($table) {
         if(empty($table)):
@@ -221,7 +224,7 @@ class query {
      * @access public
      * @param mixed $field
      * @param string $value (default: '')
-     * @return $this pour assurer la chaînabilité de la classe
+     * @return query $this pour assurer la chaînabilité de la classe
      */
     public function set($field = '', $value = '') {
     	
@@ -274,7 +277,7 @@ class query {
      * 
      * @access public
      * @param mixed $table
-     * @return $this pour assurer la chaînabilité de la classe
+     * @return query $this pour assurer la chaînabilité de la classe
      */
     public function from($table) {
         if(empty($table)):
@@ -313,10 +316,11 @@ class query {
      * Méthode join : Joindre une autre table au résultat
      * 
      * @access public
-     * @param mixed $table
-     * @return $this pour assurer la chaînabilité de la classe
+     * @param mixed $table table name
+	 * @param String $joinType case-insensitive join type (left, right, outer, inner) - default: left
+     * @return query $this pour assurer la chaînabilité de la classe
      */
-    public function join($table) {
+    public function join($table, $joinType='left') {
         if(empty($table)):
             debug::error("SQL", "TABLE argument must be valid in JOIN method.", __FILE__, __LINE__);
              $this->error = true;
@@ -329,9 +333,18 @@ class query {
             debug::error("SQL", "JOIN method can't be requested before FROM method.", __FILE__, __LINE__);
              $this->error = true;
         endif;
-        
+		
+		$joins = array('RIGHT', 'LEFT', 'OUTER', 'INNER');
+		$joinType = strtoupper($joinType);
+		
+		if(!in_array($joinType, $joins)):
+            $joinType = 'LEFT';
+            debug::error("SQL", "JOIN type must be one of these : ".implode(', ', $joins), __FILE__, __LINE__);
+			$this->error = true;
+        endif;
+		
         $table_name                 = $this->prefix.$table;
-        $this->prepare_request     .= ' LEFT JOIN '.$table_name;
+        $this->prepare_request     .= ' '.$joinType.' JOIN '.$table_name;
         $this->content['join']  	= true;
         $this->table['join'][]  	= $table;
         return $this;
@@ -339,16 +352,48 @@ class query {
 
     
     /**
-     * Méthode leftJoin : Alias de la méthode join (obsolète)
+     * Performs a LEFT JOIN
      * 
      * @access public
      * @param mixed $table
-     * @return $this pour assurer la chaînabilité de la classe
+     * @return query $this pour assurer la chaînabilité de la classe
      */
     public function leftJoin($table) {
-    	return $this->join($table);
+    	return $this->join($table, 'left');
     }
 
+	/**
+     * Performs an INNER JOIN
+     * 
+     * @access public
+     * @param mixed $table
+     * @return query $this pour assurer la chaînabilité de la classe
+     */
+    public function innerJoin($table) {
+    	return $this->join($table, 'inner');
+    }
+	
+	/**
+     * Performs a RIGHT JOIN
+     * 
+     * @access public
+     * @param mixed $table
+     * @return query $this pour assurer la chaînabilité de la classe
+     */
+    public function rightJoin($table) {
+    	return $this->join($table, 'right');
+    }
+	
+	/**
+     * Performs an OUTER JOIN
+     * 
+     * @access public
+     * @param mixed $table
+     * @return query $this pour assurer la chaînabilité de la classe
+     */
+    public function outerJoin($table) {
+    	return $this->join($table, 'outer');
+    }
     
     /**
      * Méthode on : Détermine les champs communs servant à joindre deux tables.
@@ -356,7 +401,7 @@ class query {
      * @access public
      * @param mixed $value1
      * @param mixed $value2
-     * @return $this pour assurer la chaînabilité de la classe
+     * @return query $this pour assurer la chaînabilité de la classe
      */
     public function on($value1, $value2) {
 
@@ -405,7 +450,7 @@ class query {
      * @param string $calculator Opérateur de la condition
      * @param mixed $value Valeur du champs à tester
      * @param string $calcul Type de test à effectuer ("where" ou "and")
-     * @return $this pour assurer la chaînabilité de la classe
+     * @return query $this pour assurer la chaînabilité de la classe
      */
     public function where($field, $calculator, $value = false, $calcul = "where") {
         if(!$this->content['select'] && !$this->content['update'] && !$this->content['delete']):
@@ -486,7 +531,7 @@ class query {
      * @param mixed $field Champs sélectionné
      * @param string $calculator Opérateur de la condition
      * @param mixed $value Valeur du champs à tester
-     * @return $this pour assurer la chaînabilité de la classe
+     * @return query $this pour assurer la chaînabilité de la classe
      */
     public function ou($field, $calculator, $value) {
         $this->where($field, $calculator, $value, 'OR');
@@ -500,7 +545,7 @@ class query {
      * @access public
      * @param mixed $field champs à modifier
      * @param mixed $value valeur du champs
-     * @return $this pour maintenir la chaînabilité de la classe.
+     * @return query $this pour maintenir la chaînabilité de la classe.
      */
     public function onDuplicateKeyUpdate($field, $value) {
         if(!$this->content['insert']):
@@ -528,7 +573,7 @@ class query {
      * @access public
      * @param string $field (default: "")
      * @param string $order (default: 'ASC')
-     * @return $this pour maintenir la chaînabilité de la classe
+     * @return query $this pour maintenir la chaînabilité de la classe
      */
     public function orderBy($field = "", $order = 'ASC') {
         $order = strtoupper($order);
@@ -576,7 +621,7 @@ class query {
      * 
      * @access public
      * @param mixed $field champs commun sur lequel appliquer le regroupement des résultats
-     * @return $this pour maintenir la chaînabilité de la classe
+     * @return query $this pour maintenir la chaînabilité de la classe
      */
     public function groupBy($field) {
         if(!$this->content['select']):
@@ -613,7 +658,7 @@ class query {
      * @access public
      * @param mixed $limit1 Début de l'interval (ou fin de l'interval si le second argument est vide)
      * @param bool $limit2 Fin de l'interval (default: false)
-     * @return $this pour maintenir la chaînabilité de la classe
+     * @return query $this pour maintenir la chaînabilité de la classe
      */
     public function limit($limit1, $limit2 = false) {
         if(!$this->content['select']):
@@ -732,6 +777,14 @@ class query {
         endif;
     }
 
+    /**
+	 * Return "cache hash" of the query if cached, false otherwise.
+	 * Can be used with flushSQL to flush only this request. 
+	 * @return String|Boolean cache hash
+	 */
+    public function getCacheHash() {
+		return $this->cacheHash;
+    }
     
     /**
      * Méthode sql : Exécute la requête s'il n'y a aucune erreur
@@ -745,19 +798,19 @@ class query {
         if(DBHOST && !$this->error):
             try {
             	if($this->content['select']):
-            		// Cache verification
+            		
+					// cache category - file prefix
+	            	$cachePref = ($this->cache===true?'':md5('prefix'.$this->cache));
+					
+					// Cache verification
 	            	if($this->cache):
 	            		// Already cached
-	            		$file = SQLCACHE.'/'.md5($req).'.cache';
-	            		if(file_exists($file)):
-	            			// Not to old
-	            			if(filemtime($file) > time() - SQLCACHETIME):
-	            				$this->cached = true;
-	            			else:
-	            				$this->cached = false;
-	            			endif;
-	            		else:
-	            			$this->cached = false;
+	            		$file = SQLCACHE.'/'.$cachePref.md5($req).'.cache';
+						$this->cached = false;
+						
+						// Cache exists and not too old
+	            		if( file_exists($file) && (filemtime($file) > (time() - SQLCACHETIME)) ):
+            				$this->cached = true;
 	            		endif;
 	            	endif;
 	            	
@@ -769,13 +822,17 @@ class query {
 			            
 			            // Must caching the request
 			            if($this->cache):
-			            	$file = fopen(SQLCACHE.'/'.md5($req).'.cache', 'w+');
+			            	$file = fopen(SQLCACHE.'/'.$cachePref.md5($req).'.cache', 'w+');
 			            	fwrite($file, serialize($results));
 			            	fclose($file);
 			            endif;
 		            else:
-		            	$results = unserialize(file_get_contents(SQLCACHE.'/'.md5($req).'.cache'));
+		            	$results = unserialize(file_get_contents(SQLCACHE.'/'.$cachePref.md5($req).'.cache'));
 		            endif;
+					
+					if ($this->cache) {
+						$this->cacheHash = $cachePref.md5($req);
+					}
 		            
 		            // On compte le nombre d'occurence trouvée
 		            $this->count = count($results);
@@ -1017,7 +1074,7 @@ class query {
      * 
      * @access public
      * @param mixed $string Chaîne de caractère à ajouter
-     * @return $this pour maintenir la chaînabilité de la classe
+     * @return query $this pour maintenir la chaînabilité de la classe
      */
     public function addString($string) {
         $this->prepare_request .= $string;
@@ -1032,7 +1089,7 @@ class query {
      * @param mixed $get get à utiliser
      * @param mixed $results Nombre de résultat à afficher
      * @param string $variable Nom de la variable template dans lequel injecter la pagination (default: "pagination")
-     * @return $this pour maintenir la chaînabilité de la classe
+     * @return query $this pour maintenir la chaînabilité de la classe
      */
     public function page($get, $results, $variable = "pagination") {
         global $page;

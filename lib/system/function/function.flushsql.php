@@ -1,18 +1,33 @@
 <?php
 
-/*
- * flushSQL: deletes all SQL cache in /cache/sql/
- * Use it in case of updates in the database
- * flushSQL: string ($file, optional, contains md5 checksum of an SQL request)
-*/
-
+/**
+ * flushSQL: deletes SQL cache in /cache/sql/ - Use it in case of updates in the database
+ * 
+ * How to use :
+ * $filename param can be either the complete hash of the request (access by query::getCacheHash), so the identified
+ * cached query will be uncached.
+ * 
+ * It can be a "cache category" name (first parameter of query::__construct).
+ * In this case, all cache of this category will be removed.
+ * 
+ * If left empty, the function will erase all cached queries.
+ * 
+ * @param String $fileName cache hash, cache category, or empty string - default: empty string
+ * @param return void
+ */
 function flushSQL($fileName = '') {
 	$dir = SQLCACHE;
 
 	// Specific filename was passed
-	if (!empty($fileName)):
+	if (!empty($fileName) && is_file($dir.'/'.$fileName.'.cache')):
 		$fileName .= '.cache';
-		return (is_file($dir.'/'.$fileName) && unlink($dir.'/'.$fileName));
+		return unlink($dir.'/'.$fileName);
+	elseif (!empty($fileName)):
+		$cachePref = md5('prefix'.$fileName);
+		// What files of this category are in the directory ?
+		foreach(glob(SQLCACHE.'/'.$cachePref.'*.cache') as $file):
+			unlink($file);
+		endforeach;
 	else:
 		// What files are in the directory?
 		foreach(glob(SQLCACHE.'/*.cache') as $file):
