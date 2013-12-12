@@ -16,7 +16,7 @@ Requirements & Dependencies
 4. PDO class
 5. Found another one?
 
-Qucik install
+Quick install
 ========
 
 1. Download latest version, extract it and move it to your webroot directory;
