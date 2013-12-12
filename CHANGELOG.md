@@ -7,6 +7,7 @@
 2013-12-11
 ==========
 
+@author Fabrice Lazzarotto
 1. Everywhere (/lib) : normalized documentation
 2. **query** class 
 	* now support : LEFT, RIGHT, INNER ; **outer** function simulates FULL OUTER JOIN (/lib/system/class/class.query.php)
@@ -17,3 +18,4 @@
 4. **page::active** method : allow to test URIs with hashes (#)
 5. Plugins :
 	* **csrf** can now be managed in 2 code lines
+6. Various enhancements (PHP ending tags removed, etc.)
