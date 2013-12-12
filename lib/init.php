@@ -29,7 +29,7 @@ require_once LIB.'/checklist.php';
 
 // Instanciation des classes nécessaires au framework
 new lang('fr');
-new debug();
+new debug(QUERYTIMER);
 
 /**
  * Page manager
