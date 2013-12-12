@@ -1,10 +1,33 @@
 <?php
+/**
+ * (Multi-)language manager.
+ * This manager use XML files (/lang/{lang_code}/ directories), where language variables are injected.
+ * A SnakePHP translator is available to edit these files.
+ *  
+ * @author Tilotiti
+ * @see https://github.com/Tilotiti/SnakePHP-Translator
+ */
 class lang {
     static
+		/**
+		 * Labels and translations from XML files
+		 * @var Array
+		 */
         $lang = false,
+        /**
+		 * Language code - "en", "fr", "de", "es", etc.
+		 * @var String
+		 */
         $pays = false,
+        /**
+		 * Label types - "text", "title", "error", "success"
+		 */
         $type = false;
     
+	/**
+	 * Initialize language manager and set up current page language
+	 * @param String $pays language code - must be a subdirectory of /lang
+	 */
     public function __construct($pays) {
         self::$pays = $pays;
         
@@ -43,22 +66,66 @@ class lang {
         
     }
     
+	/**
+	 * Returns the error message that fits given code for current language.
+	 * 
+	 * @static
+	 * @param String $code label of the error
+	 * @param Array[optional] $arg arguments for the text - @see lang::find
+	 * @return String translation matching code and language
+	 */
     static function error($code, $arg = false) {
         return self::find('error', $code, $arg);
     }
     
+	/**
+	 * Returns the success message that fits given code for current language.
+	 * 
+	 * @static
+	 * @param String $code label of the message
+	 * @param Array[optional] $arg arguments for the text - @see lang::find
+	 * @return String translation matching code and language
+	 */
     static function success($code, $arg = false) {
         return self::find('success', $code, $arg);
     }
     
+	/**
+	 * Returns the text that fits given code for current language.
+	 * 
+	 * @static
+	 * @param String $code label of the text
+	 * @param Array[optional] $arg arguments for the text - @see lang::find
+	 * @return String translation matching code and language
+	 */
     static function text($code, $arg = false) {
         return self::find('text', $code, $arg);
     }
     
+	/**
+	 * Returns the title that fits given code for current language.
+	 * 
+	 * @static
+	 * @param String $code label of the title
+	 * @param Array[optional] $arg arguments for the title - @see lang::find
+	 * @return String translation matching code and language
+	 */
     static function title($code, $arg = false) {
         return self::find('title', $code, $arg);
     }
     
+	/**
+	 * Language directories contains a "mail" subdir, with smarty templates in it. These are used by mail class,
+	 * to provide mail translations.
+	 * This method returns the correct rendered mail template.
+	 * @remark Arguments are accessed in the template via a $mail smarty variable.
+	 * 
+	 * @param String $file name of the template (without .tpl extension)
+	 * @param Array[optional] $arg arguments for the mail
+	 * 
+	 * @return String rendered e-mail 
+	 * 
+	 */
     static function mail($file, $arg = false) {
         $template = new smarty();
         $template->template_dir = LANG.'/'.self::$pays.'/mail/';
@@ -76,6 +143,18 @@ class lang {
         endif;
     }
     
+	/**
+	 * Returns the text that fits given code and type for current language.
+	 * Arguments can be added as an associative array, where key is the variable name to use in the XML file.
+	 * XML variables are written between square braces : [variable]
+	 * 
+	 * @static
+	 * @param String $type type of text
+	 * @param String $code label of the title
+	 * @param Array[optional] $arg arguments for the title
+	 * 
+	 * @return String translation matching type, code and language
+	 */
     static function find($type, $code, $arg = false) {
         
         if(isset(self::$lang[$type][$code])):

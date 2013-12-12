@@ -1,4 +1,14 @@
 <?php
+/**
+ * SnakePHP URL parser.
+ * This is a multifunction with 3 uses, to be used for URL slash-separated parameters.
+ * 1) no parameter : returns URI
+ * 2) 1 parameter (integer) : returns one specific URI parameter
+ * 3) 2 parameters : replace specified URI parameter with $replace param.
+ * 
+ * @param Integer[optional] $get URI parameter index to get - default: none (all URI)
+ *  @param String[optional] $replace String which will replace specified URI parameter - default: none
+ */
 function get($get = '', $replace = false) {
     $uri = $_SERVER['REQUEST_URI'];
     if(!$replace):
@@ -47,4 +57,3 @@ function get($get = '', $replace = false) {
         return '/'.implode('/', $getArray).'/';
     endif;
 }
-?>

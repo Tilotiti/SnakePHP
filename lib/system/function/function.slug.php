@@ -20,4 +20,3 @@ function slug($str, $convertSpecialChars=false, $separator='-') {
 
 	return $clean;
 }
-?>

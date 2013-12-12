@@ -1,27 +1,23 @@
 <?php
-/*
- *	Bruteforce counter and alerter
-*/
+/**
+ * Bruteforce counter and alerter
+ * You should use this class inside the session::login() method 
+ * @author Pierre de Vesian
+ */
 class Bruteforce {
 
-    /*
-	 * Method       : __construct
-	 * Description  : Bruteforce class constructor
-	 * Parameters   : (void)
-	 * Return 		: (void)
+    /**
+	 * Bruteforce class constructor
 	 */
     public function __construct() {
         // Let the serveer sleep for 0.15s on this task, decreases possible attacks/minute
 		usleep(150000);
 	}
 
-	/*
-	 * Method       : count
-	 * Description  : Counts, increases and returns bruteforce attempts
-	 * Parameters   : 
-	 * 		[$count] - (bool) [default=true]. If set to false, the counter won't 
-	 *						increase and just return the number
-	 * Return 		: (int) : number bruteforce attempts
+	/**
+	 * Counts, increases and returns bruteforce attempts 
+	 * @param Boolean[optional] $count	if set to false, the counter won't increase and just return the number - default: true
+	 * @return Integer	number bruteforce attempts
 	 */
 	public function count($count = true) {
 		// Increase the counter
@@ -35,13 +31,9 @@ class Bruteforce {
 		return intval($_SESSION['bfc']);
 	}
 
-	/*
-	 * Method       : alert
-	 * Description  : Alerts in case of too many bruteforce attempts
-	 * Parameters   : (void)
-	 * Return 		:
-	 * 		(bool) 	- true: there are more attempts than allowed
-	 *				- false: there are less attempts than allowed (what we expect)
+	/**
+	 * Checks if too many bruteforce attempts
+	 * @return Boolean true if there are more attempts than allowed, false otherwise
 	 */
 	public function alert() {
 		return ($this->count(false) >= BRUTEFORCEMAX);

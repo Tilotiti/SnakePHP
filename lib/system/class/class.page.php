@@ -1,4 +1,8 @@
 <?php
+/**
+ * Page manager : dispatcher, css and js, template, breadcrumb, SEO, etc. 
+ * @author Tilotiti
+ */
 class page {
     private
         $site        = '',
@@ -18,7 +22,13 @@ class page {
         $CSS         = array(),
         $sitemap     = array(),
         $time        = array();
-   
+	/**
+	 * Constructor - initialise :
+	 * - page title (@see get)
+	 * - main smarty template
+	 * - session variables
+	 * - sitemap
+	 */
     public function __construct() {
 
         debug::timer('Initialization', true);
@@ -49,6 +59,11 @@ class page {
         endif;
         
     }
+	
+	/**
+	 * Dispatcher function : parse URI to find matching php file
+	 * @param String $path relative URI to parse
+	 */
     public function dispatcher($path, $cat = '') {
 
         $g = explode('/', $path);
@@ -84,6 +99,11 @@ class page {
         return SOURCE.'/'.$path.$page.'.php';
     }
 
+	/**
+	 * Copyright generator
+	 * Generates and output a copyright line according to config constant URL SITE and YEAR
+	 * @return void
+	 */
     public function copyright() {
         if(YEAR == date('Y')):
             echo '&copy; <a href="'.URL.'">'.SITE.'</a> | '.date('Y');
@@ -92,6 +112,11 @@ class page {
         endif;
     }
 
+	/**
+	 * Clean session variables and output SnakePHP mention
+	 * Should be called at the bottom of the page
+	 * @return void
+	 */
     public function clear() {
         $_SESSION['message'] = false;
         $_SESSION['error']   = false;
@@ -109,11 +134,22 @@ class page {
         echo "-->"."\n";
     }
 
+	/**
+	 * Adds a breadcrumb item
+	 * @param String $name text to show
+	 * @param String[optional] $url target URI - default: current
+	 * @return void
+	 */
     public function pushAriane($name, $url = "") {
         $array = array("name" => $name, "url" => $url);
         $this->ariane[] = $array;
     }
 
+	/**
+	 * Outputs breadcrumb
+	 * @remark Current element (understand current page) is automatically included at the end of the breadcrumb
+	 * @return void
+	 */
     public function ariane($url = "") {
         
         echo '<a href="/">'.lang::text("ariane").'</a>';
@@ -135,15 +171,34 @@ class page {
         endif;
     }
     
+	/**
+	 * Set title for current page (will be output in <title>)
+	 * @param String $title lang code for title
+	 * @param Array[optional] 
+	 */
     public function title($title, $array = false) {
         $this->title = lang::title($title, $array);
     }
-    
+    /**
+	 * Returns the page title 
+	 * @return String title
+	 */
     public function getTitle() {
         return $this->title;
     }
-    
+    /**
+	 * Include sidebar PHP file and adds matching template to sidebar
+	 * Sidebar source/template must be in /app/{source|template}/sidebar/ 
+	 * 
+	 * @remark if you want to assign a variable to the template from a sidebar source file, use $this->template
+	 * instead of $page->template. Scope would be the main smarty object, so be careful with variable names.
+	 * 
+	 * @param String $file name of sidebar (without extension)
+	 * @param String|Integer[optional] $id allow you to set a custom id to the sidebar - default: none
+	 * @return true if sidebar added, false otherwise (missing source or template file)
+	 */
     public function pushSidebar($file, $id = false, $params = false) {
+    	// XXX params should appear somewhere
         if(file_exists(TEMPLATE.'/sidebar/'.$file.'.tpl')):
             if(!is_array($this->sidebar)):
                 $this->sidebar = array();
@@ -167,6 +222,12 @@ class page {
         endif;
     }
     
+	/**
+	 * Returns path to sidebar template(s), for smarty inclusion
+	 * If id not specified, will return all sidebars
+	 * @param Integer[optional] $id id of the sidebar to get path of - default: none
+	 * @return String path to the sidebar
+	 */
     public function getSidebar($id = false) {
         if(!$id):
             return $this->sidebar;
@@ -178,7 +239,11 @@ class page {
             endif;
         endif;
     }
-    
+    /**
+	 * Adds a CSS file. CSS path is relative to /webroot/css/
+	 * @param String[optional] $file css file path (without extension)
+	 * @return void
+	 */
     public function pushCSS($file) {
         if(file_exists(WEBROOT.'/css/'.$file.'.css')):
              if(!is_array($this->CSS)):
@@ -187,12 +252,20 @@ class page {
             $this->CSS[] = $file;
         endif;
     }
-    
+    /**
+	 * Returns the list of all included CSS files
+	 * @return Array list of CSS files
+	 */
     public function getCSS() {
         return $this->CSS;
     }
-    
-     public function pushJS($file) {
+     
+	/**
+	 * Adds a JS file. JS path is relative to /webroot/js/
+	 * @param String[optional] $file js file path (without extension)
+	 * @return void
+	 */
+    public function pushJS($file) {
         if(file_exists(WEBROOT.'/js/'.$file.'.js')):
             if(!is_array($this->JS)):
                 $this->JS = array();
@@ -200,11 +273,23 @@ class page {
             $this->JS[] = $file;
         endif;
     }
-    
+    /**
+	 * Returns the list of all included JS files
+	 * @return Array list of JS files
+	 */
     public function getJS() {
         return $this->JS;
     }
     
+	/**
+	 * Check if given url is active (~ current URL) and generate a custom output if so
+	 * example of use : <a href="/user/" class="{$page->active('user')}">Users</a>
+	 * @remark if given uri is user and current uri is /user/edit/, user will be considered "active" because it's a
+	 * first-level dispatcher. If current URL is /user/edit/15/, /user/edit/ will NOT be considered active.
+	 * 
+	 * @param $get URI (beginning with '/') or first-level dispatcher (without slash)
+	 * @param String[optional] $class output in case of active URI - default: "active"
+	 */
     public function active($get, $class = 'active') {
         $get = preg_replace("`\%`isU", "(.+)?", $get);
         if(preg_match("`^".$get."$`isU", get()) || $get == get(1)):
@@ -213,8 +298,8 @@ class page {
     }
     
     /**
-     * Affiche la barre de debug sur le site
-     * 
+     * Show up debug bar on the page
+     * @see debug
      * @return void
      */
     public function debug() {
@@ -306,24 +391,46 @@ class page {
 	    	
 	    endif;
     }
-    
+    /**
+	 * Assign a variable to the main template
+	 * @param String $assign variable name
+	 * @param mixed $var variable value
+	 * @return void
+	 */
     public function template($assign, $var) {
 	    $this->template->assign($assign, $var);
     }
-    
-    public function setTemplate($file) {
+
+	/**
+	 * 
+	 * @return void
+	 */
+    public function setTemplate($file) { // is this useful/relevant ?
 	    $this->templateTPL = $file;
     }
-    
+    /**
+	 * Display page according to a template. Path is relative to /app/template/
+	 * @param String[optional] $template path to template - default: template
+	 * @return void 
+	 */
     public function display($template = "template") {
 	    debug::timer('Loading templates');
 	    $this->template->display($template.".tpl");
     }
-    
+    /**
+	 * Set the page description. You can use this as meta description, but also for openGraph data, etc.
+	 * @param String $text description content
+	 * @return void
+	 */
     public function description($text) {
 	    $this->description = $text;
     }
     
+	/**
+	 * Add a keyword. No longer relevant to SEO, but you could find another use.
+	 * @param String $keyword keyword to add
+	 * @return void
+	 */
     public function pushKeyword($keyword) {
     	if(!empty($this->keywords)):
 	    	$keywords       = explode(', ', $this->keywords);
@@ -334,6 +441,12 @@ class page {
 	    $this->keywords = implode(', ', $keywords);
     }
     
+	/**
+	 * Adds current URL to sitemap
+	 * @param String[optional] $changefreq a literal frequency (daily, weekly...) - default: monthly
+	 * @param Float[optional] $priority a number between 0 and 1 indicating priority of indexation
+	 * @return void
+	 */
     public function sitemap($changefreq = "monthly", $priority = 0.5) {
     	if(!isset($this->sitemap[URL.get()]) && !$this->notFound && file_exists(WEBROOT.'/sitemap.xml') && is_writable(WEBROOT.'/sitemap.xml')):
 	    	$this->sitemap[URL.get()] = array(
@@ -358,19 +471,32 @@ class page {
             $dom->save(WEBROOT.'/sitemap.xml');
         endif;
     }
-		
+	
+	/**
+	 * Generic getter
+	 * @param String page attribute name
+	 * @return mixed page attribute value
+	 */
     public function get($key) {
         return $this->$key;
     }
-	
+	/**
+	 * Magic setter
+	 * @param String page attribute name
+	 * @param mixed page attribute value
+	 * @return Boolean true
+	 */
     public function __set($key, $value) {
 		$this->$key = $value;
         return true;
     }
-		
+	/**
+	 * Magic checker
+	 * @param String page attribute name
+	 * @return Boolean true if $this->key exists, false otherwise
+	 */
     public function __isset($key) {
-        return isset ($this->$key);
+        return isset($this->$key);
     }
 	
 }
-?>

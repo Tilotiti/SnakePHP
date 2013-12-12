@@ -1,7 +1,7 @@
 <?php
 
 /**
- * flushSQL: deletes SQL cache in /cache/sql/ - Use it in case of updates in the database
+ * Deletes SQL cache in /cache/sql/ - Use it in case of updates in the database
  * 
  * How to use :
  * $filename param can be either the complete hash of the request (access by query::getCacheHash), so the identified

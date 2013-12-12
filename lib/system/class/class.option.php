@@ -112,4 +112,3 @@ class option {
         $this->create = array();
     }
 }
-?>

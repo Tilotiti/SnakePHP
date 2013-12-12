@@ -1,4 +1,16 @@
 <?php
+
+/**
+ * Check a string according to predefined pattern
+ * 2 ways of use :
+ * 1) pattern is one of these strings: mail,phone,password,date,login,username,zipcode,doc,name,url
+ * 	will check string as mail, phone, etc.
+ * 2) pattern is a number : check if string is longer than pattern
+ * 
+ * @param Integer|String $pattern name of the pattern
+ * @param String $string string to check
+ * @return Array|Boolean true or equivalent if success, false otherwise
+ */
 function preg($pattern, $string = '') {
     switch($pattern):
         case 'mail':
@@ -51,4 +63,3 @@ function preg($pattern, $string = '') {
     endswitch;
     return preg_match($preg, $string);
 }
-?>
