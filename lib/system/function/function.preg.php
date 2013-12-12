@@ -1,6 +1,6 @@
 <?php
-function preg($patern, $string = '') {
-    switch($patern):
+function preg($pattern, $string = '') {
+    switch($pattern):
         case 'mail':
             $preg = "#^([a-z0-9])(([-a-z0-9._])*([a-z0-9]))*\@([a-z0-9])(([a-z0-9-])*([a-z0-9]))+(\.([a-z0-9])([-a-z0-9_-])?([a-z0-9])+)+$#i";
         break;
@@ -30,15 +30,15 @@ function preg($patern, $string = '') {
             $preg = "#^(((ht|f)tp(s?))\://)?(www.|[a-zA-Z].)[a-zA-Z0-9\-\.]+\.([a-z]{2,5})(\:[0-9]+)*(/($|[a-zA-Z0-9\.\,\;\?\'\\\+&amp;%\$#\=~_\-]+))*$#i";
         break;
         default:
-            if(is_int($patern)):
+            if(is_int($pattern)):
                 if(is_int($string)):
-                    if(empty($string) || $patern >= $string):
+                    if(empty($string) || $pattern >= $string):
                         return true;
                     else:
                         return false;
                     endif;
                 else:
-                    if($patern <= strlen($string)):
+                    if($pattern <= strlen($string)):
                         return true;
                     else:
                         return false;
