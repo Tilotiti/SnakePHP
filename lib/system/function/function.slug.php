@@ -11,7 +11,7 @@ function slug($str, $convertSpecialChars=false, $separator='-') {
 	if ($convertSpecialChars) {
 		// that may seem weird but this seems to be the better way to do it
 		$clean = htmlentities($clean,ENT_NOQUOTES,CHARSET);
-		$clean = preg_replace('/&#?([a-zA-Z0-9])[a-zA-Z0-9]*;/i', '${1}', $string);
+		$clean = preg_replace('/&#?([a-zA-Z0-9])[a-zA-Z0-9]*;/i', '${1}', $clean);
 	}
 	$clean = iconv('UTF-8', 'ASCII//TRANSLIT', $clean);
 	$clean = preg_replace("/[^a-zA-Z0-9\/_|+ -]/", '', $clean);
