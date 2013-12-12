@@ -71,7 +71,7 @@ class lang {
 	 * 
 	 * @static
 	 * @param String $code label of the error
-	 * @param Array[optional] $arg arguments for the text - @see lang::find
+	 * @param Array $arg[optional] arguments for the text - @see lang::find
 	 * @return String translation matching code and language
 	 */
     static function error($code, $arg = false) {
@@ -83,7 +83,7 @@ class lang {
 	 * 
 	 * @static
 	 * @param String $code label of the message
-	 * @param Array[optional] $arg arguments for the text - @see lang::find
+	 * @param Array $arg[optional] arguments for the text - @see lang::find
 	 * @return String translation matching code and language
 	 */
     static function success($code, $arg = false) {
@@ -95,7 +95,7 @@ class lang {
 	 * 
 	 * @static
 	 * @param String $code label of the text
-	 * @param Array[optional] $arg arguments for the text - @see lang::find
+	 * @param Array $arg[optional] arguments for the text - @see lang::find
 	 * @return String translation matching code and language
 	 */
     static function text($code, $arg = false) {
@@ -107,7 +107,7 @@ class lang {
 	 * 
 	 * @static
 	 * @param String $code label of the title
-	 * @param Array[optional] $arg arguments for the title - @see lang::find
+	 * @param Array $arg[optional] arguments for the title - @see lang::find
 	 * @return String translation matching code and language
 	 */
     static function title($code, $arg = false) {
@@ -121,7 +121,7 @@ class lang {
 	 * @remark Arguments are accessed in the template via a $mail smarty variable.
 	 * 
 	 * @param String $file name of the template (without .tpl extension)
-	 * @param Array[optional] $arg arguments for the mail
+	 * @param Array $arg[optional] arguments for the mail
 	 * 
 	 * @return String rendered e-mail 
 	 * 
@@ -151,7 +151,7 @@ class lang {
 	 * @static
 	 * @param String $type type of text
 	 * @param String $code label of the title
-	 * @param Array[optional] $arg arguments for the title
+	 * @param Array $arg[optional] arguments for the title
 	 * 
 	 * @return String translation matching type, code and language
 	 */

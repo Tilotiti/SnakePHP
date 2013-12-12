@@ -10,8 +10,8 @@
  * - erase all data : set data ID as first argument and second argument to false 
  * 
  * @param String $form identifier for your data
- * @param String|Boolean|Array[optional] $key value identifier OR data array OR false (erase whole data) - default: tells the function to return whole data
- * @param String[optional] $value new value - default: will return or erase data according to previous argument 
+ * @param String|Boolean|Array $key[optional] value identifier OR data array OR false (erase whole data) - default: tells the function to return whole data
+ * @param String $value[optional] new value - default: will return or erase data according to previous argument 
  * @return mixed depends on parameters
  */
 function save($form, $key = true, $value = false) {

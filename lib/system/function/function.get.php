@@ -6,8 +6,8 @@
  * 2) 1 parameter (integer) : returns one specific URI parameter
  * 3) 2 parameters : replace specified URI parameter with $replace param.
  * 
- * @param Integer[optional] $get URI parameter index to get - default: none (all URI)
- *  @param String[optional] $replace String which will replace specified URI parameter - default: none
+ * @param Integer $get[optional] URI parameter index to get - default: none (all URI)
+ *  @param String $replace[optional] String which will replace specified URI parameter - default: none
  */
 function get($get = '', $replace = false) {
     $uri = $_SERVER['REQUEST_URI'];

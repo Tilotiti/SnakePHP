@@ -137,7 +137,7 @@ class page {
 	/**
 	 * Adds a breadcrumb item
 	 * @param String $name text to show
-	 * @param String[optional] $url target URI - default: current
+	 * @param String $url[optional] target URI - default: current
 	 * @return void
 	 */
     public function pushAriane($name, $url = "") {
@@ -174,7 +174,7 @@ class page {
 	/**
 	 * Set title for current page (will be output in <title>)
 	 * @param String $title lang code for title
-	 * @param Array[optional] 
+	 * @param Array $array[optional] args for title
 	 */
     public function title($title, $array = false) {
         $this->title = lang::title($title, $array);
@@ -194,7 +194,7 @@ class page {
 	 * instead of $page->template. Scope would be the main smarty object, so be careful with variable names.
 	 * 
 	 * @param String $file name of sidebar (without extension)
-	 * @param String|Integer[optional] $id allow you to set a custom id to the sidebar - default: none
+	 * @param String|Integer $id[optional] allow you to set a custom id to the sidebar - default: none
 	 * @return true if sidebar added, false otherwise (missing source or template file)
 	 */
     public function pushSidebar($file, $id = false, $params = false) {
@@ -225,7 +225,7 @@ class page {
 	/**
 	 * Returns path to sidebar template(s), for smarty inclusion
 	 * If id not specified, will return all sidebars
-	 * @param Integer[optional] $id id of the sidebar to get path of - default: none
+	 * @param Integer $id[optional] id of the sidebar to get path of - default: none
 	 * @return String path to the sidebar
 	 */
     public function getSidebar($id = false) {
@@ -241,7 +241,7 @@ class page {
     }
     /**
 	 * Adds a CSS file. CSS path is relative to /webroot/css/
-	 * @param String[optional] $file css file path (without extension)
+	 * @param String $file[optional] css file path (without extension)
 	 * @return void
 	 */
     public function pushCSS($file) {
@@ -262,7 +262,7 @@ class page {
      
 	/**
 	 * Adds a JS file. JS path is relative to /webroot/js/
-	 * @param String[optional] $file js file path (without extension)
+	 * @param String $file[optional] js file path (without extension)
 	 * @return void
 	 */
     public function pushJS($file) {
@@ -288,7 +288,7 @@ class page {
 	 * first-level dispatcher. If current URL is /user/edit/15/, /user/edit/ will NOT be considered active.
 	 * 
 	 * @param $get URI (beginning with '/') or first-level dispatcher (without slash)
-	 * @param String[optional] $class output in case of active URI - default: "active"
+	 * @param String $class[optional] output in case of active URI - default: "active"
 	 */
     public function active($get, $class = 'active') {
         $get = preg_replace("`\%`isU", "(.+)?", $get);
@@ -410,7 +410,7 @@ class page {
     }
     /**
 	 * Display page according to a template. Path is relative to /app/template/
-	 * @param String[optional] $template path to template - default: template
+	 * @param String $template[optional] path to template - default: template
 	 * @return void 
 	 */
     public function display($template = "template") {
@@ -443,8 +443,8 @@ class page {
     
 	/**
 	 * Adds current URL to sitemap
-	 * @param String[optional] $changefreq a literal frequency (daily, weekly...) - default: monthly
-	 * @param Float[optional] $priority a number between 0 and 1 indicating priority of indexation
+	 * @param String $changefreq[optional] a literal frequency (daily, weekly...) - default: monthly
+	 * @param Float $priority[optional] a number between 0 and 1 indicating priority of indexation
 	 * @return void
 	 */
     public function sitemap($changefreq = "monthly", $priority = 0.5) {

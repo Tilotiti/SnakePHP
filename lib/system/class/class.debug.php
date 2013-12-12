@@ -33,8 +33,8 @@ class debug {
 	 * @static
 	 * @param Integer $errno error level (E_USER_xxx)
 	 * @param String $errstr Error message
-	 * @param String[optional] $errfile name of the file where error occurred - default: unknown
-	 * @param Integer[optional] $errline line number where error thrown - default: unknown
+	 * @param String $errfile[optional] name of the file where error occurred - default: unknown
+	 * @param Integer $errline[optional] line number where error thrown - default: unknown
 	 * @return Boolean should always return true
 	 */
     static function error($errno, $errstr, $errfile = "unknown", $errline = "unknown") {
@@ -88,7 +88,7 @@ class debug {
 	 * Dumps data in debug bar
 	 * @static
 	 * @param mixed $array any possible data
-	 * @param String[optional] $title title of the dump - default: none
+	 * @param String $title[optional] title of the dump - default: none
 	 * @return void
 	 */
     static public function dump($array, $title = false) {
@@ -140,7 +140,7 @@ class debug {
 	/**
 	 * Add a timer entry. Query timer entries are not processed if self::$timeQueries is false
 	 * @param String $title title of the entry
-	 * @param Boolean[optional] $query process (or not) $query entries - default: false
+	 * @param Boolean $query[optional] process (or not) $query entries - default: false
 	 * @return void
 	 */
     public static function timer($title, $query=false) {

@@ -2,8 +2,8 @@
 /**
  * Slugs a string
  * @param String $str string to slug
- * @param Boolean[optional] $convertSpecialChars if true, will "unaccentuate" chars (ex. é => e) - default: false
- * @param String[optional] $separator character to use to replace non-alphanum chars - default: '-'
+ * @param Boolean $convertSpecialChars[optional] if true, will "unaccentuate" chars (ex. é => e) - default: false
+ * @param String $separator[optional] character to use to replace non-alphanum chars - default: '-'
  * @return String clean string
  */
 function slug($str, $convertSpecialChars=false, $separator='-') {

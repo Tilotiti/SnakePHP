@@ -16,7 +16,7 @@ class Bruteforce {
 
 	/**
 	 * Counts, increases and returns bruteforce attempts 
-	 * @param Boolean[optional] $count	if set to false, the counter won't increase and just return the number - default: true
+	 * @param Boolean $count[optional] if set to false, the counter won't increase and just return the number - default: true
 	 * @return Integer	number bruteforce attempts
 	 */
 	public function count($count = true) {

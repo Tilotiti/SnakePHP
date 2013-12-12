@@ -8,7 +8,7 @@
 class message {
 	/**
 	 * Redirection only
-	 * @param String[optional] $uri URI to redirect to - default: current URI
+	 * @param String $uri[optional] URI to redirect to - default: current URI
 	 * @return void
 	 */
     static function blank($uri = false) {
@@ -17,8 +17,8 @@ class message {
     /**
 	 * Error message
 	 * @param String $lang lang code
-	 * @param String[optional] $uri URI to redirect to - default: current URI
-	 * @param Array[optional] $arg arguments for translated message
+	 * @param String $uri[optional] URI to redirect to - default: current URI
+	 * @param Array $arg[optional] arguments for translated message
 	 * @return void
 	 */
     static function error($lang, $uri = false, $arg = false) {
@@ -27,8 +27,8 @@ class message {
     /**
 	 * Success message
 	 * @param String $lang lang code
-	 * @param String[optional] $uri URI to redirect to - default: current URI
-	 * @param Array[optional] $arg arguments for translated message
+	 * @param String $uri[optional] URI to redirect to - default: current URI
+	 * @param Array $arg[optional] arguments for translated message
 	 * @return void
 	 */
     static function success($lang, $uri = false, $arg = false) {
@@ -37,8 +37,8 @@ class message {
     /**
 	 * Warning message
 	 * @param String $lang lang code
-	 * @param String[optional] $uri URI to redirect to - default: current URI
-	 * @param Array[optional] $arg arguments for translated message
+	 * @param String $uri[optional] URI to redirect to - default: current URI
+	 * @param Array $arg[optional] arguments for translated message
 	 * @return void
 	 */
     static function warning($lang, $uri = false, $arg = false) {
@@ -47,10 +47,10 @@ class message {
     }
     /**
 	 * Generic method for sending message
-	 * @param String[optional] $type message type - default: success
-	 * @param String[optional] $lang lang code - default: none
-	 * @param String[optional] $uri URI to redirect to - default: current URI
-	 * @param Array[optional] $arg arguments for translated message
+	 * @param String $type[optional] message type - default: success
+	 * @param String $lang[optional] lang code - default: none
+	 * @param String $uri[optional] URI to redirect to - default: current URI
+	 * @param Array $arg[optional] arguments for translated message
 	 * @return void
 	 */
     static function send($type = "success", $lang = "", $uri = false, $arg = false) {

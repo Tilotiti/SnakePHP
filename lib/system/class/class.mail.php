@@ -87,7 +87,7 @@ class mail {
 	/**
 	 * Adds a BCC addressee
 	 * @param String $mail e-mail address
-	 * @param String[optional] $name addressee name
+	 * @param String $name[optional] addressee name
 	 * @return mail $this for chaining
 	 */
     public function bcc($mail, $name = '') {
@@ -98,7 +98,7 @@ class mail {
 	/**
 	 * Adds a confirm address
 	 * @param String $mail e-mail address
-	 * @param String[optional] $name confirm name
+	 * @param String $name[optional] confirm name
 	 * @return mail $this for chaining
 	 */
     public function confirm($mail, $name = '') {
@@ -109,7 +109,7 @@ class mail {
 	/**
 	 * Adds a reply to address (if different from sender)
 	 * @param String $mail e-mail address
-	 * @param String[optional] $name reply-to name
+	 * @param String $name[optional] reply-to name
 	 * @return mail $this for chaining
 	 */
     public function replyTo($mail, $name = '') {
@@ -120,7 +120,7 @@ class mail {
 	/**
 	 * Set the mail subject
 	 * @param String $str Subject (or lang code)
-	 * @param Boolean[optional] $lang set to false if you don't want to use lang - default: true
+	 * @param Boolean $lang[optional] set to false if you don't want to use lang - default: true
 	 * @return mail $this for chaining
 	 */
     public function subject($str, $lang = true, $encode = false) {
@@ -151,8 +151,8 @@ class mail {
 	 * Set the mail body
 	 * If template used, arguments are accessed through $mail smarty variable.
 	 * @param String $str mail body OR mail template name (@see lang::mail)
-	 * @param Array[optional] $arg arguments for the template - default: none
-	 * @param Boolean[optional] $lang use templating - default: false
+	 * @param Array $arg[optional] arguments for the template - default: none
+	 * @param Boolean $lang[optional] use templating - default: false
 	 * @return mail $this for chaining
 	 */
     public function message($str, $arg = false, $lang = true) {

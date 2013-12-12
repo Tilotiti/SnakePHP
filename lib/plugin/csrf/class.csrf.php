@@ -12,7 +12,7 @@ class csrf {
 	private $name = '';
 	
 	/**
-	 * @param String[optional] $name default: empty string
+	 * @param String $name[optional] default: empty string
 	 */
 	public function __construct($name = '') {
 		if (!empty($name)):
@@ -25,7 +25,7 @@ class csrf {
 	/**
 	 * Returned a session token
 	 * @author Fabrice Lazzarotto
-	 * @param String|Boolean[optional] $name name of the token - if false just returns token - default: "token"
+	 * @param String|Boolean $name[optional] name of the token - if false just returns token - default: "token"
 	 * @return SessionnedCsrf|void void if $name given, token if not
 	 */
 	public static final function generic($name='token') {

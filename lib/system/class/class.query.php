@@ -297,7 +297,7 @@ class query {
 	 * 
 	 * @access public
 	 * @param mixed $field name of the field
-	 * @param String[optional] $value value of the field - default: ''
+	 * @param String $value[optional] value of the field - default: ''
 	 * @return query $this pour assurer la chaînabilité de la classe
 	 */
 	public function set($field = '', $value = '') {
@@ -1154,7 +1154,7 @@ class query {
 	 * 
 	 * @access public
 	 * @param mixed $field field to update
-	 * @param String[optional] $value new value - default: empty string
+	 * @param String $value[optional] new value - default: empty string
 	 * @return void
 	 */
 	public function put($field, $value='') {
