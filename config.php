@@ -22,6 +22,9 @@ define('YEAR',     2012);
 // Is this a development version?
 define('DEV',      true);
 
+// Include queries in timer ?
+define('QUERYTIMER',false);
+
 // Timezone
 define('TIMEZONE', 'Europe/Paris');
 

@@ -1,4 +1,8 @@
 <?php
+/**
+ * SnakePHP fatal error catching function.
+ * @param String $html if specified, overrides last error info - default: none
+ */
 function fatalError($html = false) {
 	$template = file_get_contents(SYSTEM.'/template/error.tpl');
 	$content = '';

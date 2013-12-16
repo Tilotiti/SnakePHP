@@ -1,6 +1,18 @@
 <?php
-function preg($patern, $string = '') {
-    switch($patern):
+
+/**
+ * Check a string according to predefined pattern
+ * 2 ways of use :
+ * 1) pattern is one of these strings: mail,phone,password,date,login,username,zipcode,doc,name,url
+ * 	will check string as mail, phone, etc.
+ * 2) pattern is a number : check if string is longer than pattern
+ * 
+ * @param Integer|String $pattern name of the pattern
+ * @param String $string string to check
+ * @return Array|Boolean true or equivalent if success, false otherwise
+ */
+function preg($pattern, $string = '') {
+    switch($pattern):
         case 'mail':
             $preg = "#^([a-z0-9])(([-a-z0-9._])*([a-z0-9]))*\@([a-z0-9])(([a-z0-9-])*([a-z0-9]))+(\.([a-z0-9])([-a-z0-9_-])?([a-z0-9])+)+$#i";
         break;
@@ -30,15 +42,15 @@ function preg($patern, $string = '') {
             $preg = "#^(((ht|f)tp(s?))\://)?(www.|[a-zA-Z].)[a-zA-Z0-9\-\.]+\.([a-z]{2,5})(\:[0-9]+)*(/($|[a-zA-Z0-9\.\,\;\?\'\\\+&amp;%\$#\=~_\-]+))*$#i";
         break;
         default:
-            if(is_int($patern)):
+            if(is_int($pattern)):
                 if(is_int($string)):
-                    if(empty($string) || $patern >= $string):
+                    if(empty($string) || $pattern >= $string):
                         return true;
                     else:
                         return false;
                     endif;
                 else:
-                    if($patern <= strlen($string)):
+                    if($pattern <= strlen($string)):
                         return true;
                     else:
                         return false;
@@ -51,4 +63,3 @@ function preg($patern, $string = '') {
     endswitch;
     return preg_match($preg, $string);
 }
-?>

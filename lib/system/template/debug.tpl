@@ -15,10 +15,14 @@
 	<!-- SQL -->
 	<div id="debugSQLContent" class="debugContent">
 		{foreach $listSQL as $sql}
-			<ul>
-            	<li><b>Request</b> :{$sql.req}</li>
+			<ul id="debugQuery{$sql.number}">
+            	<li><b>{$sql.number} - Request</b> :{$sql.req}</li>
                 <li><b>Result</b> : {$sql.count}</li>
                 <li><b>Cached</b> : {if $sql.cached}true{else}false{/if}</li>
+                {if $sql.cache}
+                <li><b>{if $sql.cache===true}Cached{else}Category{/if}</b> : {$sql.cache}</li>
+                {/if}
+                <li><b>Timer</b> : {$sql.time}s</li>
 			</ul>
 		{foreachelse}
 			<div class="empty">No SQL</div>

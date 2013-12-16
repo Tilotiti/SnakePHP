@@ -11,4 +11,4 @@ require_once 'class.csrf.php';
 
 /*
  * FYI: CSRF-token are built by two parameters: their NAME and their VALUE
-*/
+ */

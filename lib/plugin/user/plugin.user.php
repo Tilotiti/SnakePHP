@@ -1,80 +1,95 @@
 <?php
+/**
+ * User management
+ * @author Tilotiti
+ */
 class user {
     public
-        $field  = array(),
-        $change = array(),
-        $create = array(),
-        $option = array(),
-		$ok     = false;
-
-	/*
-	 * Méthode      : __construct
-	 * Description  : Constructeur de la classe user
-	 * Paramètres   :
-	 *     [$params] - (numeric) : ID de l'utilisateur
-	 *         	     - (array)   : Tableau de champs à utiliser pour un utilisateur (champs "id" obligatoire)
-	 *		         - "false"   : Utilisateur vide (faculatif)
-	 * Retour : Aucun
+	/**
+	 * Contains user data
+	 * @var Array
+	 */
+	$field  = array(),
+	/**
+	 * List of modified options
+	 * @var Array
+	 */
+	$change = array(),
+	/**
+	 * List of new options
+	 * @var Array
+	 */
+	$create = array(),
+	/**
+	 * Contains user options
+	 * @var Array
+	 */
+	$option = array(),
+	/**
+	 * True if user exists in database
+	 * @var Boolean
+	 */
+	$ok     = false;
+	
+	/**
+	 * User constructor
+	 * @param Array|Boolean|Integer [$params] user ID or user data (associative array), or false (void user) - default: false
+	 * @return void
 	 */
     public function __construct($params = false) {
-        
+	
 		// Si un id est renseigné, on va chercher les informations correspondantes à l'utilisateur
-        if(is_numeric($params)):
-            $user = new query();
-            $user->select()
-                 ->from('user')
-                 ->where('id', '=', $params)
-                 ->exec("FIRST");
-				 
-            if($user->ok()):
+		if(is_numeric($params)):
+		    $user = new query();
+		    $user->select()
+		    	 ->from('user')
+		    	 ->where('id', '=', $params)
+		    	 ->exec("FIRST");
+
+	    if($user->ok()):
 				$this->ok     = true;
-                $this->field  = $user->get();
-            endif;
-		
-		// Si un tableau est renseigné, on va charger le tableau comme informations utilisateur
-        elseif(is_array($params)):
+				$this->field  = $user->get();
+	    endif;
 			
+		// Si un tableau est renseigné, on va charger le tableau comme informations utilisateur
+		elseif(is_array($params)):
 			// L'id de l'utilisateur n'est pas optionnel
-            if(array_key_exists('id', $params)):
+		    if(array_key_exists('id', $params)):
 				$this->ok    = true;
-                $this->field = $params;
-            endif;
-        endif;
+				$this->field = $params;
+		    endif;
+		endif;
     }
 
-	/*
-	 * Méthode     : save
-	 * Description : Enregistre l'utilisateur instancié
-	 * Paramètre   : Aucun
-	 * Retour :
-	 *     - (bool) "true"  : Sauvegarde réussie
-	 *     - (bool) "false" : Sauvegarde échouée, l'utilisateur n'existe pas
+	/**
+	 * Save the user instance in database
+	 * @return Boolean true if successfully saved, false otherwise
 	 */
     public function save() {
-        
+	
 		// Si l'utilisateur existe, on le met à jour
 		if($this->ok()):
 			
 			// Mise à jour de l'utilisateur
-	        $user = new query();
-	        $user->update('user');
-	
-	        foreach($this->field as $key => $value):
-	        	switch($key):
+			$user = new query();
+			$user->update('user');
+		
+			foreach($this->field as $key => $value):
+				switch($key):
 					case "id":
 					case "login":
-						// On ne modifie jamais l'ID de l'utilisateur et on enregistre pas le temps de mise à jour de la session s'il y en a une.
-						break;
+					// On ne modifie jamais l'ID de l'utilisateur et on enregistre pas le temps de mise à jour de la session s'il y en a une.
+					break;
 					default:
 						// On modifie la ligne
 						$user->set($key, trim($value));
-						break;
+					break;
 				endswitch;
-	        endforeach;
-	
-	        $user->where('id', '=', $this->get('id'));
-	        $user->exec();
-			
+			endforeach;
+		
+			$user->where('id', '=', $this->get('id'));
+			$user->exec();
+				
 			//Mise à jour des options
 			foreach($this->create as $create):
 				$query = new query();
@@ -93,19 +108,19 @@ class user {
 					  ->where('key', '=', $change)
 					  ->exec();
 			endforeach;
-	
-	        return true;
+		
+			return true;
 		
 		// Si l'utilisateur n'existe pas, impossible de le mettre à jour, on retourne une erreur.
 		else:
-	
-	        $user = new query();
-	        $user->insert('user')
-	             ->set('username', $this->get('username'));
-				 
-	        $id = $user->exec();
-	
-	        $this->set('id', $id);
+		
+			$user = new query();
+			$user->insert('user')
+			     ->set('username', $this->get('username'));
+					 
+			$id = $user->exec();
+		
+			$this->set('id', $id);
 			$this->ok = true;
 			
 			$this->save();
@@ -114,8 +129,8 @@ class user {
 
     }
 	
-	/*
-	 * Méthode     : option
+	/**
+	 * 
 	 * Description : Retourne ou modifie les paramètres personnalisés de l'utilisateur.
 	 * Paramètres  :
 	 *     [$key]   - (string) : Nom de l'option
@@ -123,43 +138,43 @@ class user {
 	 * Retour      :
 	 *     - (bool) "true"  : l'option a été créée
 	 *     - (bool) "false" : l'option n'existe pas
-	 *     - (array)        : Tableau associatif de toutes les fonctions si la méthode est appelée sans aucun paramètre
+	 *     - (array)	: Tableau associatif de toutes les fonctions si la méthode est appelée sans aucun paramètre
 	 *     - (string)       : Valeur l'option dans la BDD si le paramètre $value n'est pas renseignée lors de l'appel de la méthode.
 	 */
     public function option($key = false, $value = false) {
-        if(count($this->option) == 0):
-            $req = new query();
-            $req->select('key','value')
-                ->from("user_option")
-                ->where('owner', '=', $this->get('id'))
-                ->exec("ALL");
-
-            while($result = $req->next()):
-                $this->option[$req->get("key")] = $req->get("value");
-            endwhile;
-        endif;
-
+		if(count($this->option) == 0):
+		    $req = new query();
+		    $req->select('key','value')
+				->from("user_option")
+				->where('owner', '=', $this->get('id'))
+				->exec("ALL");
+	
+		    while($result = $req->next()):
+				$this->option[$req->get("key")] = $req->get("value");
+		    endwhile;
+		endif;
+	
 		if(!$key):
 			return $this->option;
 		elseif(!$value):
-            if(isset($this->option[$key])):
-                return $this->option[$key];
-            else:
-                return false;
-            endif;
-        else:
-            if(!isset($this->option[$key])):
-                $this->create[] = $key;
-                $this->option[$key] = $value;
-                return true;
-            elseif($this->option[$key] != $value):
-                $this->change[] = $key;
-                $this->option[$key] = $value;
-                return true;
-            else:
-                return false;
-            endif;
-        endif;
+	    	if(isset($this->option[$key])):
+				return $this->option[$key];
+	    	else:
+				return false;
+	    	endif;
+		else:
+	    	if(!isset($this->option[$key])):
+				$this->create[] = $key;
+				$this->option[$key] = $value;
+				return true;
+			elseif($this->option[$key] != $value):
+				$this->change[] = $key;
+				$this->option[$key] = $value;
+				return true;
+    		else:
+				return false;
+	    	endif;
+		endif;
     }
 
 
@@ -171,18 +186,18 @@ class user {
 	 * Retour :
 	 *     - (bool) "false" : le champs n'existe pas
 	 *     - (string)       : Valeur du champs
-	 *     - (array)        : Tableau associatif complet des champs de l'utilisateur
+	 *     - (array)	: Tableau associatif complet des champs de l'utilisateur
 	 */
     public function get($key = false) {
-        if($key !== false):
-            if(array_key_exists($key, $this->field)):
-                return $this->field[$key];
-            else:
-                return false;
-            endif;
-        else:
-            return $this->field;
-        endif;
+		if($key !== false):
+		    if(array_key_exists($key, $this->field)):
+				return $this->field[$key];
+		    else:
+				return false;
+		    endif;
+		else:
+		    return $this->field;
+		endif;
     }
 	
 	/*
@@ -194,8 +209,8 @@ class user {
 	 * Retour : Aucun
 	 */
     public function set($key, $value) {
-        $this->field[$key] = $value;
-        return true;
+		$this->field[$key] = $value;
+		return true;
     }
 	
 	/*

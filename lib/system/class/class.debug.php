@@ -1,5 +1,11 @@
 <?php
+/**
+ * Debug manager
+ * Catch errors and log into debug bar and log files
+ * @author Tilotiti
+ */
 class debug {
+	
     static $html;
     static $error;
     static $debug;
@@ -7,15 +13,31 @@ class debug {
     static $dump;
     static $start = 0;
     static $timer = array();
+	static $timeQueries = false;
     
-    public function __construct() {
+	/**
+	 * Initialise the debug object
+	 * If you don't include queries in timer, time of each query will even so appear in the SQL panel
+	 * @param Boolean $queries set to true to include queries in timer - default: false
+	 */
+    public function __construct($timeQueries=false) {
     	if(PAGE_LOADER):
 		    error_reporting(0);
 		    set_error_handler(array($this, 'error'));
         endif;
+		self::$timeQueries = $timeQueries;
     }
     
-    static function error($errno, $errstr, $errfile = "unknow", $errline = "unknow") {
+	/**
+	 * Adds an error log to debug bar and log file
+	 * @static
+	 * @param Integer $errno error level (E_USER_xxx)
+	 * @param String $errstr Error message
+	 * @param String $errfile[optional] name of the file where error occurred - default: unknown
+	 * @param Integer $errline[optional] line number where error thrown - default: unknown
+	 * @return Boolean should always return true
+	 */
+    static function error($errno, $errstr, $errfile = "unknown", $errline = "unknown") {
         switch ($errno):
             case E_USER_ERROR:
             	$error  = '';
@@ -62,6 +84,13 @@ class debug {
         return true;
     }
 
+	/**
+	 * Dumps data in debug bar
+	 * @static
+	 * @param mixed $array any possible data
+	 * @param String $title[optional] title of the dump - default: none
+	 * @return void
+	 */
     static public function dump($array, $title = false) {
     	if(PAGE_LOADER):
 		    $dump = array();
@@ -85,16 +114,40 @@ class debug {
         endif;
     }
     
-    public static function sql($req, $count, $cached) {
+    /**
+	 * Dumps SQL queries with some information
+	 * @param String $req raw SQL query
+	 * @param Integer $count number of rows returned or updated
+	 * @param Boolean $cached was this request previously in cache
+	 * @param Boolean|String $cache true if "simple-cached", name of the category if "category-cached", false otherwise
+	 * @param Float $time time needed for query execution (if cached, time to read the cache)
+	 * @return void
+	 */
+    public static function sql($req, $count, $cached, $cache, $time) {
 		$sql           = array();
+		$sql['number'] = query::$queryNumber;
         $sql['req']    = $req;
         $sql['count']  = $count;
+        if ($cache!==false) {
+        	$sql['cache'] = ($cache===true)?'TRUE':"\"{$cache}\"";
+        }
         $sql['cached'] = $cached;
+		$sql['time']   = $time;
         
         self::$sql[] = $sql;
     }
     
-    public static function timer($title) {
+	/**
+	 * Add a timer entry. Query timer entries are not processed if self::$timeQueries is false
+	 * @param String $title title of the entry
+	 * @param Boolean $query[optional] process (or not) $query entries - default: false
+	 * @return void
+	 */
+    public static function timer($title, $query=false) {
+    	if ($query && !self::$timeQueries):
+    		return;
+		endif;
+		
 		$time = explode(" ", microtime());
         $time = ($time[1] + $time[0]);
         

@@ -4,9 +4,12 @@
  * Description : Protects user from bruteforce attacks
  * Autor : Pierre de Vésian
  * Site : https://twitter.com/pvesian
-*/
+ */
 
-// Maximum bruteforce attacks
+/**
+ * Maximum bruteforce attacks
+ * @var Integer
+ */
 define('BRUTEFORCEMAX', 10); 
 
 // Load the bruteforce class
