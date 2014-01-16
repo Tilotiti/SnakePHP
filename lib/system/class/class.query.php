@@ -1136,6 +1136,12 @@ class query {
 				endif;
 			 endforeach;
 			 
+			 
+                
+			 foreach($this->alias as $alias):
+	                	$array[$alias] = $this->line[$alias];
+	                 endforeach;
+			 
 			 if(count($array) == 0):
 				$return = false;
 			 else:
