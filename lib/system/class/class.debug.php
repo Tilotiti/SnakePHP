@@ -128,9 +128,7 @@ class debug {
 		$sql['number'] = query::$queryNumber;
         $sql['req']    = $req;
         $sql['count']  = $count;
-        if ($cache!==false) {
-        	$sql['cache'] = ($cache===true)?'TRUE':"\"{$cache}\"";
-        }
+    	$sql['cache']  = $cache;
         $sql['cached'] = $cached;
 		$sql['time']   = $time;
         
