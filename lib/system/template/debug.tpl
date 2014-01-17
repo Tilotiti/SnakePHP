@@ -19,9 +19,15 @@
             	<li><b>{$sql.number} - Request</b> :{$sql.req}</li>
                 <li><b>Result</b> : {$sql.count}</li>
                 <li><b>Cached</b> : {if $sql.cached}true{else}false{/if}</li>
-                {if $sql.cache}
-                <li><b>{if $sql.cache===true}Cached{else}Category{/if}</b> : {$sql.cache}</li>
-                {/if}
+                <li><b>{if ($sql.cache===true || $sql.cache===false)}Cache{else}Category{/if}</b> :
+                	{if $sql.cache===true}
+                	true
+                	{elseif $sql.cache===false}
+                	false
+                	{else}
+                	"{$sql.cache}"
+                	{/if}
+                </li>
                 <li><b>Timer</b> : {$sql.time}s</li>
 			</ul>
 		{foreachelse}

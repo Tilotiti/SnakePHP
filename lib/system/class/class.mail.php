@@ -1,6 +1,6 @@
 <?php
 /**
- * Mailer : send mail via swiftMailer or php function mail()
+ * Mailer : send mail via php function mail()
  * @see lang::mail
  * @author Tilotiti
  */
@@ -223,66 +223,27 @@ class mail {
 
 	/**
 	 * Send the mail
-	 * @remarks if sendmail found, will use swiftMailer (@see mail::swiftSend), otherwise php mail()
 	 * @return number of mails sent
 	 */
     public function send() {
-    	if (!is_file('/usr/sbin/sendmail')) {
-	        $this->header("Bcc", $this->convertmail($this->bcc));
-	        $this->header("Cc", $this->convertmail($this->cc));
-	        $this->header("Reply-To", $this->convertmail($this->replyto));
-	        $this->header("X-Confirm-Reading-To", $this->convertmail($this->confirm));
-	        $this->header("MIME-Version", "1.0");
-	        $this->header("Content-type", 'text/html; charset="'.CHARSET.'"');
-	
-	        $headers = $this->convertheader($this->header);
-	
-	        $this->subject = mb_encode_mimeheader($this->subject, CHARSET, "Q");
-	
-	        $return = 0;
-	
-	        foreach($this->to as $to):
-	            $return = $return + mail($to, $this->subject, $this->message, $headers);
-	        endforeach;
-			
-	        return $return;
-		}
-		else {
-			return $this->swiftSend();
-		}
+        $this->header("Bcc", $this->convertmail($this->bcc));
+        $this->header("Cc", $this->convertmail($this->cc));
+        $this->header("Reply-To", $this->convertmail($this->replyto));
+        $this->header("X-Confirm-Reading-To", $this->convertmail($this->confirm));
+        $this->header("MIME-Version", "1.0");
+        $this->header("Content-type", 'text/html; charset="'.CHARSET.'"');
+
+        $headers = $this->convertheader($this->header);
+
+        $this->subject = mb_encode_mimeheader($this->subject, CHARSET, "Q");
+
+        $return = 0;
+
+        foreach($this->to as $to):
+            $return = $return + mail($to, $this->subject, $this->message, $headers);
+        endforeach;
+		
+        return $return;
     }
-	
-	/**
-	 * Called by mail::send if sendmail found
-	 * @return number of mails sent
-	 */
-	private function swiftSend() {
-		$message = Swift_Message::newInstance();
-		
-		$message->setSubject($this->subject)
-	  			->setFrom($this->from)
-	  			->setTo($this->to)
-	  			->setBody($this->message,'text/html',CHARSET);
-	  			
-		if ($this->bcc && count((array) $this->bcc)>0) {
-			$message->setBcc((array) $this->bcc);
-		}
-		if ($this->cc && count((array) $this->cc)>0) {
-			$message->setCc((array) $this->cc);
-		}
-		if ($this->replyto && count((array) $this->replyto)>0) {
-			$message->setReplyTo((array) $this->replyto);
-		}
-		if ($this->confirm && count((array) $this->confirm)>0) {
-			$message->setReadReceiptTo($this->confirm);
-		}
-		// use MTA
-		$transport = Swift_SendmailTransport::newInstance('/usr/sbin/sendmail -t');
-		$mailer = Swift_Mailer::newInstance($transport);
-		
-		return $mailer->send($message);
-	}
-	
-	// TODO attachments
 	
 }
