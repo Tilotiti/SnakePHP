@@ -118,6 +118,9 @@ a[href^='http']:visited:focus, a[href^='http']:visited:hover {
 #debug .badge-info {
   background-color: #4ab0ce;
 }
+#debug .badge-important {
+  background-color: rgb(185, 74, 72);
+}
 
 /*
  * Cropbox
