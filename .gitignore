@@ -7,3 +7,4 @@ webroot/sitemap.xml
 .DS_Store
 .project
 lang/*/*.xml
+~*

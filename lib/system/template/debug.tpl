@@ -73,42 +73,48 @@
 		</ul>
 	</div>
 </div>
-<div id="debug" class="navbar navbar-fixed-bottom">
-	<div class="navbar-inner">
-		<div class="container">
-			<span class="brand" href="#">Debug</span>
-			<ul class="nav">
-				<!-- Error -->
-				<li id="debugError">
-					<a href="#">
-						Error <span class="badge {$badge.error.type}">{$badge.error.count}</span>
-					</a>
-				</li>
-				<!-- SQL -->
-				<li id="debugSQL">
-					<a href="#">
-						SQL <span class="badge {$badge.sql.type}">{$badge.sql.count}</span>
-					</a>
-				</li>
-				<!-- Dump -->
-				<li id="debugDump">
-					<a href="#">
-						Dump <span class="badge {$badge.dump.type}">{$badge.dump.count}</span>
-					</a>
-				</li>
-				<!-- Global -->
-				<li id="debugGlobal">
-					<a href="#">
-						Global <span class="badge badge-info">3</span>
-					</a>
-				</li>
-				<!-- Dump -->
-				<li id="debugTimer">
-					<a href="#">
-						Timer <span class="badge {$badge.timer.type}">{$badge.timer.count}</span>
-					</a>
-				</li>
-			</ul>
-		</div>
+<div id="debug" class="navbar navbar-default navbar-fixed-bottom">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#debug-navbar">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="#">Debug</a>
+    </div>
+	<div class="collapse navbar-collapse" id="debug-navbar">
+		<ul class="nav navbar-nav">
+			<!-- Error -->
+			<li id="debugError">
+				<a href="#">
+					Error <span class="badge {$badge.error.type}">{$badge.error.count}</span>
+				</a>
+			</li>
+			<!-- SQL -->
+			<li id="debugSQL">
+				<a href="#">
+					SQL <span class="badge {$badge.sql.type}">{$badge.sql.count}</span>
+				</a>
+			</li>
+			<!-- Dump -->
+			<li id="debugDump">
+				<a href="#">
+					Dump <span class="badge {$badge.dump.type}">{$badge.dump.count}</span>
+				</a>
+			</li>
+			<!-- Global -->
+			<li id="debugGlobal">
+				<a href="#">
+					Global <span class="badge badge-info">3</span>
+				</a>
+			</li>
+			<!-- Dump -->
+			<li id="debugTimer">
+				<a href="#">
+					Timer <span class="badge {$badge.timer.type}">{$badge.timer.count}</span>
+				</a>
+			</li>
+		</ul>
 	</div>
 </div>
