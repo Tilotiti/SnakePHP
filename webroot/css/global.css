@@ -34,7 +34,7 @@ a img {
 }
 
 
-a:hover, a:focus {
+a:hover, a:focus, .navbar a, .navbar a:link {
 	color: rgb(60,140,200);
 }
 
