@@ -63,7 +63,7 @@
 				<li>
 	            	<span class="timerTitle"><b>{$timer.title}</b></span>
 	                <div class="progress">
-	                	<div class="bar" style="width: {$timer.pourcent}%"></div>
+	                	<div class="progress-bar" style="width: {$timer.pourcent}%"></div>
 	                </div>
 	                <span class="timerSeconde">{$timer.time} seconds</span>
 				</li>
