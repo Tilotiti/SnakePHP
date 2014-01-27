@@ -1290,7 +1290,7 @@ class query {
 		
 		$center = '<li class="disabled"><a href="'.get().'">'.lang::text('pagination:page', $text).'</a></li>';
 
-		$page->template($variable, '<div class="pagination pagination-centered"><ul>'.$start.$prev.$center.$next.$end.'</ul></div>');
+		$page->template($variable, '<ul class="pager">'.$start.$prev.$center.$next.$end.'</ul>');
 		
 		return $this;
 	}
