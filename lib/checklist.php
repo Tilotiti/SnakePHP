@@ -32,13 +32,3 @@ endif;
 if(!is_writable(LOG)):
 	fatalError("The folder <code>".LOG."</code> must be writable.");
 endif;
-
-// LIB is NOT writable
-if(is_writable(LIB)):
-	fatalError("The folder <code>".LIB."</code> must <b>not</b> be writable.");
-endif;
-
-// APP is NOT writable
-if(is_writable(APP)):
-	fatalError("The folder <code>".APP."</code> must <b>not</b> be writable.");
-endif;
