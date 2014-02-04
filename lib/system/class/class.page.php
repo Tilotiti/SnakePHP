@@ -20,14 +20,12 @@ class page {
         $sidebar     = array(),
         $JS          = array(),
         $CSS         = array(),
-        $sitemap     = array(),
         $time        = array();
 	/**
 	 * Constructor - initialise :
 	 * - page title (@see get)
 	 * - main smarty template
 	 * - session variables
-	 * - sitemap
 	 */
     public function __construct() {
 
@@ -45,18 +43,6 @@ class page {
         isset($_SESSION['error'])   or $_SESSION['error']   = false;
         isset($_SESSION['save'])    or $_SESSION['save']    = false;
         isset($_SESSION['message']) or $_SESSION['message'] = false;
-	    
-        // Génération du siteMap
-        if(file_exists(WEBROOT.'/sitemap.xml')):
-	        $xml = simplexml_load_file(WEBROOT.'/sitemap.xml', 'SimpleXMLElement', LIBXML_NOCDATA);
-	        foreach($xml->url as $url):
-	            $this->sitemap[(string)$url->loc] = array(
-	                'lastmod'     => (string) $url->lasmod,
-	                'changefreq' => (string) $url->changefreq,
-	                'priority'   => (string) $url->priority,
-	            );
-	        endforeach;
-        endif;
         
     }
 	
@@ -64,7 +50,7 @@ class page {
 	 * Dispatcher function : parse URI to find matching php file
 	 * @param String $path relative URI to parse
 	 */
-    public function dispatcher($path, $cat = '') {
+    public function dispatcher($path) {
 
         $g = explode('/', $path);
         $nb = count($g)-1;
@@ -93,7 +79,6 @@ class page {
         endif;
 
         $this->templateTPL = substr($path.$page, 1);
-        $this->cat         = $cat;
         $this->name        = get($nb);
         
         return SOURCE.'/'.$path.$page.'.php';
@@ -151,24 +136,32 @@ class page {
 	 * @return void
 	 */
     public function ariane($url = "") {
+            
+        $html  = '<ol class="breadcrumb">';
         
-        echo '<a href="/">'.lang::text("ariane").'</a>';
-        echo lang::text('ariane:separator');
-        echo '<a href="/">'.lang::title("index").'</a>';
-
+        $html .= '<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+        		      <a href="/" rel="home" itemprop="url" title="'.lang::title("index").'">
+        		          <span itemprop="title">'.lang::title("index").'</span>
+        		      </a>
+        		  </li>';
+        		  
         if(is_array($this->ariane)):
             foreach($this->ariane as $fil):
-                if(empty($fil['url'])):
-                    echo lang::text('ariane:separator').' '.lang::title($fil['name']);
-                else:
-                    echo lang::text('ariane:separator').' <a href="'.$fil['url'].'">'.lang::title($fil['name']).'</a>';
-                endif;
+                $html .= '<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+		        		      <a href="'.$fil['url'].' itemprop="url" title="'.lang::title($fil['name']).'">
+		        		          <span itemprop="title">'.lang::title($fil['name']).'</span>
+		        		      </a>
+		        		  </li>';
             endforeach;
         endif;
-
-        if(get(1) != "index"):
-            echo lang::text('ariane:separator').' <a href="'.get().'" class="current">'.$this->title.'</a>';
+        
+        if($this->templateTPL != 'index'):
+        	$html .= '<li class="active">'.$this->title.'</li>';
         endif;
+        
+        $html .= '</ol>';
+        
+        return $html;
     }
     
 	/**
@@ -441,36 +434,6 @@ class page {
 	    $this->keywords = implode(', ', $keywords);
     }
     
-	/**
-	 * Adds current URL to sitemap
-	 * @param String $changefreq[optional] a literal frequency (daily, weekly...) - default: monthly
-	 * @param Float $priority[optional] a number between 0 and 1 indicating priority of indexation
-	 * @return void
-	 */
-    public function sitemap($changefreq = "monthly", $priority = 0.5) {
-    	if(!isset($this->sitemap[URL.get()]) && !$this->notFound && file_exists(WEBROOT.'/sitemap.xml') && is_writable(WEBROOT.'/sitemap.xml')):
-	    	$this->sitemap[URL.get()] = array(
-        		'lastmod'    => date('Y-m-d'),
-        		'changefreq' => $changefreq,
-        		'priority'   => $priority
-        	);
-        	   	
-        	$xml = simplexml_load_file(WEBROOT.'/sitemap.xml');
-            $url = $xml->addChild('url');
-            
-            $url->addChild('loc',        URL.get());
-            $url->addChild('lastmod',    date('Y-m-d'));
-            $url->addChild('changefreq', $changefreq);
-            $url->addChild('priority',   $priority);
-            
-            $dom = new DOMDocument('1.0');
-            $dom->preserveWhiteSpace = false;
-            $dom->formatOutput = true;
-            $dom->loadXML($xml->asXML());
-            
-            $dom->save(WEBROOT.'/sitemap.xml');
-        endif;
-    }
 	
 	/**
 	 * Generic getter

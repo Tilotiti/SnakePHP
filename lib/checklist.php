@@ -18,10 +18,10 @@ $error = !is_writable(FILE) ? "The folder <code>".FILE."</code> must be writable
 $error = !is_writable(LOG) ? "The folder <code>".LOG."</code> must be writable. Please, make a <code>CHMOD 777</code> on it." : $error;
 
 // /lib/ is NOT writable
-$error = is_writable(LIB) ? "The folder <code>".LIB."</code> must be writable. Please, make a <code>CHMOD 644</code> on it." : $error;
+$error = is_writable(LIB) ? "The folder <code>".LIB."</code> must <b>not</b> be writable. Please, make a <code>CHMOD 644</code> on it." : $error;
 
 // /app/ is NOT writable
-$error = is_writable(APP) ? "The folder <code>".APP."</code> must be writable. Please, make a <code>CHMOD 644</code> on it." : $error;
+$error = is_writable(APP) ? "The folder <code>".APP."</code> must <b>not</b> be writable. Please, make a <code>CHMOD 644</code> on it." : $error;
 
 // Trigger the fatal Error
 if($error != false):
