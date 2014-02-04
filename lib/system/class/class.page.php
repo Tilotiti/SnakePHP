@@ -75,11 +75,7 @@ class page {
 	 * @return void
 	 */
     public function copyright() {
-        if(YEAR == date('Y')):
-            echo '&copy; <a href="'.URL.'">'.SITE.'</a> | '.date('Y');
-        else:
-            echo '&copy; <a href="'.URL.'">'.SITE.'</a> | '.YEAR.' - '.date('Y');
-        endif;
+        echo '&copy; <a href="'.URL.'">'.SITE.'</a> | '.date('Y');
     }
 
 	/**
@@ -98,7 +94,6 @@ class page {
         echo "\n"."<!--"."\n";
         echo "##############################################################"."\n";
         echo "######## Developped with SnakePHP                      #######"."\n";
-        echo "######## Web :    http://www.SnakePHP.net              #######"."\n";
         echo "######## Github : https://github.com/Tilotiti/SnakePHP #######"."\n";
         echo "##############################################################"."\n";
         echo "-->"."\n";
@@ -191,7 +186,7 @@ class page {
             endif;
             
             if(file_exists(SOURCE.'/sidebar/'.$file.'.php')):
-                global $template, $user;
+                global $user;
                 include_once SOURCE.'/sidebar/'.$file.'.php';
                 return true;
             else:

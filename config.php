@@ -7,23 +7,14 @@ define('ROOT',      $_SERVER['DOCUMENT_ROOT']);
 // Your application's name
 define('SITE',     'SnakePHP');
 
-// Your application's version
-define('VERSION', '0.9');
-
 // Your application's URL
 define('URL',      'http://snakephp.dev');
 
 // Your application's charset
 define('CHARSET',  'utf-8');
 
-// Your application's first year of development
-define('YEAR',     2012);
-
 // Is this a development version?
 define('DEV',      true);
-
-// Include queries in timer ?
-define('QUERYTIMER',false);
 
 // Timezone
 define('TIMEZONE', 'Europe/Paris');
@@ -51,6 +42,8 @@ define('DBPREF',  'snake_');
 // SQL-cache lifetime, default: 20min
 define('SQLCACHETIME', 1200);
 
+// Include queries in timer ?
+define('QUERYTIMER',false);
 
 /* Directories */
 define('APP',        ROOT    .'/app');
