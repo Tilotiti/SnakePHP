@@ -1,4 +1,5 @@
 <link rel="stylesheet" media="screen" type="text/css" href="/css/snakephp/debug.css" />
+<script src="/js/snakephp/debug.js"></script>
 <div id="debugContent">
 	<!-- Error -->
 	<div id="debugErrorContent" class="debugContent">
