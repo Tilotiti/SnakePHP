@@ -15,12 +15,12 @@ class page {
         $keywords    = '',
         $year        = 0,
         $template    = false,
-        $notFound    = false,
         $assign      = array(),
         $sidebar     = array(),
         $JS          = array(),
         $CSS         = array(),
         $time        = array();
+        
 	/**
 	 * Constructor - initialise :
 	 * - page title (@see get)
@@ -61,15 +61,6 @@ class page {
         // On inclue la page demandée si elle existe
         if(!file_exists(SOURCE.'/'.$path.$page.'.php')):
             $page = "index";
-            $this->notFound = true;
-            header("HTTP/1.0 404 Not Found");
-        endif;
-        
-        // On redirige en cas d'erreur (La page TPL n'existe pas)
-        if(!file_exists(TEMPLATE.$path.$page.'.tpl')):
-            $page = "index";
-            $this->notFound = true;
-            header("HTTP/1.0 404 Not Found");
         endif;
 
         $this->templateTPL = substr($path.$page, 1);
