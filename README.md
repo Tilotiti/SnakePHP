@@ -14,7 +14,6 @@ Requirements & Dependencies
 2. MySQL
 3. PHP5
 4. PDO class
-5. Found another one?
 
 Quick install
 ========
@@ -26,6 +25,5 @@ Quick install
 	* /cache/
 	* /lang/
 	* /log/
-	* /webroot/sitemap.xml
 5. Give execution rights to /index.php
 6. You can now develop web applications with SnakePHP!
