@@ -43,11 +43,11 @@ class ajax {
         endif;
 
         // On inclue la page demandée si elle existe
-        if(!file_exists(WEBROOT.'/ajax/'.$path.$page.'.php')):
+        if(!file_exists(AJAX.$path.$page.'.php')):
             $page = "index";
         endif;
         
-        return WEBROOT.'/ajax/'.$path.$page.'.php';
+        return AJAX.$path.$page.'.php';
 	}
 	
 	public function send($var = false) {

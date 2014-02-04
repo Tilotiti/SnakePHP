@@ -58,3 +58,4 @@ define('SMARTY_DIR', SYSTEM  .'/class/smarty/');
 define('FILE',       WEBROOT .'/file');
 define('TEMPLATE',   APP     .'/template');
 define('SOURCE',     APP     .'/source/');
+define('AJAX',       APP     .'/ajax/');
