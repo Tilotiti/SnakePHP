@@ -8,7 +8,6 @@ class page {
         $site        = '',
         $mail        = '',
         $name        = '',
-        $cat         = '',
         $templateTPL = '',
         $ariane      = '',
         $title       = '',
@@ -17,6 +16,7 @@ class page {
         $year        = 0,
         $template    = false,
         $notFound    = false,
+        $assign      = array(),
         $sidebar     = array(),
         $JS          = array(),
         $CSS         = array(),
@@ -24,7 +24,6 @@ class page {
 	/**
 	 * Constructor - initialise :
 	 * - page title (@see get)
-	 * - main smarty template
 	 * - session variables
 	 */
     public function __construct() {
@@ -33,11 +32,6 @@ class page {
         
         // Set a title by default
         $this->title = get(1);
-        
-        // initiation de smarty
-        $this->template               = new smarty();
-        $this->template->template_dir = TEMPLATE;
-        $this->template->compile_dir  = CACHE;
 	    
         // Définition des sessions
         isset($_SESSION['error'])   or $_SESSION['error']   = false;
@@ -301,9 +295,7 @@ class page {
 	    	$bar     = ""; // Affichage de la barre
 	    	$content = ""; // Affichage du contenu
 	    	
-	    	$template = new smarty();
-	        $template->template_dir = SYSTEM.'/template/';
-	        $template->compile_dir  = CACHE;
+	    	$template = new template(SYSTEM.'/template/debug.tpl');
 	        
 	        $badge = array();
 	        
@@ -380,7 +372,8 @@ class page {
 	    	$template->assign('listTimer', $listTimer);
 	    	
 	    	$template->assign('badge', $badge);
-	        return $template->fetch('debug.tpl');
+	    	
+	        return $template->display();
 	    	
 	    endif;
     }
@@ -391,7 +384,7 @@ class page {
 	 * @return void
 	 */
     public function template($assign, $var) {
-	    $this->template->assign($assign, $var);
+	    $this->assign[$assign] = $var;
     }
 
 	/**
@@ -401,14 +394,29 @@ class page {
     public function setTemplate($file) { // is this useful/relevant ?
 	    $this->templateTPL = $file;
     }
+    
     /**
 	 * Display page according to a template. Path is relative to /app/template/
 	 * @param String $template[optional] path to template - default: template
 	 * @return void 
 	 */
-    public function display($template = "template") {
-	    debug::timer('Loading templates');
-	    $this->template->display($template.".tpl");
+    public function display($template = false) {
+    
+    	if(!$template):
+    		$template = $this->templateTPL;
+    	endif;
+    
+	    $file = TEMPLATE.'/'.$template.".tpl";
+	    
+	    debug::timer('Loading template "'.$template.'.tpl"');
+	    	    
+	    $template = new template($file);
+	    
+	    foreach($this->assign as $key => $value):
+	    	$template->assign($key, $value);
+	    endforeach;
+	    
+	    $template->display(true);
     }
     /**
 	 * Set the page description. You can use this as meta description, but also for openGraph data, etc.

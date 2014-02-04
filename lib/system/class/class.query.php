@@ -114,8 +114,14 @@ class query {
 			$this->error = true;
 		endif;
 		
-		if (is_string($cache) || $cache):
+		if(is_string($cache) || $cache):
 			$this->cache = $cache;
+			
+			if(!is_dir(CACHE.'/sql')):
+				if(!mkdir(CACHE.'/sql')):
+					$this->cache = false;
+				endif;
+			endif;
 		endif;
 	}
 
@@ -949,7 +955,7 @@ class query {
 					// Cache verification
 					if($this->cache):
 						// Already cached
-						$file = SQLCACHE.'/'.$cachePref.md5($req).'.cache';
+						$file = CACHE.'/sql/'.$cachePref.md5($req).'.cache';
 						$this->cached = false;
 						
 						// Cache exists and not too old
@@ -966,12 +972,12 @@ class query {
 						
 						// Must caching the request
 						if($this->cache):
-							$file = fopen(SQLCACHE.'/'.$cachePref.md5($req).'.cache', 'w+');
+							$file = fopen(CACHE.'/sql/'.$cachePref.md5($req).'.cache', 'w+');
 							fwrite($file, serialize($results));
 							fclose($file);
 						endif;
 					else:
-						$results = unserialize(file_get_contents(SQLCACHE.'/'.$cachePref.md5($req).'.cache'));
+						$results = unserialize(file_get_contents(CACHE.'/sql/'.$cachePref.md5($req).'.cache'));
 					endif;
 					
 					if ($this->cache) {

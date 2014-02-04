@@ -1,0 +1,68 @@
+/*
+ * Debug Bar
+ */
+
+#debugContent {
+	position: fixed;
+	bottom: 49px;
+	background-color: #ccc;
+	border: solid 1px #aaa;
+	padding: 0;
+	color: #333;
+	width: 100%;
+	display: none;
+	left: 0;
+}
+
+.debugContent {
+	max-height: 400px;
+	overflow-y: auto;
+}
+
+#debugContent ul {
+	border-bottom: solid 1px #aaa;
+	list-style: none;
+	margin: 0px;
+	padding: 20px;
+}
+
+#debugContent li {
+	margin: 0;
+	padding: 0;
+}
+
+#debugContent .empty {
+	text-align: center;
+	font-weight: bold;
+	padding: 10px;
+}
+
+#debugTimerContent .progress {
+	float: left;
+	width: 60%;
+}
+
+#debugTimerContent .timerSeconde {
+	float: right;
+	width: 18%;
+}
+
+#debugTimerContent .timerTitle {
+	float: left;
+	width: 15%;
+}
+
+#debugTimerContent li {
+	clear: both;
+}
+
+#debugTimerContent ul {
+	border: none;
+}
+
+#debug .badge-info {
+  background-color: #4ab0ce;
+}
+#debug .badge-important {
+  background-color: rgb(185, 74, 72);
+}

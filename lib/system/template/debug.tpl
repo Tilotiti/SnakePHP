@@ -1,3 +1,4 @@
+<link rel="stylesheet" media="screen" type="text/css" href="/css/snakephp/debug.css" />
 <div id="debugContent">
 	<!-- Error -->
 	<div id="debugErrorContent" class="debugContent">

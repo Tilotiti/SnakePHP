@@ -34,7 +34,7 @@ define('IPADMIN',  $_SERVER['REMOTE_ADDR']);
 
 /* Database configuration */
 // Host
-define('DBHOST',  'localhost:3306');
+define('DBHOST',  false);
 
 // User
 define('DBUSER',  'root');
@@ -59,7 +59,6 @@ define('LIB',        ROOT    .'/lib');
 define('LANG',       ROOT    .'/lang');
 define('LOG',        ROOT    .'/log');
 define('CACHE',      ROOT    .'/cache/');
-define('SQLCACHE',   CACHE   .'/sql/');
 define('PLUGIN',     LIB     .'/plugin');
 define('SYSTEM',     LIB     .'/system');
 define('SMARTY_DIR', SYSTEM  .'/class/smarty/');

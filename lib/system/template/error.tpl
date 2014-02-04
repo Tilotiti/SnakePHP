@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8"/>
 	<title>SnakePHP - Error</title>
-	<link rel="stylesheet" media="screen" type="text/css" href="/css/bootstrap.css" />
-	<link rel="stylesheet" media="screen" type="text/css" href="/css/snakephp.css" />
+	<link rel="stylesheet" media="screen" type="text/css" href="/css/snakephp/bootstrap.css" />
+	<link rel="stylesheet" media="screen" type="text/css" href="/css/snakephp/main.css" />
 </head>
 <body>
 	<div id="main">

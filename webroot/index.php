@@ -7,7 +7,7 @@ require_once LIB.'/init.php'; // Initialisation du Framework
 $session = new session(); // Plugin session
 
 // Inclusion des fichiers CSS par défaut
-$page->pushCSS('bootstrap');
+$page->pushCSS('snakephp/bootstrap');
 $page->pushCSS('global');
 
 // Inclusion des fichiers JS par défaut
@@ -25,7 +25,7 @@ $page->template('save',    $_SESSION['save']);
 $page->template('message', $_SESSION['message']);
 
 // Génération du template
-$page->display();
+$page->display('template');
 
 // Nettoyage des sessions et des variables
 $page->clear();

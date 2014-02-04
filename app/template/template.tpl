@@ -59,7 +59,7 @@
     	<div class="row">
         	<div id="sidebar" class="col-md-3">
 				{foreach $page->getSidebar() as $sidebar}
-					{include file="sidebar/`$sidebar`.tpl"}
+					{$page->display("sidebar/{$sidebar}")}
 				{/foreach}
 			</div>
 			<div class="col-md-9">
@@ -73,7 +73,7 @@
 						<h1 class="panel-title">{$page->get('title')}</h1>
 					</div>
 					<div class="panel-body">
-						{include file="`$page->get('templateTPL')`.tpl"}
+						{$page->display()}
 					</div>
 				</div>
 			</div>

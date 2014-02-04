@@ -3,27 +3,42 @@
  * Test if snakePHP is complete and can work normally
  */
  
-$error = false;
+// CACHE exists
+if(!is_dir(CACHE)):
+	fatalError("The folder <code>".CACHE."</code> must exists and be writable.</code>");
+endif;
 
-// /cache/ is writable
-$error = !is_writable(CACHE) ? "The folder <code>".CACHE."</code> must be writable. Please, make a <code>CHMOD 777</code> on it." : $error;
+// CACHE is writable
+if(!is_writable(CACHE)):
+	fatalError("The folder <code>".CACHE."</code> must be writable.");
+endif;
 
-// /lang/ is writable
-$error = !is_writable(LANG) ? "The folder <code>".LANG."</code> must be writable. Please, make a <code>CHMOD 777</code> on it." : $error;
+// LANG exists
+if(!is_dir(LANG)):
+	fatalError("The folder <code>".LANG."</code> must exists and be writable.</code>");
+endif;
 
-// /webroot/file/ is writable
-$error = !is_writable(FILE) ? "The folder <code>".FILE."</code> must be writable. Please, make a <code>CHMOD 777</code> on it." : $error;
+// LANG is writable
+if(!is_writable(LANG)):
+	fatalError("The folder <code>".LANG."</code> must be writable.");
+endif;
 
-// /log/ is writable
-$error = !is_writable(LOG) ? "The folder <code>".LOG."</code> must be writable. Please, make a <code>CHMOD 777</code> on it." : $error;
+// LOG exists
+if(!is_dir(LOG)):
+	fatalError("The folder <code>".LOG."</code> must exists and be writable.</code>");
+endif;
 
-// /lib/ is NOT writable
-$error = is_writable(LIB) ? "The folder <code>".LIB."</code> must <b>not</b> be writable. Please, make a <code>CHMOD 644</code> on it." : $error;
+// LOG is writable
+if(!is_writable(LOG)):
+	fatalError("The folder <code>".LOG."</code> must be writable.");
+endif;
 
-// /app/ is NOT writable
-$error = is_writable(APP) ? "The folder <code>".APP."</code> must <b>not</b> be writable. Please, make a <code>CHMOD 644</code> on it." : $error;
+// LIB is NOT writable
+if(is_writable(LIB)):
+	fatalError("The folder <code>".LIB."</code> must <b>not</b> be writable.");
+endif;
 
-// Trigger the fatal Error
-if($error != false):
-	fatalError($error);
+// APP is NOT writable
+if(is_writable(APP)):
+	fatalError("The folder <code>".APP."</code> must <b>not</b> be writable.");
 endif;
