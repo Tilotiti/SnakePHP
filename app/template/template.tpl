@@ -35,7 +35,7 @@
 			<div class="collapse navbar-collapse" id="header-menu">
 				<!-- Menu -->
 				<ul class="nav navbar-nav">
-					<li class="{$page->active('')}">
+					<li class="{$page->active('index')}">
 						<a href="/" title="{lang::title('index')}">{lang::title('index')}</a>
 					</li>
 					<li class="{$page->active('page1')}">
