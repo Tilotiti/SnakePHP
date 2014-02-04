@@ -14,37 +14,42 @@
 	{/foreach}
 </head>
 <body>
-	<div class="navbar navbar-fixed-top">
-    	<div class="navbar-inner">
-        	<div class="container-fluid">
-        		<a class="brand" href="#">{$smarty.const.SITE}</a>
-        		<div class="btn-group pull-right">
-        			<span class="btn">
-        				<i class="icon-map-marker"></i> {$page->ariane()}
-        			</span>
-        		</div>
-        		<div class="nav-collapse">
-        			<!-- Menu -->
-        			<ul class="nav">
-        				<li class="{$page->active('index')}"><a href="/index/">Accueil</a></li>
-        				<li class="{$page->active('doc')}"><a href="/doc/">Documentation</a></li>
-        				<li class="{$page->active('download')}"><a href="/download/">T&eacute;l&eacute;chargement</a></li>
-        				<li class="{$page->active('contact')}"><a href="/contact/">Contact</a></li>
-        			</ul>
-        		</div>
-        	</div>
-        </div>
-    </div>
-    <div class="container-fluid">
-    	<div class="row-fluid">
-        	<div class="span3">
-        		<div class="well sidebar-nav">
-					{foreach $page->getSidebar() as $sidebar}
-						{include file="sidebar/`$sidebar`.tpl"}
-					{/foreach}
-				</div>
+    <header class="navbar navbar-default navbar-fixed-top">
+    	<div class="navbar-header">
+    		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-menu">
+	    		<span class="sr-only">Toggle navigation</span>
+	    		<span class="icon-bar"></span>
+	    		<span class="icon-bar"></span>
+	    		<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="/">{$smarty.const.SITE}</a>
+		</div>
+		<div class="collapse navbar-collapse" id="header-menu">
+			<div class="btn-group pull-right">
+				<span class="btn">
+					<i class="icon-map-marker"></i> {$page->ariane()}
+				</span>
 			</div>
-			<div class="span9">
+			<!-- Menu -->
+			<ul class="nav navbar-nav">
+				<li class="{$page->active('index')}"><a href="/index/">Accueil</a></li>
+				<li class="{$page->active('doc')}"><a href="/doc/">Documentation</a></li>
+				<li class="{$page->active('download')}"><a href="/download/">T&eacute;l&eacute;chargement</a></li>
+				<li class="{$page->active('contact')}"><a href="/contact/">Contact</a></li>
+			</ul>
+		</div>
+    </header>
+    
+    <section class="container">
+    	<div class="row">
+        	<div id="sidebar" class="col-md-3">
+				{foreach $page->getSidebar() as $sidebar}
+				<div class="overlay">
+				{include file="sidebar/`$sidebar`.tpl"}
+				</div>
+				{/foreach}
+			</div>
+			<div class="col-md-9 overlay">
 				<h1>{$page->get('title')}</h1>
 				{if isset($message.text)}
 					<div class="alert alert-{$message.type}">
@@ -58,7 +63,7 @@
 		<footer>
         	<p>{$page->copyright()}</p>
         </footer>
-    </div>
+    </section>
     
     {$page->debug()}
 </body>

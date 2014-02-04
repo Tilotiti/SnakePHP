@@ -1,12 +1,11 @@
 2013-03-11
 ==========
-
+@author Pierre de Vesian
 * Added CHANGELOG.md
 * Added "flushSQL" function (in /lib/system/function/)
 
 2013-12-11
 ==========
-
 @author Fabrice Lazzarotto
 1. Everywhere (/lib) : normalized documentation
 2. **query** class 
