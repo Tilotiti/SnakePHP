@@ -1,11 +1,7 @@
 SnakePHP
 ========
 
-SnakePHP is a light PHP framework created by Tilotiti.
-It's aim is to provide you with a simple set of methods and functions, so you can quickly develop your web application.
-
-SnakePHP supports currently the french and german language, but feel free to contribute translating!
-SnakePHP natively supports natural referncering, so you won't have to worry about that.
+SnakePHP is a fast, easy et secure way to build your web application.
 
 Requirements & Dependencies
 ========
@@ -15,15 +11,20 @@ Requirements & Dependencies
 3. PHP5
 4. PDO class
 
-Quick install
+Automatic install
 ========
 
-1. Download latest version, extract it and move it to your webroot directory;
-2. Set up a virtual host;
-3. Edit /config.php;
-4. Give writing/reading access to the following files & directories:
-	* /cache/
-	* /lang/
-	* /log/
-5. Give execution rights to /index.php
-6. You can now develop web applications with SnakePHP!
+1. Download the single file [SnakePHP-Installer](https://github.com/Tilotiti/SnakePHP-Installer "SnakePHP-Installer") an move it to your webroot directory
+2. Temporaly chmod 777 on your webroot
+3. Go to http://www.yoursite.com/installer.php
+4. Follow the configuration steps
+6. You can now develop web applications with SnakePHP !
+
+
+Manual install
+========
+
+1. Download latest version, extract it and move it to your webroot directory
+2. Edit /config.php
+3. Browse your website, follow the last instructions
+4. You can now develop web applications with SnakePHP !
