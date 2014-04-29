@@ -3,6 +3,8 @@ SnakePHP
 
 SnakePHP is a fast, easy et secure way to build your web application.
 
+Come see the [French documentation](https://github.com/Tilotiti/SnakePHP/wiki/_pages)
+
 Requirements & Dependencies
 ========
 
