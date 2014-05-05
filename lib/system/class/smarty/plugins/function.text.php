@@ -1,4 +1,4 @@
-<?
+<?php
 function smarty_function_text($params, $template) {
 	if(isset($params['code'])):
 		if(isset($params['var'])):
