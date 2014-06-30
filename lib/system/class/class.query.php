@@ -673,7 +673,7 @@ class query {
 	 * @param mixed $value value to test field with 
 	 * @return query $this pour assurer la chaînabilité de la classe
 	 */
-	public function ou($field, $calculator, $value) {
+	public function either($field, $calculator, $value) {
 		$this->where($field, $calculator, $value, 'OR');
 		return $this;
 	}
