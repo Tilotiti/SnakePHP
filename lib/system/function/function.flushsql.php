@@ -16,21 +16,22 @@
  * @param return void
  */
 function flushSQL($fileName = '') {
-	$dir = SQLCACHE;
+	$dir = CACHE.'/sql';
 
 	// Specific filename was passed
 	if (!empty($fileName) && is_file($dir.'/'.$fileName.'.cache')):
 		$fileName .= '.cache';
 		return unlink($dir.'/'.$fileName);
 	elseif (!empty($fileName)):
-		$cachePref = md5('prefix'.$fileName);
+		$cachePref = md5('prefix'.$fileName);	
+				
 		// What files of this category are in the directory ?
-		foreach(glob(SQLCACHE.'/'.$cachePref.'*.cache') as $file):
+		foreach(glob($dir.'/'.$cachePref.'*.cache') as $file):
 			unlink($file);
 		endforeach;
 	else:
 		// What files are in the directory?
-		foreach(glob(SQLCACHE.'/*.cache') as $file):
+		foreach(glob($dir.'/*.cache') as $file):
 			unlink($file);
 		endforeach;
 	endif;
