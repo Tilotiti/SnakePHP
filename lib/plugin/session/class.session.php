@@ -1,86 +1,17 @@
 <?php
 class session {
-	private $user;
-	/*
-	 * Méthode     : __construct
-	 * Description : Constructeur de la classe session
-	 * Paramètre   : Aucun
-	 * Retour      : Aucun
+	/**
+	 * Login
+	 * Load user information in session
+	 * @param int $id User ID
+	 * @return bool User found
 	 */
-	public function __construct() {
-		// Si l'utilisateur est déjà connecté, on instancie une classe user avec les informations contenues dans sa session
-		if(isset($_SESSION['user']) && is_array($_SESSION['user']) && array_key_exists('id', $_SESSION['user'])):
-			$this->user = new user($_SESSION['user']);
-			
-			// Mise à jour de la session après le délai dépassé
-			if(isset($_SESSION['user']['login']) && ($_SESSION['user']['login']+SESSION_REFRESH) < time()):
-				$this->login($_SESSION['user']['id']);
-			endif;
-		// Si l'utilisateur n'est pas connecté, on instancie un nouvel utilisateur vide
-		else:
-			$this->user = new user();
-		endif;
-	}
-	
-	/*
-	 * Méthode     : ok
-	 * Description : Précise si l'utilisateur est connecté ou non
-	 * Paramètres  : Aucun
-	 * Retour      :
-	 *     - (bool) "true"  : L'utilisateur est connecté
-	 *     - (bool) "false" : L'utilisateur n'est pas connecté
-	 */
-	public function ok() {
-		// Une session existe
-		if(isset($_SESSION['user']) && is_array($_SESSION['user']) && array_key_exists('id', $_SESSION['user'])):
-			// l'utilisateur est connecté
-			return true;
-		
-		// Aucune session n'est trouvée
-		else:
-			// L'utilisateur n'est pas connecté
-			return false;
-		endif;
-	}
-	
-	/*
-	 * Méthode : get
-	 * Description : Récupère la valeur d'un champs de l'utilisateur connecté
-	 * Paramètre :
-	 *     [$key] - (string) : Nom du champs utilisateur
-	 * Retour :
-	 *     - (bool) "false" : le champs n'existe pas
-	 *     - (string)       : Valeur du champs
-	 *     - (array)        : Tableau associatif complet des champs de l'utilisateur connecté
-	 */
-	public function get($key = false) {
-		return $this->user->get($key);
-	}
-	
-	/*
-	 * Méthode : set
-	 * Description : Modification  d'un champs de l'utilisateur connecté
-	 * Paramètre :
-	 *     $key   - (string) : Nom du champs utilisateur
-	 *     $value - (string) : Valeur du champs utilisateur
-	 * Retour : Aucun
-	 */
-	public function set($key, $value) {
-		$this->user->set($key, $value);
-	}
-	
-	/*
-	 * Méthode : save
-	 * Description : Sauvegarde les modifications apportées à l'utilisateur
-	 * Paramètre : Aucun
-	 * Retour :
-	 *     - (bool) "false" : Sauvegarde échouée
-	 *     - (bool) 'true"  : Sauvegarde réussie
-	 */
-	public function save() {
-		if($this->ok()):
-			$this->user->save();
-			$this->login($this->get('id'));
+	public static function login($id) {
+		$user = new user((int)$id);
+		if($user->ok()):
+			$_SESSION['user']  = $user->get();
+			$_SESSION['user']['login'] = time();
+			self::save();
 			return true;
 		else:
 			return false;
@@ -88,117 +19,52 @@ class session {
 	}
 	
 	/*
-	 * Méthode     : option
-	 * Description : Retourne ou modifie les paramètres personnalisés de l'utilisateur connecté.
-	 * Paramètres  :
-	 *     $key     - (string) : Nom de l'option
-	 * 	   [$value] - (string) : Valeur de l'option.
-	 * Retour      :
-	 *     - (bool) "true"  : l'option a été créée
-	 *     - (bool) "false" : l'option n'existe pas
-	 *     - (string)       : Valeur l'option dans la BDD si le paramètre $value n'est pas renseignée lors de l'appel de la méthode.
+	 * Ok
+	 * Return if the session is connected
+	 * @return bool session connected
 	 */
-	public function option($key, $value = false) {
-		if($this->ok()):
-			return $this->user->option($key, $value);
+	public static function ok() {
+		return !empty($_SESSION['user']['id']);
+	}
+	
+	/**
+	 * Get
+	 * Find a session field
+	 * @param string $key Field's name
+	 * @return mixed Field's value
+	 */
+	public static function get($key) {
+		if(!empty($_SESSION['user'][$key])):			
+			return $_SESSION['user'][$key];
 		else:
 			return false;
 		endif;
 	}
 	
-	/*
-	 * Méthode     : sign
-	 * Description : Inscrit l'utilisateur connecté dans la base de donnée puis le connecte.
-	 * Paramètres  :
-	 *     [$require] - (array) : Tableau des champs requis à l'inscription. Si le champs se trouve être un tableau associatif, alors la clef est le nom du champs, sa valeur représente le motif à vérifier avec la fonction "preg"
-	 * Retour      :
-	 *     - (bool) "true"  : L'utilisateur a été créé et connecté
-	 *     - (bool) "false" : Erreur lors de l'inscription, utilisateur déjà connecté
-	 *     - (string)       : Erreur lors de l'inscription, le champs posant problème est retourné.
+	/**
+	 * Set
+	 * Set a new value to a field
+	 * @param string $key Field's name
+	 * @param mixed $value Field's new value
 	 */
-	public function sign($require = false) {
-		// Si l'utilisateur est déjà en ligne
-		if($this->ok()):
-			return false;
-			
-		// Si l'utilisateur peut s'inscrire
-		else:
-					
-			if(is_array($require)):
-				foreach($require as $key => $value):
-					// Vérification des champs
-					if(!preg($key, $value)):
-						return $key;
-					endif;
-				endforeach;
-			endif;
-			
-			// Si l'inscription a échouée, on retourne une erreur inconnue
-			if(!$this->user->save()):
-				return false;
-			endif;
-			
-			// On log l'utilisateur
-			$_SESSION['user'] = $this->user->get();
-			return true;
-		endif;
+	public static function set($key, $value) {
+		$_SESSION['user'][$key] = $value;
 	}
-
-	/*
- 	 * Méthode     : login
-	 * Description : Connecte l'utilisateur
-	 * Paramètre   :
-	 *     $login - (string) : Username de l'utilisateur
-	 * 			  - (array)  : Tableau des champs de l'utilisateur
-	 * 	  [$pass] - (string) : Mot de passe de l'utilisateur
-	 * Retour      :
-	 *     - (bool) "true"   : L'utilisateur est maintenant connecté
-	 *     - (bool) "false"  : L'utilisateur est inconnu
-	 *     
- 	 */
- 	public function login($login, $pass = false) {
- 		
- 		// Si l'utilisateur est loggué avec son ID
- 		if(is_numeric($login) && !$pass):
-			$this->user = new user($login);
-			if($this->user->ok()):
-				$_SESSION['user'] = $this->user->get();
-			else:
-				return false;
-			endif;
-			
-		// Si l'utilisateur a demandé sa connexion avec un login et un mot de passe
-		else:
-			
-			$query = new query();
-			$query->select()
-				  ->from('user')
-				  ->where('username', '=', $login)
-				  ->where('password', '=', $pass)
-				  ->exec('FIRST');
-				  
-			if($query->ok()):
-				$this->user       = new user($query->get());
-				$_SESSION['user'] = $this->user->get();
-			else:
-				return false;
-			endif;
-		endif;
-		
-		$_SESSION['user']['login'] = time();
-		return true;
-		
- 	}
+	
+	/**
+	 * Save
+	 * Save the session in the database
+	 */
+	public static function save() {
+		$user = new user($_SESSION['user']);
+		$user->save();
+	}
 	
 	/*
- 	 * Méthode     : logout
-	 * Description : Déconnecte l'utilisateur
-	 * Paramètre   : Aucun
-	 * Retour      : Aucun
- 	 */
-	public function logout() {
-		$_SESSION["user"] = false;
+	 * Logout
+	 * Disconnect the session
+	 */
+	public static function logout() {
+		unset($_SESSION['user']);
 	}
-
 }
-?>
