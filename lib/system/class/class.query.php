@@ -181,8 +181,12 @@ class query {
 							$field	= $key."(";
 							$var = array();
 							foreach($value as $val):
-							 if(is_numeric($val)):
-								$var[] = $val;
+							 if(!is_array($val)):
+							 	if(is_numeric($val)):
+									$var[] = $val;
+								elseif(is_string($val)):
+									$var[] = '"'.$val.'"';
+								endif;
 							 else:
 								$var[] = $this->getField($val);
 							 endif;
@@ -951,7 +955,7 @@ class query {
 					
 					// cache category - file prefix
 					$cachePref = ($this->cache===true?'':md5('prefix'.$this->cache));
-					
+										
 					// Cache verification
 					if($this->cache):
 						// Already cached
@@ -959,7 +963,7 @@ class query {
 						$this->cached = false;
 						
 						// Cache exists and not too old
-						if( file_exists($file) && (filemtime($file) > (time() - SQLCACHETIME)) ):
+						if(file_exists($file) && (filemtime($file) > (time() - SQLCACHETIME)) ):
 							$this->cached = true;
 						endif;
 					endif;
@@ -972,7 +976,8 @@ class query {
 						
 						// Must caching the request
 						if($this->cache):
-							$file = fopen(CACHE.'/sql/'.$cachePref.md5($req).'.cache', 'w+');
+							$fileName = CACHE.'/sql/'.$cachePref.md5($req).'.cache';
+							$file = fopen($fileName, 'w+');
 							fwrite($file, serialize($results));
 							fclose($file);
 						endif;
@@ -1142,11 +1147,15 @@ class query {
 				endif;
 			 endforeach;
 			 
-			 
+			 foreach($array as $key => $value):
+			 	if(is_array($value) && empty($value)):
+			 		unset($array[$key]);
+			 	endif;
+			 endforeach;
                 
 			 foreach($this->alias as $alias):
-	                	$array[$alias] = $this->line[$alias];
-	                 endforeach;
+			 	$array[$alias] = $this->line[$alias];
+			 endforeach;
 			 
 			 if(count($array) == 0):
 				$return = false;
@@ -1259,42 +1268,45 @@ class query {
 	 * @param string $variable tpl var to assign results to
 	 * @return query $this for chaining
 	 */
-	public function page($get, $results, $variable = "pagination") {
+	public function page($get, $results, $variable = "pagination", $variableCount = "count") {
 		global $page;
 		
 		$this->sql($this->prepare_request);
 		
 		$nb = $this->count();
 		
+		$page->template($variableCount, $nb);
+		
 		$current = get($get);
 		if($current == "index"):
 			$current = 1;
-		elseif($current-1 > ($nb/$results)):
-			$current = 1;
+		//elseif($current-1 > ($nb/$results)):
+		//	$current = 1;
 		endif;
 		$place = ($current-1)*$results;
 		$this->Limit($place, $results);
+		
 		
 		$text['page']	= $current;
 		$text['total'] = ceil($nb / $results);
 		
 		if($current > 1):
-			$start  = '<li><a href="'.get($get, 1)		.'" class="start">'.lang::text('pagination:start').'</a></li>';
-			$prev	= '<li><a href="'.get($get, $current-1).'" class="prev">'. lang::text('pagination:prev') .'</a></li>';
+			$start  = '<li class="pageStart"><a href="'.get($get, 1).'" class="start">'.lang::text('pagination:start').'</a></li>';
+			$prev	= '<li class="pagePrev"><a href="'.get($get, $current-1).'" class="prev">'. lang::text('pagination:prev') .'</a></li>';
 		else:
-			$start  = '';
-			$prev	= '';
+			$start  = '<li class="disabled pageStart"><a href="'.get().'" class="start">'.lang::text('pagination:start').'</a></li>';
+			$prev	= '<li class="disabled pagePrev"><a href="'.get().'" class="prev">'. lang::text('pagination:prev') .'</a></li>';
 		endif;
 		
 		if($current < ceil($nb / $results)):
-			$next	= '<li><a href="'.get($get, $current+1)		.'" class="next">'. lang::text('pagination:next') .'</a></li>';
-			$end	= '<li><a href="'.get($get, ceil($nb / $results)).'" class="end">'.	lang::text('pagination:end')	.'</a></li>';
+			$next	= '<li class="pageNext"><a href="'.get($get, $current+1).'" class="next">'. lang::text('pagination:next') .'</a></li>';
+			$end	= '<li class="pageEnd"><a href="'.get($get, ceil($nb / $results)).'" class="end">'.	lang::text('pagination:end')	.'</a></li>';
 		else:
-			$end	= '';
-			$next	= '';
+			$end	= '<li class="disabled pageNext"><a href="'.get().'" class="next">'. lang::text('pagination:next') .'</a></li>';
+			$next	= '<li class="disabled pageEnd"><a href="'.get().'" class="end">'.	lang::text('pagination:end')	.'</a></li>';
 		endif;
 		
-		$center = '<li class="disabled"><a href="'.get().'">'.lang::text('pagination:page', $text).'</a></li>';
+		$center = '<li class="disabled pageCount"><a href="'.get().'">'.lang::text('pagination:page', $text).'</a></li>';
 
 		$page->template($variable, '<ul class="pager">'.$start.$prev.$center.$next.$end.'</ul>');
 		
