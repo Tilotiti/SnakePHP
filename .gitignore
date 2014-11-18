@@ -1,4 +1,4 @@
 cache
 log
-lang
+lang/*/*.xml
 ~*

@@ -42,7 +42,6 @@ class lang {
 		if(!is_dir(LANG.'/'.$pays)):
 			mkdir(LANG.'/'.$pays);
 			mkdir(LANG.'/'.$pays.'/mail');
-			copy(SYSTEM.'/template/mail.tpl', LANG.'/'.$pays.'/template.tpl');
 		endif;
 		
 		foreach(self::$type as $t):
@@ -131,9 +130,9 @@ class lang {
     	return false;
     endif;
     
-    if(file_exists(LANG.'/'.self::$pays.'/mail/template.tpl')):
+    if(file_exists(SYSTEM.'/template/mail.tpl')):
     	// Default template
-    	$template = new template(LANG.'/'.self::$pays.'/mail/template.tpl');
+    	$template = new template(SYSTEM.'/template/mail.tpl');
     	$template->assign('content', LANG.'/'.self::$pays.'/mail/'.$file.'.tpl');
     else:
     	// Empty template
