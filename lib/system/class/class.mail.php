@@ -157,7 +157,13 @@ class mail {
 	 */
     public function message($str, $arg = false, $lang = true) {
         if($lang):
-            $this->message = lang::mail($str, $arg);
+        	if($this->subject != false):
+        		if(!$arg):
+        			$arg = array();
+        		endif;
+        		$arg['subject'] = $this->subject;
+        	endif;
+          $this->message = lang::mail($str, $arg);
         else:
             $this->message = $str;
         endif;
