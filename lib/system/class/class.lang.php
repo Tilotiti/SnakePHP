@@ -47,7 +47,7 @@ class lang {
 		foreach(self::$type as $t):
 			if(!file_exists(LANG.'/'.$pays.'/lang.'.$t.'.xml')):
 				// Automatic creation of language files
-		    $template = new template('lang.tpl');
+		    $template = new template(SYSTEM.'/template/lang.tpl');
 		    $template->assign('lang', $pays);
 		    
 		    $file = fopen(LANG.'/'.$pays.'/lang.'.$t.'.xml', "w+");
