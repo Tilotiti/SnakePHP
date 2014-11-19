@@ -11,6 +11,12 @@
  */
 function get($get = '', $replace = false) {
     $uri = $_SERVER['REQUEST_URI'];
+        	
+    if(strpos($uri, '?')):
+    	$explode = explode('?', $uri);
+    	$uri = $explode[0];
+    endif;
+    
     if(!$replace):
         if(!empty($uri)):
             if(empty($get)):
@@ -48,12 +54,17 @@ function get($get = '', $replace = false) {
         endif;
     else:
         $getArray = explode('/', substr($uri, 1, -1));
+		if ($getArray[0]==='') {
+			$getArray = array_slice($getArray, 1);
+		}
         for($i = 0; $i < $get; $i++):
             if(!isset($getArray[$i])):
                 $getArray[$i] = 'index';
             endif;
         endfor;
         $getArray[$get-1] = $replace;
-        return '/'.implode('/', $getArray).'/';
+		$return = preg_replace('#\/\/#','/','/'.implode('/', $getArray).'/');
+		$return = preg_replace('#\/index\/$#', '/', $return);
+        return $return;
     endif;
 }
