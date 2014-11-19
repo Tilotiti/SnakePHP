@@ -128,7 +128,7 @@ class page {
         if(is_array($this->ariane)):
             foreach($this->ariane as $fil):
                 $html .= '<li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-		        		      <a href="'.$fil['url'].' itemprop="url" title="'.lang::title($fil['name']).'">
+		        		      <a href="'.$fil['url'].'" itemprop="url" title="'.lang::title($fil['name']).'">
 		        		          <span itemprop="title">'.lang::title($fil['name']).'</span>
 		        		      </a>
 		        		  </li>';
