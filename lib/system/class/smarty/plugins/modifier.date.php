@@ -15,8 +15,10 @@
  */
 function smarty_modifier_date($timestamp, $type = false) {
     
-    $mois = lang::text("date/month:".date("m", $timestamp));
-    $jour = lang::text("date/day:".date("D", $timestamp));
+    setlocale(LC_TIME, 'fr_FR.UTF8', 'fr.UTF8', 'fr_FR.UTF-8', 'fr.UTF-8');
+    
+    $mois = strftime('%B', $timestamp);
+    $jour = strftime('%A', $timestamp);
 
     switch($type):
         case 'long':
@@ -35,6 +37,3 @@ function smarty_modifier_date($timestamp, $type = false) {
 	
     return $string; 
 }
-
-
-?>
