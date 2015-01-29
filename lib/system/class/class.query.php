@@ -713,9 +713,11 @@ class query {
 	
 	/**
 	 * Specify a sort filter and a sort order
+	 * NB : you can use an array for field parameter, to specify table or more complex operations 
+	 * Ex. array(array('table'=>'field'),'>',0) will order on result of [table_field > 0] expression @see query::where method
 	 * 
 	 * @access public
-	 * @param string $field field name to sort by - default: ""
+	 * @param mixed $field field name to sort by - default: ""
 	 * @param string $order ASC or DESC - default: 'ASC'
 	 * @return query $this for chaining
 	 */
@@ -750,6 +752,40 @@ class query {
 		// Si le champs n'est pas renseigné, on applique un ordre aléatoire aux résultats
 		if(empty($field)):
 			$field = "RAND()";
+		elseif (is_array($field) && count($field)>1):
+			
+			$f = $this->getField($field[0]);
+			$calculator = $field[1];
+			$value = isset($field[2]) ? $field[2] : false;
+			
+			if(is_array($value)):
+				if(array_key_exists('FUNCTION', $value)):
+					// Utilisation d'une fonction sans argument comme paramètre à vérifier
+				 $field = ' '.$f.' '.$calculator.' '.$value['FUNCTION'].'()';
+				else:
+					// Utilisation d'une fonction en temps qu'opérateur comme paramètre à vérifier
+				 $field = ' '.$f.' '.$calculator.' ("'.implode('", "', $value).'")';
+				endif;
+			elseif(is_object($value)):
+				$name = get_class($value);
+				if($name == "query"):
+					// Utilisation de sous-requêtes comme paramètre à vérifier
+				 $field = ' '.$f.' '.$calculator.' ( '.$value->getRequest().')';
+				else:
+					// Utilisation d'un string sous forme d'object comme paramètre à vérifier
+				 $field = ' '.$f.' '.$calculator.' "'.addslashes((string) $value).'"';
+				endif;
+			elseif($value === false):
+				$field = ' '.$f.' '.$calculator;
+			else:
+				if(is_numeric($value)):
+					// Utilisation d'un nombre comme paramètre à vérifier
+				 $field = ' '.$f.' '.$calculator.' '.addslashes($value);
+				else:
+					// Utilisation d'un string comme paramètre à vérifier
+				 $field = ' '.$f.' '.$calculator.' "'.addslashes($value).'"';
+				endif;
+			endif;
 		else:
 			$field = $this->getField($field);
 		endif;
