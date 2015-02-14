@@ -5,43 +5,43 @@ class query {
 		 * Raw SQL container
 		 * @var String
 		 */
-		$prepare_request= '',
+		$prepare_request = '',
 		/**
 		 * Results
 		 * @var Array
 		 */
-		$results		= '',
+		$results = '',
 		/**
 		 * Values (SET instruction)
 		 * @var Array
 		 */
-		$values			= '',
+		$values = '',
 		/**
 		 * Table(s) from which results are extracted
 		 * @var Array
 		 */
-		$table		 	= '',
+		$table = '',
 		/**
 		 * Return : all results or just first ?
 		 * Can equals 'ALL' or 'FIRST'
 		 * @var String
 		 */
-		$which		 	= 'ALL',
+		$which = 'ALL',
 		/**
 		 * Main (understand first) table prefix
 		 * @var String
 		 */
-		$prefix			= '',
+		$prefix = '',
 		/**
 		 * Counter - index when scanning results with self::next()
 		 * @var Integer
 		 */
-		$i				= 0,
+		$i = 0,
 		/**
 		 * Will be set to true when one (or more) error(s) occurred
 		 * @var Boolean
 		 */
-		$error		 	= false,
+		$error = false,
 		/**
 		 * DB connection
 		 * @var String
@@ -51,43 +51,43 @@ class query {
 		 * Cache query (category of cache or {true|false})
 		 * @var Boolean|String
 		 */
-		$cache		 	= false,
+		$cache = false,
 		/**
 		 * Is the query already cached ?
 		 * @var Boolean
 		 */
-		$cached			= false,
+		$cached = false,
 		/**
 		 * Identifier of the cache (false if no caching)
 		 * @var String|Boolean
 		 */
-		$cacheHash		= false,
+		$cacheHash = false,
 		/**
 		 * List of aliases
 		 * @var Array
 		 */
-		$alias		 	= array(),
+		$alias = array(),
 		/**
 		 * Current line for self::next method
 		 * @var Array
 		 */
-		$line			= array(),
+		$line = array(),
 		/**
 		 * List of SQL instructions encountered
 		 * @var Array
 		 */
-		$content		= array(),
+		$content = array(),
 		/**
 		 * Fields to return (SELECT instruction)
 		 * @var Array
 		 */
-		$fields			= array();
+		$fields = array();
+		
 	/**
 	 * Used to identify query on the page
 	 * @var Boolean
 	 */
 	public static $queryNumber	= 0;
-
 	
 	/**
 	 * SQL query constructor, tests database connection
@@ -159,57 +159,56 @@ class query {
 			$field = "";
 			$as	= "";
 			foreach($params as $key => $value):
-			 switch($key):
-				case "AS":
-					$this->alias[] = $value;
-					// Création d'un alias
-					if(is_array($value) && count($value) == 2 ):
-						// Si l'allias est simple
-						return $this->getField($value[0]).' AS '.$value[1];
-					else:
-						// Si l'allias vient avec une fonction
-						$as = " AS ".$value;
-					endif;
-				break;
-				case "ALLIAS":
-					return $value;
-				break;
-				default:
-					if(strtoupper($key) == $key):
-						// Si l'identification se fait par une fonction
-						if(is_array($value)):
-							$field	= $key."(";
-							$var = array();
-							foreach($value as $val):
-							 if(!is_array($val)):
-							 	if(is_numeric($val)):
-									$var[] = $val;
-								elseif(is_string($val)):
-									$var[] = '"'.$val.'"';
-								endif;
-							 else:
-								$var[] = $this->getField($val);
-							 endif;
-							endforeach;
-							$field .= implode(',', $var);
-							$field .= ")";
+				switch($key):
+					case "AS":
+						$this->alias[] = $value;
+						// Création d'un alias
+						if(is_array($value) && count($value) == 2 ):
+							// Si l'allias est simple
+							return $this->getField($value[0]).' AS '.$value[1];
 						else:
-							$field = $key."(".$this->getField($value).")";
+							// Si l'allias vient avec une fonction
+							$as = " AS ".$value;
 						endif;
-					else:
-						// Si l'identification est simple (simple Join)
-						if($value != "*"):
-							$field = $key.'_'.$value;
+						break;
+					case "ALLIAS":
+						return $value;
+						break;
+					default:
+						if(strtoupper($key) == $key):
+							// Si l'identification se fait par une fonction
+							if(is_array($value)):
+								$field	= $key."(";
+								$var = array();
+								foreach($value as $val):
+									if(!is_array($val)):
+										if(is_numeric($val)):
+											$var[] = $val;
+										elseif(is_string($val)):
+											$var[] = '"'.$val.'"';
+										endif;
+									else:
+										$var[] = $this->getField($val);
+									endif;
+								endforeach;
+								$field .= implode(',', $var);
+								$field .= ")";
+							else:
+								$field = $key."(".$this->getField($value).")";
+							endif;
 						else:
-							$field = $this->prefix.$key.'.*';
+							// Si l'identification est simple (simple Join)
+							if($value != "*"):
+								$field = $key.'_'.$value;
+							else:
+								$field = $this->prefix.$key.'.*';
+							endif;
 						endif;
-					endif;
-				break;
-			 endswitch;
+						break;
+				endswitch;
 			endforeach;
 
 			return $field.$as;
-
 		else:
 			// Si le champs demandé est simple
 			if(in_array($params, $this->alias)):
@@ -252,10 +251,10 @@ class query {
 			debug::error("SQL", "TABLE argument must be valid in INSERT method.", __FILE__, __LINE__);
 		endif;
 		
-		$table_name			 = $this->prefix.$table;
-		$this->prepare_request	.= ' UPDATE '.$table_name;
-		$this->content['update']	= true;
-		$this->table['set']		= $table;
+		$table_name = $this->prefix.$table;
+		$this->prepare_request .= ' UPDATE '.$table_name;
+		$this->content['update'] = true;
+		$this->table['set'] = $table;
 		return $this;
 	}
 	
@@ -273,10 +272,10 @@ class query {
 			$this->error = true;
 		endif;
 		
-		$table_name			= $this->prefix.$table;
-		$this->prepare_request	.= ' INSERT INTO '.$table_name;
-		$this->content['insert']	= true;
-		$this->table['set']		= $table;
+		$table_name = $this->prefix.$table;
+		$this->prepare_request .= ' INSERT INTO '.$table_name;
+		$this->content['insert'] = true;
+		$this->table['set'] = $table;
 		return $this;
 	}
 	
@@ -293,10 +292,10 @@ class query {
 			$this->error = true;
 		endif;
 		
-		$table_name			= $this->prefix.$table;
-		$this->prepare_request	.= ' DELETE FROM '.$table_name;
-		$this->content['delete']	= true;
-		$this->table['delete']	= $table;
+		$table_name = $this->prefix.$table;
+		$this->prepare_request .= ' DELETE FROM '.$table_name;
+		$this->content['delete'] = true;
+		$this->table['delete'] = $table;
 		return $this;
 	}
 	
@@ -311,7 +310,6 @@ class query {
 	 * @return query $this pour assurer la chaînabilité de la classe
 	 */
 	public function set($field = '', $value = '') {
-		// FIXME $field should not be optional
 		// Vérification de l'argument FIELD indispensable
 		if(empty($field)):
 			debug::error("SQL", "FIELD argument must be valid in SET method.", __FILE__, __LINE__);
@@ -334,19 +332,19 @@ class query {
 		
 		if($this->content['update']):
 			if($this->content['set']):
-			 $this->prepare_request .= ', ';
+				$this->prepare_request .= ', ';
 			else:
-			 $this->prepare_request .= ' SET';
+				$this->prepare_request .= ' SET';
 			endif;
 			if(preg_match("#^\+([0-9]{1,11})$#", $value)):
-			 $this->prepare_request .= ' '.$this->table['set'].'_'.$field.' = '.$this->table['set'].'_'.$field.' + '.parseInt($value).'';
+				$this->prepare_request .= ' '.$this->table['set'].'_'.$field.' = '.$this->table['set'].'_'.$field.' + '.parseInt($value).'';
 			else:
-			 $this->prepare_request .= ' '.$this->table['set'].'_'.$field.' = "'.addslashes($value).'"';
+				$this->prepare_request .= ' '.$this->table['set'].'_'.$field.' = "'.addslashes($value).'"';
 			endif;
 			$this->content['set']	= true;
 		elseif($this->content['insert']):
-			$this->fields[]		= $this->table['set'].'_'.$field;
-			$this->values[]		= addslashes($value);
+			$this->fields[] = $this->table['set'].'_'.$field;
+			$this->values[] = addslashes($value);
 			$this->content['set'] = true;
 		else:
 			debug::error("SQL", "SET method can't be requested before UPDATE or a INSERT method.", __FILE__, __LINE__);
@@ -380,15 +378,15 @@ class query {
 		
 		if($table instanceof query):
 			$as = ($as===false?$table->table['select']:$as);
-			$this->table['select']	= $as;
+			$this->table['select'] = $as;
 		else:
-			$this->table['select']	= $table;
+			$this->table['select'] = $table;
 		endif;
 		
 		if(count($this->fields)==0):
-			$this->prepare_request	.= ' SELECT * ';
+			$this->prepare_request .= ' SELECT * ';
 		else:
-			$this->prepare_request	.= ' SELECT ';
+			$this->prepare_request .= ' SELECT ';
 			$array = array();
 			foreach($this->fields as $field):
 			$array[] = $this->getField($field);
@@ -398,9 +396,9 @@ class query {
 		
 		$table_name = $as;
 		if($table instanceof query):
-			$table_name			= '('.$table->getRequest().') AS ' . $as;
+			$table_name = '('.$table->getRequest().') AS ' . $as;
 		else:
-			$table_name			= $this->prefix.$table;
+			$table_name = $this->prefix.$table;
 		endif;
 		
 		$this->prepare_request .= ' FROM '.$table_name;
@@ -429,10 +427,6 @@ class query {
 			debug::error("SQL", "JOIN type must be one of these : ".implode(', ', $joins), __FILE__, __LINE__);
 			$this->error = true;
 		endif;
-		
-		switch ($joinType):
-			default: break;
-		endswitch;
 			
 		if(empty($table)):
 			debug::error("SQL", "TABLE argument must be valid in JOIN method.", __FILE__, __LINE__);
@@ -447,12 +441,10 @@ class query {
 			$this->error = true;
 		endif;
 		
-		
-		
-		$table_name				= $this->prefix.$table;
-		$this->prepare_request	.= ' '.$joinType.' JOIN '.$table_name;
-		$this->content['join']		= true;
-		$this->table['join'][]		= $table;
+		$table_name = $this->prefix.$table;
+		$this->prepare_request .= ' '.$joinType.' JOIN '.$table_name;
+		$this->content['join'] = true;
+		$this->table['join'][] = $table;
 		return $this;
 	}
 
@@ -575,7 +567,7 @@ class query {
 		if(is_string($value1) && is_string($value2)):
 			// On gère la rétrocompatibilité
 			if(empty($value3)):
-			 $value3 = $this->table['select'];
+				$value3 = $this->table['select'];
 			endif;
 			$this->prepare_request .= ' ON '.$this->prefix.$value3.'.'.$value3.'_'.$value1;
 			$this->prepare_request .= ' = '.$this->prefix.$this->table['join'][count($this->table['join'])-1].'.'.$this->table['join'][count($this->table['join'])-1].'_'.$value2;
@@ -605,10 +597,6 @@ class query {
 			debug::error("SQL", $calcul." method can't be requested before FROM or UPDATE method.", __FILE__, __LINE__);
 			$this->error = true;
 		endif;
-		/*if($this->content['join'] && !$this->content['on']):
-			debug::error("SQL", $calcul." method can't be requested before ON method when JOIN method has been requested.", __FILE__, __LINE__);
-			$this->error = true;
-		endif;*/
 		if($this->content['orderBy']):
 			debug::error("SQL", $calcul." method can't be requested after ORDER BY method.", __FILE__, __LINE__);
 			$this->error = true;
@@ -624,13 +612,74 @@ class query {
 		
 		if($this->content['where']):
 			if(strtolower($calcul) == 'where'):
-			 $this->prepare_request .= ' AND';
+				$this->prepare_request .= ' AND';
 			else:
-			 $this->prepare_request .= ' OR';
+				$this->prepare_request .= ' OR';
 			endif;
 		else:
 			$this->content['where'] = true;
 			$this->prepare_request .= ' WHERE';
+		endif;
+
+		$field = $this->getField($field); 
+
+		if(is_array($value)):
+			if(array_key_exists('FUNCTION', $value)):
+				// Utilisation d'une fonction sans argument comme paramètre à vérifier
+				$this->prepare_request .= ' '.$field.' '.$calculator.' '.$value['FUNCTION'].'()';
+			else:
+				// Utilisation d'une fonction en temps qu'opérateur comme paramètre à vérifier
+				$this->prepare_request .= ' '.$field.' '.$calculator.' ("'.implode('", "', $value).'")';
+			endif;
+		elseif(is_object($value)):
+			$name = get_class($value);
+			if($name == "query"):
+				// Utilisation de sous-requêtes comme paramètre à vérifier
+				$this->prepare_request .= ' '.$field.' '.$calculator.' ( '.$value->getRequest().')';
+			else:
+				// Utilisation d'un string sous forme d'object comme paramètre à vérifier
+				$this->prepare_request .= ' '.$field.' '.$calculator.' "'.addslashes((string) $value).'"';
+			endif;
+		elseif($value === false):
+			$this->prepare_request .= ' '.$field.' '.$calculator;
+		else:
+			if(is_numeric($value)):
+				// Utilisation d'un nombre comme paramètre à vérifier
+				$this->prepare_request .= ' '.$field.' '.$calculator.' '.addslashes($value);
+			else:
+				// Utilisation d'un string comme paramètre à vérifier
+				$this->prepare_request .= ' '.$field.' '.$calculator.' "'.addslashes($value).'"';
+			endif;
+		endif;
+
+		return $this;
+	}
+	
+	/**
+	 * Specify query filters
+	 * 
+	 * @access public
+	 * @param mixed $field field to apply filter on
+	 * @param string $calculator condition operator
+	 * @param mixed $value value to test field with 
+	 * @param string $calcul "where" or "or"
+	 * @return query $this for chaining
+	 */
+	public function having($field, $calculator, $value = false) {
+		if(!$this->content['select'] && !$this->content['update'] && !$this->content['delete']):
+			debug::error("SQL", "Having method can't be requested before SELECT, DELETE or UPDATE method.", __FILE__, __LINE__);
+			$this->error = true;
+		endif;
+		if(!$this->content['from'] && !$this->content['update'] && !$this->content['delete']):
+			debug::error("SQL", "Having method can't be requested before FROM or UPDATE method.", __FILE__, __LINE__);
+			$this->error = true;
+		endif;
+		
+		if($this->content['having']):
+			$this->prepare_request .= ' AND';
+		else:
+			$this->content['having'] = true;
+			$this->prepare_request .= ' HAVING';
 		endif;
 
 		$field = $this->getField($field); 
@@ -863,22 +912,22 @@ class query {
 		if($this->content['select']):
 
 			if(!$this->content['from']):
-			 debug::error("SQL", "EXEC method can't be requested before FROM method.", __FILE__, __LINE__);
-			 $this->error = true;
+				debug::error("SQL", "EXEC method can't be requested before FROM method.", __FILE__, __LINE__);
+				$this->error = true;
 			endif;
 			
 			// Si on demande un résultat unique, on applique un limit 1 pour alléger la requête
 			if($which == "FIRST"):
-			 $this->limit(1);
+				$this->limit(1);
 			endif;
 			
-			$which		= strtoupper($which);
+			$which = strtoupper($which);
 			$this->result = $this->sql($this->prepare_request);
 			$this->which	= $which;
 
 			if($this->which != 'ALL' && $this->which != 'FIRST'):
-			 debug::error("SQL", 'EXEC method only accept blank, "ALL" or "FIRST" for argument.', __FILE__, __LINE__);
-			 $this->error = true;
+				debug::error("SQL", 'EXEC method only accept blank, "ALL" or "FIRST" for argument.', __FILE__, __LINE__);
+				$this->error = true;
 			endif;
 			
 			// Si on demande un résultat unique, on le place directement en mémoire
@@ -891,8 +940,8 @@ class query {
 		// Requête UPDATE
 		elseif($this->content['update']):
 			if(!$this->content['set']):
-			 debug::error("SQL", "EXEC method can't be requested before SET method.", __FILE__, __LINE__);
-			 $this->error = true;
+				debug::error("SQL", "EXEC method can't be requested before SET method.", __FILE__, __LINE__);
+				$this->error = true;
 			endif;
 			
 			$this->sql($this->prepare_request);
@@ -902,8 +951,8 @@ class query {
 		// Requête INSERT
 		elseif($this->content['insert']):
 			if(!$this->content['set']):
-			 debug::error("SQL", "EXEC method can't be requested before SET method.", __FILE__, __LINE__);
-			 $this->error = true;
+				debug::error("SQL", "EXEC method can't be requested before SET method.", __FILE__, __LINE__);
+				$this->error = true;
 			endif;
 			
 			$field = implode(',', $this->fields);
@@ -911,7 +960,7 @@ class query {
 			$this->prepare_request .= ' ('.$field.') VALUES ("'.$value.'")';
 			
 			if($this->content['onDuplicateKeyUpdate']):
-			 $this->prepare_request .= ' '.$this->duplicate;
+				$this->prepare_request .= ' '.$this->duplicate;
 			endif;
 			
 			$this->sql($this->prepare_request);
@@ -1278,10 +1327,8 @@ class query {
 		$page->template($variableCount, $nb);
 		
 		$current = get($get);
-		if($current == "index"):
+		if(!is_numeric($current)):
 			$current = 1;
-		//elseif($current-1 > ($nb/$results)):
-		//	$current = 1;
 		endif;
 		$place = ($current-1)*$results;
 		$this->Limit($place, $results);
@@ -1344,18 +1391,19 @@ class query {
 		$this->content['select']			= false;
 		$this->content['from']				= false;
 		$this->content['where']			 	= false;
+		$this->content['having']			= false;
 		$this->content['limit']			 	= false;
 		$this->content['orderBy']			= false;
 		$this->content['groupBy']			= false;
 		$this->content['join']				= false;
-		$this->content['on']				= false;
+		$this->content['on']					= false;
 		$this->content['select']			= false;
 		$this->content['delete']			= false;
 		$this->content['insert']			= false;
-		$this->content['set']				= false;
+		$this->content['set']					= false;
 		$this->content['update']			= false;
 		$this->content['onDuplicateKeyUpdate'] = false;
-		$this->content['countOn']				= 0;
+		$this->content['countOn']			= 0;
 
 		if(!isset($this->table['select'])):
 			$this->table['select']	= '';
