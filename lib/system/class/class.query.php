@@ -1380,7 +1380,7 @@ class query {
 			$debug['results'] = $this->get();
 		endif;
 		
-		debug::dump($debug, lang::text('sql:request'));
+		debug::dump($debug, 'SQL Request');
 	}
 
 	/**
