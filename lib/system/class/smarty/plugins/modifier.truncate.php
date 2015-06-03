@@ -29,6 +29,11 @@ function smarty_modifier_truncate($string, $length = 80, $etc = '...',
 {
     if ($length == 0)
         return '';
+	
+	if (preg_match('#<[^>]+>#', $string)) { // cannot use middle
+		require_once 'modifier.truncatehtml.php';
+		return smarty_modifier_truncatehtml($string,$length,$etc);
+	}
 
     if (is_callable('mb_strlen')) {
         if (mb_detect_encoding($string, 'UTF-8, ISO-8859-1') === 'UTF-8') {
