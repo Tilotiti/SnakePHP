@@ -82,18 +82,18 @@ class query {
 		 * @var Array
 		 */
 		$fields = array();
-		
+
 	/**
 	 * Used to identify query on the page
 	 * @var Boolean
 	 */
 	public static $queryNumber	= 0;
-	
+
 	/**
 	 * SQL query constructor, tests database connection
 	 * Specify a category for first parameter to cache by category, otherwise set true (uncategorized cache)
 	 * or false (no cache).
-	 * 
+	 *
 	 * @access public
 	 * @param Boolean|String $cache category, true or false
 	 * @param String $prefix database prefix
@@ -102,9 +102,9 @@ class query {
 	public function __construct($cache = false, $prefix = DBPREF) {
 		global $queryConnexion;
 		$this->reset();
-		
+
 		$this->prefix = $prefix;
-		
+
 		if(isset($queryConnexion)):
 			// La connexion à la BDD a bien été faite.
 			$this->bdd = $queryConnexion;
@@ -113,10 +113,10 @@ class query {
 			$this->bdd = false;
 			$this->error = true;
 		endif;
-		
+
 		if(is_string($cache) || $cache):
 			$this->cache = $cache;
-			
+
 			if(!is_dir(CACHE.'/sql')):
 				if(!mkdir(CACHE.'/sql')):
 					$this->cache = false;
@@ -128,7 +128,7 @@ class query {
 
 	/**
 	 * Converts a query field syntax into SQL syntax
-	 * 
+	 *
 	 * Three way to use parameter :
 	 * 		- String : select a field of the main table
 	 * 		- Array	:
@@ -142,7 +142,7 @@ class query {
 		if($params == "*"):
 			return '*';
 		endif;
-			
+
 		if($this->content['select']):
 			$table = $this->prefix.$this->table['select'];
 			$pref	= $this->table['select'];
@@ -221,11 +221,11 @@ class query {
 		endif;
 	}
 
-	
+
 	/**
 	 * Select field(s) to extract from query
 	 * Accepts custom arguments, according to query::getField syntax
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $champs fields to select ; '*' or leave empty to select all - @see query::getField
 	 * @return query $this for chaining
@@ -236,11 +236,11 @@ class query {
 		$this->content['select'] = true;
 		return $this;
 	}
-	
-	
+
+
 	/**
 	 * Select table to update
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $table table to update
 	 * @return query $this for chaining
@@ -250,18 +250,18 @@ class query {
 			$this->error = true;
 			debug::error("SQL", "TABLE argument must be valid in INSERT method.", __FILE__, __LINE__);
 		endif;
-		
+
 		$table_name = $this->prefix.$table;
 		$this->prepare_request .= ' UPDATE '.$table_name;
 		$this->content['update'] = true;
 		$this->table['set'] = $table;
 		return $this;
 	}
-	
-	
+
+
 	/**
 	 * Select the table to insert in
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $table table to insert in
 	 * @return query $this for chaining
@@ -271,17 +271,17 @@ class query {
 			debug::error("SQL", "TABLE argument must be valid in INSERT method.", __FILE__, __LINE__);
 			$this->error = true;
 		endif;
-		
+
 		$table_name = $this->prefix.$table;
 		$this->prepare_request .= ' INSERT INTO '.$table_name;
 		$this->content['insert'] = true;
 		$this->table['set'] = $table;
 		return $this;
 	}
-	
+
 	/**
 	 * Select table we want to delete from
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $table table to delete from
 	 * @return query $this for chaining
@@ -291,19 +291,19 @@ class query {
 			debug::error("SQL", "TABLE argument must be valid in DELETE method.", __FILE__, __LINE__);
 			$this->error = true;
 		endif;
-		
+
 		$table_name = $this->prefix.$table;
 		$this->prepare_request .= ' DELETE FROM '.$table_name;
 		$this->content['delete'] = true;
 		$this->table['delete'] = $table;
 		return $this;
 	}
-	
-	
+
+
 	/**
 	 * Instruction to add after query::update or query::insert
 	 * Set a value to a field
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $field name of the field
 	 * @param String $value[optional] value of the field - default: ''
@@ -315,13 +315,13 @@ class query {
 			debug::error("SQL", "FIELD argument must be valid in SET method.", __FILE__, __LINE__);
 			$this->error = true;
 		endif;
-		
+
 		// La méthode set ne peut être appelée après la méthode SELECT
 		if($this->content['select']):
 			debug::error("SQL", "SET method can't be requested with the SELECT method.", __FILE__, __LINE__);
 			$this->error = true;
 		endif;
-		
+
 		// Si le paramètre entré en est un array associatif, on met en place un multiple-set
 		if(is_array($field)):
 			foreach($field as $key => $value):
@@ -329,7 +329,7 @@ class query {
 			endforeach;
 			return $this;
 		endif;
-		
+
 		if($this->content['update']):
 			if($this->content['set']):
 				$this->prepare_request .= ', ';
@@ -352,11 +352,11 @@ class query {
 		endif;
 		return $this;
 	}
-	
+
 
 	/**
 	 * Select table from which data will be extracted (called after query::select)
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $table table to extract from
 	 * @return query $this for chaining
@@ -374,15 +374,15 @@ class query {
 			debug::error("SQL", "FROM method has been already requested.", __FILE__, __LINE__);
 			$this->error = true;
 		endif;
-		
-		
+
+
 		if($table instanceof query):
 			$as = ($as===false?$table->table['select']:$as);
 			$this->table['select'] = $as;
 		else:
 			$this->table['select'] = $table;
 		endif;
-		
+
 		if(count($this->fields)==0):
 			$this->prepare_request .= ' SELECT * ';
 		else:
@@ -393,41 +393,41 @@ class query {
 			endforeach;
 			$this->prepare_request .= implode(', ', $array);
 		endif;
-		
+
 		$table_name = $as;
 		if($table instanceof query):
 			$table_name = '('.$table->getRequest().') AS ' . $as;
 		else:
 			$table_name = $this->prefix.$table;
 		endif;
-		
+
 		$this->prepare_request .= ' FROM '.$table_name;
 		$this->content['from']	= true;
-		
+
 		return $this;
 	}
-	
-	
+
+
 	/**
 	 * Joins another table to input. This method should be called only within this class.
 	 * Please use query::leftJoin, query::rightJoin or query::innerJoin elsewhere.
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $table name of table to join
 	 * @param String $joinType case-insensitive join type (left, right, outer, inner) - default: left
 	 * @return query $this for chaining
 	 */
 	public function join($table, $joinType='left') {
-		
+
 		$joins = array('RIGHT', 'LEFT', 'FULL OUTER', 'INNER', 'OUTER');
 		$joinType = strtoupper($joinType);
-		
+
 		if(!in_array($joinType, $joins)):
 			$joinType = 'LEFT';
 			debug::error("SQL", "JOIN type must be one of these : ".implode(', ', $joins), __FILE__, __LINE__);
 			$this->error = true;
 		endif;
-			
+
 		if(empty($table)):
 			debug::error("SQL", "TABLE argument must be valid in JOIN method.", __FILE__, __LINE__);
 			$this->error = true;
@@ -440,7 +440,7 @@ class query {
 			debug::error("SQL", "JOIN method can't be requested before FROM method.", __FILE__, __LINE__);
 			$this->error = true;
 		endif;
-		
+
 		$table_name = $this->prefix.$table;
 		$this->prepare_request .= ' '.$joinType.' JOIN '.$table_name;
 		$this->content['join'] = true;
@@ -448,10 +448,10 @@ class query {
 		return $this;
 	}
 
-	
+
 	/**
 	 * Performs a LEFT JOIN
-	 * 
+	 *
 	 * @access public
 	 * @remark this method is no longer deprecated
 	 * @param mixed $table name of table to join
@@ -463,7 +463,7 @@ class query {
 
 	/**
 	 * Performs an INNER JOIN
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $table name of table to join
 	 * @return query $this for chaining
@@ -471,12 +471,12 @@ class query {
 	public function innerJoin($table) {
 		return $this->join($table, 'inner');
 	}
-	
+
 	/**
 	 * Performs a RIGHT JOIN - should NOT be used according to MySQL documentation
 	 * @see http://dev.mysql.com/doc/refman/5.0/en/join.html
 	 * @remark "To keep code portable across databases, it is recommended that you use LEFT JOIN instead of RIGHT JOIN."
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $table name of table to join
 	 * @return query $this for chaining
@@ -484,19 +484,19 @@ class query {
 	public function rightJoin($table) {
 		return $this->join($table, 'right');
 	}
-	
+
 	/**
 	 * Performs an OUTER JOIN
-	 * 
+	 *
 	 * Although OUTER JOIN doesn't exists in MySQL, this method allow to simulate it.
 	 * Because of that, this method must be called instead of the FROM method.
 	 * You have to provide both tables plus "ON" fields.
-	 * 
+	 *
 	 * You can use only one outerJoin in a query, and must not call
 	 * query::from or query::on methods.
-	 * 
+	 *
 	 * This method is based on UNION, LEFT JOIN and RIGHT JOIN.
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $table name of main table
 	 * @param mixed $join name of table to join
@@ -513,27 +513,27 @@ class query {
 					->on($on1, $on2)
 					// do not duplicate
 					->where($on1, 'IS NULL', false);
-		
+
 		// sub-join 1 (left part of outer join)
 		$subRequest1 = new query($this->cache);
 		$subRequest1->select()
 					->from($table)
 					->leftJoin($join)
 					->on($on1, $on2)
-					
+
 					// union part
 					->addString(' UNION ALL ('.$subrequest2->getRequest().') ');
-		
+
 		$this->content['join']		= true;
 		$this->table['join'][]		= $join;
-		
+
 		// small workaround
 		return $this->from($subRequest1);
 	}
-	
+
 	/**
 	 * Specifies the common fields to filter a JOIN instruction.
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $value1 field of first table
 	 * @param mixed $value2 field of second table
@@ -542,7 +542,7 @@ class query {
 	public function on($value1, $value2) {
 
 		$this->content['countOn']++;
-		
+
 		if(empty($value1)):
 			debug::error("SQL", "VALUE1 argument must be valid in ON method.", __FILE__, __LINE__);
 			$this->error = true;
@@ -563,7 +563,7 @@ class query {
 			debug::error("SQL", "ON method can't be requested before JOIN method.", __FILE__, __LINE__);
 			$this->error = true;
 		endif;
-		
+
 		if(is_string($value1) && is_string($value2)):
 			// On gère la rétrocompatibilité
 			if(empty($value3)):
@@ -580,11 +580,11 @@ class query {
 
 	/**
 	 * Specify query filters
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $field field to apply filter on
 	 * @param string $calculator condition operator
-	 * @param mixed $value value to test field with 
+	 * @param mixed $value value to test field with
 	 * @param string $calcul "where" or "or"
 	 * @return query $this for chaining
 	 */
@@ -609,7 +609,7 @@ class query {
 			debug::error("SQL", $calcul." method can't be requested after LIMIT method.", __FILE__, __LINE__);
 			$this->error = true;
 		endif;
-		
+
 		if($this->content['where']):
 			if(strtolower($calcul) == 'where'):
 				$this->prepare_request .= ' AND';
@@ -621,7 +621,7 @@ class query {
 			$this->prepare_request .= ' WHERE';
 		endif;
 
-		$field = $this->getField($field); 
+		$field = $this->getField($field);
 
 		if(is_array($value)):
 			if(array_key_exists('FUNCTION', $value)):
@@ -654,14 +654,14 @@ class query {
 
 		return $this;
 	}
-	
+
 	/**
 	 * Specify query filters
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $field field to apply filter on
 	 * @param string $calculator condition operator
-	 * @param mixed $value value to test field with 
+	 * @param mixed $value value to test field with
 	 * @param string $calcul "where" or "or"
 	 * @return query $this for chaining
 	 */
@@ -674,7 +674,7 @@ class query {
 			debug::error("SQL", "Having method can't be requested before FROM or UPDATE method.", __FILE__, __LINE__);
 			$this->error = true;
 		endif;
-		
+
 		if($this->content['having']):
 			$this->prepare_request .= ' AND';
 		else:
@@ -682,7 +682,7 @@ class query {
 			$this->prepare_request .= ' HAVING';
 		endif;
 
-		$field = $this->getField($field); 
+		$field = $this->getField($field);
 
 		if(is_array($value)):
 			if(array_key_exists('FUNCTION', $value)):
@@ -715,15 +715,15 @@ class query {
 
 		return $this;
 	}
-	
-	
+
+
 	/**
 	 * Adds a OR condition
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $field field to apply filter on
 	 * @param string $calculator condition operator
-	 * @param mixed $value value to test field with 
+	 * @param mixed $value value to test field with
 	 * @return query $this pour assurer la chaînabilité de la classe
 	 */
 	public function either($field, $calculator, $value) {
@@ -731,10 +731,10 @@ class query {
 		return $this;
 	}
 
-	
+
 	/**
 	 * Allow to do an update instead of insert in case of existing primary key
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $field field to update
 	 * @param mixed $value new value
@@ -758,15 +758,13 @@ class query {
 		$this->duplicate .= ' '.$this->getField($field).' = "'.addslashes($value).'"';
 		return $this;
 	}
-	
-	
+
+
 	/**
 	 * Specify a sort filter and a sort order
-	 * NB : you can use an array for field parameter, to specify table or more complex operations 
-	 * Ex. array(array('table'=>'field'),'>',0) will order on result of [table_field > 0] expression @see query::where method
-	 * 
+	 *
 	 * @access public
-	 * @param mixed $field field name to sort by - default: ""
+	 * @param string $field field name to sort by - default: ""
 	 * @param string $order ASC or DESC - default: 'ASC'
 	 * @return query $this for chaining
 	 */
@@ -797,59 +795,25 @@ class query {
 		else:
 			$this->prepare_request .= ' ,';
 		endif;
-		
+
 		// Si le champs n'est pas renseigné, on applique un ordre aléatoire aux résultats
 		if(empty($field)):
 			$field = "RAND()";
-		elseif (is_array($field) && count($field)>1):
-			
-			$f = $this->getField($field[0]);
-			$calculator = $field[1];
-			$value = isset($field[2]) ? $field[2] : false;
-			
-			if(is_array($value)):
-				if(array_key_exists('FUNCTION', $value)):
-					// Utilisation d'une fonction sans argument comme paramètre à vérifier
-				 $field = ' '.$f.' '.$calculator.' '.$value['FUNCTION'].'()';
-				else:
-					// Utilisation d'une fonction en temps qu'opérateur comme paramètre à vérifier
-				 $field = ' '.$f.' '.$calculator.' ("'.implode('", "', $value).'")';
-				endif;
-			elseif(is_object($value)):
-				$name = get_class($value);
-				if($name == "query"):
-					// Utilisation de sous-requêtes comme paramètre à vérifier
-				 $field = ' '.$f.' '.$calculator.' ( '.$value->getRequest().')';
-				else:
-					// Utilisation d'un string sous forme d'object comme paramètre à vérifier
-				 $field = ' '.$f.' '.$calculator.' "'.addslashes((string) $value).'"';
-				endif;
-			elseif($value === false):
-				$field = ' '.$f.' '.$calculator;
-			else:
-				if(is_numeric($value)):
-					// Utilisation d'un nombre comme paramètre à vérifier
-				 $field = ' '.$f.' '.$calculator.' '.addslashes($value);
-				else:
-					// Utilisation d'un string comme paramètre à vérifier
-				 $field = ' '.$f.' '.$calculator.' "'.addslashes($value).'"';
-				endif;
-			endif;
 		else:
 			$field = $this->getField($field);
 		endif;
-		
+
 		$this->prepare_request .= ' '.$field.' '.$order.'';
-		
+
 		return $this;
 	}
 
-	
+
 	/**
 	 * Group lines according to a field
-	 * 
+	 *
 	 * @access public
-	 * @param mixed $field group lines according to this field 
+	 * @param mixed $field group lines according to this field
 	 * @return query $this for chaining
 	 */
 	public function groupBy($field) {
@@ -869,7 +833,7 @@ class query {
 			debug::error("SQL", "GROUP BY method can't be requested after LIMIT method.", __FILE__, __LINE__);
 			$this->error = true;
 		endif;
-		
+
 		if(!$this->content['groupBy']):
 			$this->prepare_request .= ' GROUP BY ';
 			$this->content['groupBy'] = true;
@@ -880,10 +844,10 @@ class query {
 		return $this;
 	}
 
-	
+
 	/**
 	 * Bounds results
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $limit1 Starting bound
 	 * @param bool $limit2 length (number of lines to return)
@@ -902,24 +866,24 @@ class query {
 			debug::error("SQL", "LIMIT method can't be requested before ON method when JOIN method has been requested.", __FILE__, __LINE__);
 			$this->error = true;
 		endif;
-		
+
 		if(empty($limit2)):
 			$this->prepare_request .= ' LIMIT '.$limit1;
 		else:
 			$this->prepare_request .= ' LIMIT '.$limit1.', '.$limit2;
 		endif;
-		
+
 		$this->content['limit'] = true;
 		return $this;
 	}
 
-	
+
 	/**
 	 * Finalise query and launch execution - @see query::sql
 	 * After query::exec, results can be accessed by query::get
 	 * (use query::next iterator if you didn't select FIRST result)
 	 * or query::getArray
-	 * 
+	 *
 	 * @access public
 	 * @param string $which FIRST result or ALL - default: "ALL"
 	 * @return void
@@ -932,18 +896,18 @@ class query {
 			debug::error("SQL", "SELECT, UPDATE and INSERT methods can't be requested in the same time.", __FILE__, __LINE__);
 			$this->error = true;
 		endif;
-		
+
 		// Si une erreur s'est produite pendant la requête, en empêche celle-ci d'être envoyée
 		if($this->error):
 			return false;
 		endif;
-		
+
 		// called here because of subqueries that are not "executed" on their own
 		if (!self::$queryNumber):
 			debug::timer('SQL call',true);
 		endif;
 		self::$queryNumber++;
-		
+
 		// Requête SELECT
 		if($this->content['select']):
 
@@ -951,12 +915,12 @@ class query {
 				debug::error("SQL", "EXEC method can't be requested before FROM method.", __FILE__, __LINE__);
 				$this->error = true;
 			endif;
-			
+
 			// Si on demande un résultat unique, on applique un limit 1 pour alléger la requête
 			if($which == "FIRST"):
 				$this->limit(1);
 			endif;
-			
+
 			$which = strtoupper($which);
 			$this->result = $this->sql($this->prepare_request);
 			$this->which	= $which;
@@ -965,49 +929,49 @@ class query {
 				debug::error("SQL", 'EXEC method only accept blank, "ALL" or "FIRST" for argument.', __FILE__, __LINE__);
 				$this->error = true;
 			endif;
-			
+
 			// Si on demande un résultat unique, on le place directement en mémoire
 			if($this->which == "FIRST" && $this->ok()):
 				$this->line = $this->results[0];
 			endif;
 
 			return $this->result;
-			
+
 		// Requête UPDATE
 		elseif($this->content['update']):
 			if(!$this->content['set']):
 				debug::error("SQL", "EXEC method can't be requested before SET method.", __FILE__, __LINE__);
 				$this->error = true;
 			endif;
-			
+
 			$this->sql($this->prepare_request);
-			
+
 			return $this->count();
-			
+
 		// Requête INSERT
 		elseif($this->content['insert']):
 			if(!$this->content['set']):
 				debug::error("SQL", "EXEC method can't be requested before SET method.", __FILE__, __LINE__);
 				$this->error = true;
 			endif;
-			
+
 			$field = implode(',', $this->fields);
 			$value = implode('", "', $this->values);
 			$this->prepare_request .= ' ('.$field.') VALUES ("'.$value.'")';
-			
+
 			if($this->content['onDuplicateKeyUpdate']):
 				$this->prepare_request .= ' '.$this->duplicate;
 			endif;
-			
+
 			$this->sql($this->prepare_request);
-			
+
 			return $this->bdd->lastInsertId();
-			
+
 		// Requête DELETE
 		elseif($this->content['delete']):
 			$this->sql($this->prepare_request);
 			return $this->count();
-		
+
 		// Erreur
 		else:
 			debug::error("SQL", "EXEC method can't be requested before SELECT, UPDATE or INSERT method.", __FILE__, __LINE__);
@@ -1023,10 +987,10 @@ class query {
 	public function getCacheHash() {
 		return $this->cacheHash;
 	}
-	
+
 	/**
 	 * Execute query and collect results
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $req SQL string to execute
 	 * @return void
@@ -1037,28 +1001,28 @@ class query {
 			try {
 				$queryStart = microtime(true);
 				if($this->content['select']):
-					
+
 					// cache category - file prefix
 					$cachePref = ($this->cache===true?'':md5('prefix'.$this->cache));
-										
+
 					// Cache verification
 					if($this->cache):
 						// Already cached
 						$file = CACHE.'/sql/'.$cachePref.md5($req).'.cache';
 						$this->cached = false;
-						
+
 						// Cache exists and not too old
 						if(file_exists($file) && (filemtime($file) > (time() - SQLCACHETIME)) ):
 							$this->cached = true;
 						endif;
 					endif;
-					
+
 					if(!$this->cached):
 						$return = $this->bdd->query($req);
 						$return->setFetchMode(PDO::FETCH_ASSOC);
-						
+
 						$results = $return->fetchAll();
-						
+
 						// Must caching the request
 						if($this->cache):
 							$fileName = CACHE.'/sql/'.$cachePref.md5($req).'.cache';
@@ -1069,35 +1033,35 @@ class query {
 					else:
 						$results = unserialize(file_get_contents(CACHE.'/sql/'.$cachePref.md5($req).'.cache'));
 					endif;
-					
+
 					if ($this->cache) {
 						$this->cacheHash = $cachePref.md5($req);
 					}
-					
+
 					// On compte le nombre d'occurence trouvée
 					$this->count = count($results);
-					
+
 					// On enregistre les résultats
 					$this->results = $results;
-					
+
 				else:
 					// On récupère le nombre d'occurence touchée par la requête
 					$return 	 = $this->bdd->exec($req);
 					$this->count = $return;
 				endif;
-				
+
 				$queryEnd = microtime(true);
-				
+
 				if (!$this->cached && debug::$timeQueries):
 					// send data to timer
 					$nb = self::$queryNumber;
 					$a = '<a href="#debugQuery'.$nb.'" onclick="$(\'#debugSQLContent\').show();">';
-					
+
 					debug::timer($a.'Query '.$nb.'</a>',true);
 				endif;
 				debug::sql($req, $this->count, $this->cached,$this->cache,$queryEnd-$queryStart);
-				
-				
+
+
 				return true;
 			} catch( Exception $error ) {
 				debug::error("SQL", $error->getMessage()."<br />".$req, __FILE__, __LINE__);
@@ -1108,30 +1072,30 @@ class query {
 			return false;
 		endif;
 	}
-	
+
 	/**
 	 * Result iterator
 	 * Example of use : while($query->next()) { $query->get(); }
-	 * 
+	 *
 	 * @access public
 	 * @return Array|Boolean false if all results browsed, current line otherwise
 	 */
 	public function next() {
-			
+
 		if(!is_array($this->results)):
 			debug::error("SQL", "NEXT method can't be requested before SELECT and EXEC method.", __FILE__, __LINE__);
 			$this->error = true;
 		endif;
-		
+
 		if($this->which == "FIRST"):
 			debug::error("SQL", "NEXT method can't be requested with FIRST as argument for EXEC method.", __FILE__, __LINE__);
 			$this->error = true;
 		endif;
-			 
+
 		if(!$this->ok()):
 			return false;
 		endif;
-			 
+
 		if(isset($this->results[$this->i])):
 			$this->line = $this->results[$this->i];
 			$this->i++;
@@ -1142,10 +1106,10 @@ class query {
 		endif;
 	}
 
-	
+
 	/**
 	 * Returns the genrated SQL string
-	 * 
+	 *
 	 * @access public
 	 * @return String SQL string
 	 */
@@ -1153,10 +1117,10 @@ class query {
 		return $this->prepare_request;
 	}
 
-	
+
 	/**
 	 * Get a field (or all fields) of current line
-	 * 
+	 *
 	 * @access public
 	 * @param string $field specify a field, leave empty to get all - default: all
 	 * @return Array|String Either value of specified field, either all field values
@@ -1166,12 +1130,12 @@ class query {
 		if($this->error):
 			$return = false;
 		endif;
-		
+
 		if(!is_array($this->results)):
 			debug::error("SQL", "GET method can't be requested before SELECT and EXEC method.", __FILE__, __LINE__);
 			$this->error = true;
 		endif;
-		
+
 		// Si on demande un champ spécifique avec la methode getField
 		if(is_array($field)):
 			if(isset($this->line[$this->getField($field)])):
@@ -1179,14 +1143,14 @@ class query {
 			else:
 			 $return = false;
 			endif;
-			
+
 		// Si on demande un champ spécifique simple
 		elseif($field != false):
 			if(in_array($field, $this->table['join'])):
 				$array = array();
 				foreach($this->line as $ligne => $value):
 					if(preg_match('#^'.$field.'#', $ligne)):
-						$array[str_replace($field.'_', '', $ligne)] = $value; 
+						$array[str_replace($field.'_', '', $ligne)] = $value;
 					endif;
 				endforeach;
 				$return = $array;
@@ -1197,16 +1161,16 @@ class query {
 			else:
 			 $return = false;
 			endif;
-			
+
 		// Si on demande tous les champs
 		else:
 			if(is_array($this->line) && count($this->line)!=0):
 			 $array = array();
-			 
+
 			 foreach($this->table['join'] as $table):
 				$array[$table] = array();
 			 endforeach;
-			 
+
 			 foreach($this->line as $ligne => $value):
 				if(preg_match('#^'.$this->table['select'].'#', $ligne)):
 					$key = str_replace($this->table['select'].'_', '', $ligne);
@@ -1231,17 +1195,17 @@ class query {
 					endforeach;
 				endif;
 			 endforeach;
-			 
+
 			 foreach($array as $key => $value):
 			 	if(is_array($value) && empty($value)):
 			 		unset($array[$key]);
 			 	endif;
 			 endforeach;
-                
+
 			 foreach($this->alias as $alias):
 			 	$array[$alias] = $this->line[$alias];
 			 endforeach;
-			 
+
 			 if(count($array) == 0):
 				$return = false;
 			 else:
@@ -1251,37 +1215,37 @@ class query {
 			 $return = false;
 			endif;
 		endif;
-		
+
 		return $return;
 	}
-	
+
 	/**
 	 * Modify a line output
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $field field to update
 	 * @param String $value[optional] new value - default: empty string
 	 * @return void
 	 */
 	public function put($field, $value='') {
-	
+
 		if(empty($this->result)):
 			debug::error("SQL", "PUT method can't be requested before SELECT and EXEC method.", __FILE__, __LINE__);
 			$this->error = true;
 		endif;
-		
+
 		if(empty($table)):
 			$table = $this->table['select'];
 		endif;
-		
+
 		$this->line[$this->table['select'].'_'.$field] = $value;
 		return true;
 	}
 
-	
+
 	/**
 	 * Number of lines affected by query
-	 * 
+	 *
 	 * @access public
 	 * @return Integer number of results
 	 */
@@ -1293,10 +1257,10 @@ class query {
 		endif;
 	}
 
-	
+
 	/**
 	 * Is the query OK (for select query only) ?
-	 * 
+	 *
 	 * @access public
 	 * @return Boolean true if OK, false if not
 	 */
@@ -1308,32 +1272,32 @@ class query {
 		endif;
 	}
 
-	
+
 	/**
 	 * Returns all results into a regular array
 	 * Each result is an associative array with {fieldName => fieldValue} couples
-	 * 
+	 *
 	 * @access public
 	 * @return Array results
 	 */
 	public function getArray() {
 		if(is_array($this->results)):
-		
+
 			$return = array();
 			while($this->next()):
 				$return[] = $this->get();
 			endwhile;
-			
+
 			return $return;
 		else:
 			return array();
 		endif;
 	}
 
-	
+
 	/**
 	 * Adds a raw SQL string to the query ; don't forget to wrap in spaces
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $string raw SQL Strings
 	 * @return query $this for chaining
@@ -1342,37 +1306,39 @@ class query {
 		$this->prepare_request .= $string;
 		return $this;
 	}
-	
-	
+
+
 	/**
 	 * Paginate query according to URL
-	 * 
+	 *
 	 * @access public
 	 * @param mixed $get which "get" to use @see get
 	 * @param mixed $results Number of result per page
+	 * @param mixed $maxPage Number of page links displayed (false for desactivate all page links)
 	 * @param string $variable tpl var to assign results to
 	 * @return query $this for chaining
 	 */
-	public function page($get, $results, $variable = "pagination", $variableCount = "count") {
+	public function page($get, $results, $maxPage = 11, $variable = "pagination", $variableCount = "count") {
 		global $page;
-		
+
 		$this->sql($this->prepare_request);
-		
+
 		$nb = $this->count();
-		
+
 		$page->template($variableCount, $nb);
-		
+
 		$current = get($get);
 		if(!is_numeric($current)):
 			$current = 1;
 		endif;
 		$place = ($current-1)*$results;
+		$total = ceil($nb / $results);
+
 		$this->Limit($place, $results);
-		
-		
+
 		$text['page']	= $current;
-		$text['total'] = ceil($nb / $results);
-		
+		$text['total'] = $total;
+
 		if($current > 1):
 			$start  = '<li class="pageStart"><a href="'.get($get, 1).'" class="start">'.lang::text('pagination:start').'</a></li>';
 			$prev	= '<li class="pagePrev"><a href="'.get($get, $current-1).'" class="prev">'. lang::text('pagination:prev') .'</a></li>';
@@ -1380,7 +1346,7 @@ class query {
 			$start  = '<li class="disabled pageStart"><a href="'.get().'" class="start">'.lang::text('pagination:start').'</a></li>';
 			$prev	= '<li class="disabled pagePrev"><a href="'.get().'" class="prev">'. lang::text('pagination:prev') .'</a></li>';
 		endif;
-		
+
 		if($current < ceil($nb / $results)):
 			$next	= '<li class="pageNext"><a href="'.get($get, $current+1).'" class="next">'. lang::text('pagination:next') .'</a></li>';
 			$end	= '<li class="pageEnd"><a href="'.get($get, ceil($nb / $results)).'" class="end">'.	lang::text('pagination:end')	.'</a></li>';
@@ -1388,18 +1354,53 @@ class query {
 			$end	= '<li class="disabled pageNext"><a href="'.get().'" class="next">'. lang::text('pagination:next') .'</a></li>';
 			$next	= '<li class="disabled pageEnd"><a href="'.get().'" class="end">'.	lang::text('pagination:end')	.'</a></li>';
 		endif;
-		
-		$center = '<li class="disabled pageCount"><a href="'.get().'">'.lang::text('pagination:page', $text).'</a></li>';
 
-		$page->template($variable, '<ul class="pager">'.$start.$prev.$center.$next.$end.'</ul>');
-		
+		if(is_numeric($maxPage)):
+			$center = '';
+
+			if($current <= floor($maxPage / 2)):
+				$counter = 1;
+			else:
+				$counter = $current - floor(($maxPage / 2));
+			endif;
+
+			while($counter < $current):
+				$center .= '<li><a href="'.get($get, $counter).'">'.$counter.'</a></li>';
+				$counter++;
+			endwhile;
+
+			$center .= '<li class="disabled"><a href="'.get().'"><b>'.$current.'</b></a></li>';
+
+			if($current + ($maxPage / 2) < $total):
+				$lastPage = $current + ($maxPage / 2);
+			else:
+				$lastPage = $current;
+			endif;
+
+			$counter = $current + 1;
+
+			while($counter < $lastPage):
+				$center .= '<li><a href="'.get($get, $counter).'">'.$counter.'</a></li>';
+				$counter++;
+			endwhile;
+
+			if($lastPage < $total):
+				$center .= '<li class="disabled"><a class="disabled" href="#">...</a></li>';
+				$center .= '<li><a href="'.get($get, $total).'">'.$total.'</a></li>';
+			endif;
+		else:
+			$center = '<li class="disabled pageCount"><a href="'.get().'">'.lang::text('pagination:page', $text).'</a></li>';
+		endif;
+
+		$page->template($variable, '<ul class="pagination">'.$start.$prev.$center.$next.$end.'</ul>');
+
 		return $this;
 	}
 
-	
+
 	/**
 	 * Send query data to debug bar
-	 * 
+	 *
 	 * @access public
 	 * @return void
 	 */
@@ -1409,14 +1410,14 @@ class query {
 		$debug['count']	= $this->count;
 		$debug['cache']	= $this->cache;
 		$debug['cached']	= $this->cached;
-		
+
 		if($this->ok() && $this->which == "ALL"):
 			$debug['results'] = $this->getArray();
 		elseif($this->ok() && $this->which == "FIRST"):
 			$debug['results'] = $this->get();
 		endif;
-		
-		debug::dump($debug, 'SQL Request');
+
+		debug::dump($debug, lang::text('sql:request'));
 	}
 
 	/**
@@ -1453,6 +1454,5 @@ class query {
 		$this->count			= 0;
 		$this->duplicate		= '';
 	}
-	
-}
 
+}
