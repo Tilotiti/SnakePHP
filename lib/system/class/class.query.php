@@ -1359,42 +1359,45 @@ class query {
 			$center = '';
 
 			$display = 0;
-			$counter = $current - (floor(($maxPage - 1) / 2));
+			$i = 1;
 
-			if($counter < 1):
-				$counter = 1;
+			if($maxPage > $total):
+				$maxPage = $total;
 			endif;
 
-			if(($total - floor(($maxPage - 1) / 2)) < $current):
-				$counter = $total - $maxPage + 1;
+			$i = $current - ceil(($maxPage - 1) / 2);
+
+			if($i > $total - $maxPage):
+				$i = $total - $maxPage + 1;
 			endif;
 
-			if($counter == 2):
+			if($i < 1):
+				$i = 1;
+			endif;
+
+			if($i == 2):
 				$center .= '<li><a href="'.get($get, 1).'">1</a></li>';
-			elseif($counter > 2):
+			elseif($i > 2):
 				$center .= '<li class="disabled"><a class="disabled" href="#">...</a></li>';
 			endif;
 
-			while($counter < $current):
-				$center .= '<li><a href="'.get($get, $counter).'">'.$counter.'</a></li>';
-				$counter++;
-				$display++;
-			endwhile;
-
-			$center .= '<li class="disabled"><a href="'.get().'"><b>'.$current.'</b></a></li>';
-			$counter++;
-			$display++;
-
 			while($display < $maxPage):
-				$center .= '<li><a href="'.get($get, $counter).'">'.$counter.'</a></li>';
-				$counter++;
+				if($i != $current):
+					$center .= '<li><a href="'.get($get, $i).'">'.$i.'</a></li>';
+				else:
+					$center .= '<li class="disabled"><a href="'.get().'"><b>'.$current.'</b></a></li>';
+				endif;
+				$i++;
 				$display++;
 			endwhile;
 
-			if($current < $total - 1):
-				if($current < $total - 2):
-					$center .= '<li class="disabled"><a class="disabled" href="#">...</a></li>';
-				endif;
+			if($i < $total - 1):
+				$center .= '<li class="disabled"><a class="disabled" href="#">...</a></li>';
+			elseif($i == $total - 1):
+				$center .= '<li><a href="'.get($get, $i).'">'.$i.'</a></li>';
+			endif;
+
+			if($i < $total + 1):
 				$center .= '<li><a href="'.get($get, $total).'">'.$total.'</a></li>';
 			endif;
 		else:
