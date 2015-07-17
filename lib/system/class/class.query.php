@@ -1351,41 +1351,50 @@ class query {
 			$next	= '<li class="pageNext"><a href="'.get($get, $current+1).'" class="next">'. lang::text('pagination:next') .'</a></li>';
 			$end	= '<li class="pageEnd"><a href="'.get($get, ceil($nb / $results)).'" class="end">'.	lang::text('pagination:end')	.'</a></li>';
 		else:
-			$end	= '<li class="disabled pageNext"><a href="'.get().'" class="next">'. lang::text('pagination:next') .'</a></li>';
-			$next	= '<li class="disabled pageEnd"><a href="'.get().'" class="end">'.	lang::text('pagination:end')	.'</a></li>';
+			$next	= '<li class="disabled pageNext"><a href="'.get().'" class="next">'. lang::text('pagination:next') .'</a></li>';
+			$end	= '<li class="disabled pageEnd"><a href="'.get().'" class="end">'.	lang::text('pagination:end')	.'</a></li>';
 		endif;
 
 		if(is_numeric($maxPage)):
 			$center = '';
 
-			if($current <= floor($maxPage / 2)):
+			$display = 0;
+			$counter = $current - (floor(($maxPage - 1) / 2));
+
+			if($counter < 1):
 				$counter = 1;
-			else:
-				$counter = $current - floor(($maxPage / 2));
+			endif;
+
+			if(($total - floor(($maxPage - 1) / 2)) < $current):
+				$counter = $total - $maxPage + 1;
+			endif;
+
+			if($counter == 2):
+				$center .= '<li><a href="'.get($get, 1).'">1</a></li>';
+			elseif($counter > 2):
+				$center .= '<li class="disabled"><a class="disabled" href="#">...</a></li>';
 			endif;
 
 			while($counter < $current):
 				$center .= '<li><a href="'.get($get, $counter).'">'.$counter.'</a></li>';
 				$counter++;
+				$display++;
 			endwhile;
 
 			$center .= '<li class="disabled"><a href="'.get().'"><b>'.$current.'</b></a></li>';
+			$counter++;
+			$display++;
 
-			if($current + ($maxPage / 2) < $total):
-				$lastPage = $current + ($maxPage / 2);
-			else:
-				$lastPage = $current;
-			endif;
-
-			$counter = $current + 1;
-
-			while($counter < $lastPage):
+			while($display < $maxPage):
 				$center .= '<li><a href="'.get($get, $counter).'">'.$counter.'</a></li>';
 				$counter++;
+				$display++;
 			endwhile;
 
-			if($lastPage < $total):
-				$center .= '<li class="disabled"><a class="disabled" href="#">...</a></li>';
+			if($current < $total - 1):
+				if($current < $total - 2):
+					$center .= '<li class="disabled"><a class="disabled" href="#">...</a></li>';
+				endif;
 				$center .= '<li><a href="'.get($get, $total).'">'.$total.'</a></li>';
 			endif;
 		else:
