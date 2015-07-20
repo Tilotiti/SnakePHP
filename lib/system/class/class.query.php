@@ -1357,6 +1357,10 @@ class query {
 
 		if(is_numeric($maxPage)):
 			$center = '';
+			
+			if($total == 0):
+				$total == 1;
+			endif;
 
 			$display = 0;
 			$i = 1;
